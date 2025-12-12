@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДОКУМЕНТ #009: PEWDIEPIE - СОЗДАТЕЛЬ ЦИФРОВОЙ НАЦИИ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Press+Start+2P&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brofist-red: #ff0000;
+            --brofist-dark: #cc0000;
+            --youtube-red: #ff0000;
+            --gold-crown: #ffd700;
+            --army-green: #00aa00;
+            --meme-purple: #9d00ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000, #1a0000, #330000);
+            color: white;
+            font-family: 'Roboto Condensed', sans-serif;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ФОН ИЗ MEME-ИКОНОК */
+        body::before {
+            content: "😂 👑 💪 BROFIST 👊 🎮 📈";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 3rem;
+            opacity: 0.05;
+            z-index: -1;
+            animation: memeFloat 30s linear infinite;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        @keyframes memeFloat {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-100%) translateX(100%); }
+        }
+
+        /* ШАПКА В СТИЛЕ КОРОНАЦИИ */
+        .throne-header {
+            background: linear-gradient(135deg, var(--brofist-red), #8b0000, #000000);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 20px solid var(--gold-crown);
+        }
+
+        .throne-header::before {
+            content: "👑";
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5rem;
+            animation: crownFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes crownFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .classification {
+            display: inline-block;
+            background: black;
+            color: var(--gold-crown);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            border: 3px solid var(--gold-crown);
+            box-shadow: 0 0 30px var(--gold-crown);
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            background: linear-gradient(45deg, var(--gold-crown), #ffffff, var(--gold-crown));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 2rem 0;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            position: relative;
+        }
+
+        .article-title::after {
+            content: "KING OF THE 9 YEAR OLDS";
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--brofist-red);
+            font-family: 'Press Start 2P', cursive;
+            white-space: nowrap;
+        }
+
+        /* ОСНОВНОЙ КОНТЕЙНЕР */
+        .kingdom-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+        /* СЕКЦИИ КОРОЛЕВСТВА */
+        .kingdom-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 5px solid;
+            border-image: linear-gradient(45deg, var(--brofist-red), var(--gold-crown)) 1;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .kingdom-section::before {
+            content: "👑";
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            font-size: 3rem;
+            background: black;
+            padding: 10px;
+            border-radius: 50%;
+            border: 3px solid var(--gold-crown);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--brofist-red);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-crown), transparent);
+        }
+
+        /* ТЕКСТ С ЭМОДЗИ */
+        .meme-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .meme-text::first-letter {
+            font-size: 3rem;
+            color: var(--brofist-red);
+            float: left;
+            margin-right: 10px;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        /* ГИФКА БРОФИСТА (CSS-анимация) */
+        .brofist-animation {
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .brofist {
+            position: absolute;
+            font-size: 5rem;
+            animation: brofistPunch 2s infinite;
+        }
+
+        .left-fist {
+            left: 0;
+            transform: rotate(-20deg);
+        }
+
+        .right-fist {
+            right: 0;
+            transform: rotate(20deg);
+        }
+
+        @keyframes brofistPunch {
+            0%, 100% { transform: rotate(0) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.2); }
+            75% { transform: rotate(10deg) scale(1.2); }
+        }
+
+        /* КАРТОЧКИ АРМИИ */
+        .army-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .soldier-card {
+            background: linear-gradient(135deg, #001100, #003300);
+            padding: 2rem;
+            border: 3px solid var(--army-green);
+            border-radius: 15px;
+            position: relative;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .soldier-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px var(--army-green);
+            border-color: var(--gold-crown);
+        }
+
+        .soldier-card::before {
+            content: "🪖";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 2rem;
+        }
+
+        .rank {
+            display: inline-block;
+            background: var(--brofist-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ЭКОНОМИКА MEME-COIN */
+        .economy-section {
+            background: linear-gradient(135deg, #1a0033, #330066);
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 5px solid var(--meme-purple);
+            position: relative;
+        }
+
+        .economy-section::before {
+            content: "₿";
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            background: #1a0033;
+            padding: 0 20px;
+            color: var(--gold-crown);
+        }
+
+        .crypto-display {
+            background: black;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 3px solid #00ff00;
+            font-family: 'Press Start 2P', cursive;
+            color: #00ff00;
+            overflow-x: auto;
+        }
+
+        /* ВИДЖЕТ ПОДПИСЧИКОВ */
+        .subs-widget {
+            text-align: center;
+            padding: 2rem;
+            margin: 3rem 0;
+            background: rgba(255, 0, 0, 0.2);
+            border: 3px dashed var(--youtube-red);
+            position: relative;
+        }
+
+        .subs-counter {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3rem;
+            color: var(--brofist-red);
+            text-shadow: 0 0 20px red;
+            animation: counterPulse 2s infinite;
+        }
+
+        @keyframes counterPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ИГРА: СТАНЬ 9-ЛЕТНИМ */
+        .game-section {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 5px solid var(--gold-crown);
+            text-align: center;
+        }
+
+        .meme-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .meme-option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border: 2px solid var(--meme-purple);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .meme-option:hover {
+            background: rgba(157, 0, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* КНОПКИ УПРАВЛЕНИЯ НАЦИЕЙ */
+        .nation-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .nation-btn {
+            background: linear-gradient(135deg, var(--brofist-red), #8b0000);
+            border: none;
+            padding: 2rem 1rem;
+            border-radius: 15px;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .nation-btn:hover {
+            background: linear-gradient(135deg, var(--gold-crown), #ffaa00);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            color: black;
+        }
+
+        /* ФУТЕР С БРОФИСТОМ */
+        .brofist-footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 5rem;
+            background: linear-gradient(135deg, #000000, #1a0000);
+            border-top: 10px solid var(--brofist-red);
+            position: relative;
+        }
+
+        .brofist-footer::before {
+            content: "👊";
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            background: black;
+            padding: 0 30px;
+            animation: fistBump 2s infinite;
+        }
+
+        @keyframes fistBump {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 3rem;
+            }
+            
+            .kingdom-container {
+                padding: 1rem;
+            }
+            
+            .kingdom-section {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .army-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nation-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* СПЕЦЭФФЕКТЫ */
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background: var(--gold-crown);
+            animation: fall 5s linear infinite;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .rainbow-text {
+            background: linear-gradient(45deg, 
+                #ff0000, #ff9900, #ffff00, #00ff00, 
+                #0099ff, #6600ff, #ff00ff
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 400% 400%;
+            animation: rainbow 3s ease infinite;
+        }
+
+        @keyframes rainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА КОРОНАЦИИ -->
+    <header class="throne-header">
+        <div class="classification">
+            <i class="fas fa-crown"></i> СОВЕРШЕННО СЕКРЕТНО: УРОВЕНЬ "DANK"
+        </div>
+        
+        <h1 class="article-title">
+            PEWDIEPIE
+        </h1>
+        
+        <div style="font-family: 'Press Start 2P', cursive; font-size: 1.2rem; color: var(--gold-crown); margin-top: 5rem;">
+            ДОКУМЕНТАЦИЯ ПО СОЗДАНИЮ ЦИФРОВОЙ НАЦИИ "9-YEAR-OLD ARMY"
+        </div>
+    </header>
+
+    <div class="kingdom-container">
+        <!-- ВВЕДЕНИЕ -->
+        <section class="kingdom-section">
+            <h2 class="section-title">👑 ГЛАВА 1: РОЖДЕНИЕ КОРОЛЯ</h2>
+            
+            <div class="brofist-animation">
+                <div class="brofist left-fist">👊</div>
+                <div class="brofist right-fist">👊</div>
+            </div>
+            
+            <p class="meme-text">
+                <span style="color: var(--brofist-red); font-weight: bold;">Феликс Чельберг</span>, известный как PewDiePie, начал не как ютубер, 
+                а как социальный эксперимент. Его цель: создать первую децентрализованную 
+                цифровую нацию, управляемую мемами и иронией.
+            </p>
+            
+            <p class="meme-text">
+                В 2010 году он загрузил первое видео. К 2013-му у него уже была 
+                <span class="rainbow-text">армия из миллионов 9-летних</span>. 
+                Но это не просто подписчики — это граждане виртуального государства.
+            </p>
+        </section>
+
+        <!-- СТРУКТУРА АРМИИ -->
+        <section class="kingdom-section">
+            <h2 class="section-title">🪖 ГЛАВА 2: СТРУКТУРА АРМИИ 9-ЛЕТНИХ</h2>
+            
+            <div class="army-grid">
+                <div class="soldier-card">
+                    <div class="rank">МЕМ-ГЕНЕРАТОРЫ</div>
+                    <h3>ЭЛИТНЫЙ КОРПУС</h3>
+                    <p>Создают контент, распространяют мемы, ведут информационную войну. 
+                    Вооружены Photoshop и чувством юмора.</p>
+                    <div style="margin-top: 1rem; color: var(--army-green);">
+                        <i class="fas fa-users"></i> Сила: 2.5 млн
+                    </div>
+                </div>
+                
+                <div class="soldier-card">
+                    <div class="rank">ЛАЙК-ДРОНЫ</div>
+                    <h3>ПЕХОТА</h3>
+                    <p>Ставят лайки, дизлайки T-Series, комментируют. 
+                    Основная боевая единица цифровой нации.</p>
+                    <div style="margin-top: 1rem; color: var(--army-green);">
+                        <i class="fas fa-thumbs-up"></i> Сила: 15 млн
+                    </div>
+                </div>
+                
+                <div class="soldier-card">
+                    <div class="rank">SUB-BOTS</div>
+                    <h3>ТЕХНИЧЕСКИЙ ОТДЕЛ</h3>
+                    <p>Следят за статистикой, автоматизируют процессы, 
+                    взламывают алгоритмы YouTube (нет).</p>
+                    <div style="margin-top: 1rem; color: var(--army-green);">
+                        <i class="fas fa-robot"></i> Сила: 500 тыс
+                    </div>
+                </div>
+            </div>
+            
+            <!-- СЧЁТЧИК ПОДПИСЧИКОВ -->
+            <div class="subs-widget">
+                <h3 style="color: var(--gold-crown); margin-bottom: 1rem;">
+                    <i class="fas fa-chart-line"></i> РЕАЛЬНАЯ СИЛА АРМИИ
+                </h3>
+                <div class="subs-counter" id="subCounter">111,111,111</div>
+                <p style="margin-top: 1rem; color: #aaa;">
+                    И это только те, кто признался...
+                </p>
+            </div>
+        </section>
+
+        <!-- ЭКОНОМИКА -->
+        <section class="economy-section">
+            <h2 class="section-title">₿ ГЛАВА 3: MEME-ЭКОНОМИКА</h2>
+            
+            <p class="meme-text">
+                У нации PewDiePie есть собственная экономика, основанная на:
+            </p>
+            
+            <div class="army-grid">
+                <div class="soldier-card" style="background: linear-gradient(135deg, #003300, #006600);">
+                    <h3>BROFIST-COIN (👊)</h3>
+                    <p>Криптовалюта нации. 1 👊 = 0.001 чувства общности. 
+                    Используется для внутренних транзакций.</p>
+                </div>
+                
+                <div class="soldier-card" style="background: linear-gradient(135deg, #330033, #660066);">
+                    <h3>MEME-АКЦИИ</h3>
+                    <p>Ценные бумаги, стоимость которых зависит от виральности мемов. 
+                    Рынок открыт 24/7.</p>
+                </div>
+            </div>
+            
+            <div class="crypto-display">
+                <div>🚀 BROFIST-COIN MARKET</div>
+                <div>👊 1 BFC = $0.69420</div>
+                <div>📈 +420.69% TODAY</div>
+                <div>💎 DIAMOND HANDS ONLY</div>
+            </div>
+        </section>
+
+        <!-- ПОЛИТИЧЕСКАЯ СИСТЕМА -->
+        <section class="kingdom-section">
+            <h2 class="section-title">🏛️ ГЛАВА 4: ПОЛИТИЧЕСКАЯ СИСТЕМА</h2>
+            
+            <p class="meme-text">
+                Нация PewDiePie — первая <span style="color: var(--meme-purple);">мемократия</span> 
+                (meme-ocracy). Управление осуществляется через:
+            </p>
+            
+            <div class="nation-controls">
+                <button class="nation-btn" onclick="startRevolution()">
+                    <i class="fas fa-gavel"></i><br>
+                    МЕМ-РЕВОЛЮЦИЯ
+                </button>
+                
+                <button class="nation-btn" onclick="declareWar()">
+                    <i class="fas fa-crosshairs"></i><br>
+                    ОБЪЯВИТЬ ВОЙНУ T-SERIES
+                </button>
+                
+                <button class="nation-btn" onclick="createMeme()">
+                    <i class="fas fa-image"></i><br>
+                    СОЗДАТЬ ГОСУДАРСТВЕННЫЙ МЕМ
+                </button>
+            </div>
+            
+            <div id="nationMessage" style="text-align: center; margin-top: 2rem; min-height: 100px;">
+                <!-- Сообщения будут здесь -->
+            </div>
+        </section>
+
+        <!-- ИГРА: СТАНЬ 9-ЛЕТНИМ -->
+        <section class="game-section">
+            <h2 class="section-title">🎮 ГЛАВА 5: ТЕСТ НА 9-ЛЕТНЕГО</h2>
+            
+            <p class="meme-text">
+                Проверьте, достойны ли вы гражданства в нации PewDiePie:
+            </p>
+            
+            <div class="meme-test">
+                <div class="meme-option" onclick="checkAnswer('floor')">
+                    <h4>Что делать, если уронил еду?</h4>
+                    <p>A) Поднять по правилу 5 секунд</p>
+                    <p>B) Кричать "FLOOR GANG!"</p>
+                </div>
+                
+                <div class="meme-option" onclick="checkAnswer('chair')">
+                    <h4>Ваше отношение к стульям?</h4>
+                    <p>A) Удобная мебель</p>
+                    <p>B) CHAIR GANG OUH!</p>
+                </div>
+                
+                <div class="meme-option" onclick="checkAnswer('tseries')">
+                    <h4>Кто такие T-Series?</h4>
+                    <p>A) Музыкальная компания</p>
+                    <p>B) Враг нации #1</p>
+                </div>
+            </div>
+            
+            <div id="testResult" style="margin-top: 2rem; min-height: 50px;">
+                <!-- Результат теста -->
+            </div>
+        </section>
+
+        <!-- СЕКРЕТНЫЕ ДОКУМЕНТЫ -->
+        <section class="kingdom-section" style="border-color: var(--meme-purple);">
+            <h2 class="section-title" style="color: var(--meme-purple);">
+                <i class="fas fa-user-secret"></i>
+                СЕКРЕТНЫЙ ПЛАН: ФАЗА 2
+            </h2>
+            
+            <div class="crypto-display">
+                <div>[РАСШИФРОВКА ПЛАНА]</div>
+                <div>ФАЗА 1: СОЗДАНИЕ АРМИИ ✓</div>
+                <div>ФАЗА 2: ЗАХВАТ YOUTUBE (в процессе)</div>
+                <div>ФАЗА 3: РАСПРОСТРАНЕНИЕ НА ДРУГИЕ ПЛАТФОРМЫ</div>
+                <div>ФАЗА 4: ПРИЗНАНИЕ ООН ЦИФРОВОЙ НАЦИЕЙ</div>
+                <div>ФАЗА 5: МИРОВОЕ ГОСПОДСТВО ЧЕРЕЗ МЕМЫ</div>
+            </div>
+            
+            <p class="meme-text" style="text-align: center; margin-top: 2rem;">
+                <span style="color: var(--brofist-red);">⚠️ ВНИМАНИЕ:</span> Этот план может быть (или нет) шуткой.
+                Или нет.
+            </p>
+        </section>
+
+        <!-- ОБРАЩЕНИЕ К FELIX -->
+        <section class="kingdom-section" style="background: rgba(255, 215, 0, 0.1);">
+            <h2 class="section-title">📢 ОБРАЩЕНИЕ К КОРОЛЮ</h2>
+            
+            <div style="text-align: center; padding: 2rem;">
+                <p class="meme-text" style="font-size: 1.5rem;">
+                    Дорогой Феликс, если ты читаешь это...
+                </p>
+                
+                <div style="margin: 2rem 0; padding: 2rem; background: rgba(0, 0, 0, 0.5); border-radius: 20px;">
+                    <p style="font-family: 'Press Start 2P', cursive; color: var(--gold-crown);">
+                        МЫ ЗНАЕМ О ТВОЁМ ПЛАНЕ.<br>
+                        И МЫ ПОЛНОСТЬЮ ПОДДЕРЖИВАЕМ.<br>
+                        <br>
+                        👑 BROFIST 👊<br>
+                        — АРХИВ 9-ЛЕТНИХ
+                    </p>
+                </div>
+                
+                <button onclick="sendBrofist()" 
+                        style="background: linear-gradient(45deg, var(--brofist-red), var(--gold-crown)); 
+                               color: white; border: none; padding: 1.5rem 3rem; 
+                               font-family: 'Press Start 2P', cursive; font-size: 1.2rem; 
+                               border-radius: 50px; cursor: pointer; margin-top: 1rem;">
+                    <i class="fas fa-fist-raised"></i> ОТПРАВИТЬ BROFIST
+                </button>
+                
+                <p id="brofistStatus" style="margin-top: 1rem; font-family: 'Press Start 2P', cursive;"></p>
+            </div>
+        </section>
+
+        <!-- ДИСКЛЕЙМЕР -->
+        <section class="kingdom-section" style="background: rgba(0, 100, 255, 0.1); border-color: #0066ff;">
+            <h2 class="section-title" style="color: #0066ff;">
+                <i class="fas fa-info-circle"></i>
+                ВАЖНОЕ ОБЪЯВЛЕНИЕ
+            </h2>
+            
+            <div style="text-align: center;">
+                <p class="meme-text">
+                    Этот документ — сатира и дань уважения легендарному ютуберу.<br>
+                    PewDiePie — реальный человек, и мы восхищаемся его творчеством.<br>
+                    "Армия 9-летних" — прекрасное сообщество.<br>
+                    <br>
+                    <span style="color: var(--gold-crown); font-family: 'Press Start 2P', cursive;">
+                        ВСЁ ЭТО — ШУТКА. НЕ ПРИНИМАЙТЕ ВСЕРЬЁЗ.
+                    </span>
+                </p>
+                
+                <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 4rem;">😂</div>
+                        <div>САТИРА</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 4rem;">🎮</div>
+                        <div>ЮМОР</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 4rem;">👊</div>
+                        <div>УВАЖЕНИЕ</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ФУТЕР -->
+    <footer class="brofist-footer">
+        <p style="font-family: 'Press Start 2P', cursive; font-size: 1rem;">
+            САЙТ СОЗДАН ФАНАТОМ ДЛЯ ФАНАТОВ<br>
+            NOT OFFICIAL PEWDIEPIE CONTENT<br>
+            <br>
+            <span style="color: var(--gold-crown);">SUBSCRIBE TO PEWDIEPIE</span>
+        </p>
+        
+        <div style="margin-top: 2rem;">
+            <a href="https://www.youtube.com/pewdiepie" 
+               style="color: var(--brofist-red); text-decoration: none; font-size: 1.5rem;">
+               <i class="fab fa-youtube"></i> youtube.com/pewdiepie
+            </a>
+        </div>
+        
+        <p style="margin-top: 3rem; font-size: 0.9rem; color: #aaa;">
+            Если PewDiePie увидит этот сайт и сделает видео — это будет эпично.<br>
+            Мы ждём твою реакцию, бро! 👊
+        </p>
+    </footer>
+
+    <script>
+        // Анимация счётчика подписчиков
+        function animateCounter() {
+            const counter = document.getElementById('subCounter');
+            let current = 111111111;
+            const target = 111000000 + Math.floor(Math.random() * 1000000);
+            
+            const interval = setInterval(() => {
+                current += Math.floor(Math.random() * 1000);
+                if (current >= target) {
+                    clearInterval(interval);
+                    counter.textContent = target.toLocaleString();
+                } else {
+                    counter.textContent = current.toLocaleString();
+                }
+            }, 50);
+        }
+
+        // Конфетти
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDelay = `${Math.random() * 5}s`;
+                confetti.style.width = `${Math.random() * 20 + 5}px`;
+                confetti.style.height = confetti.style.width;
+                
+                document.body.appendChild(confetti);
+                
+                // Удаляем через 5 секунд
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Управление нацией
+        function startRevolution() {
+            const messageDiv = document.getElementById('nationMessage');
+            messageDiv.innerHTML = `
+                <div style="background: rgba(255, 0, 0, 0.2); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--brofist-red);">🚨 МЕМ-РЕВОЛЮЦИЯ НАЧАТА!</h3>
+                    <p>Все 9-летние поднялись! Новые мемы создаются!</p>
+                    <p><small>Система YouTube в панике...</small></p>
+                </div>
+            `;
+            createConfetti();
+        }
+
+        function declareWar() {
+            const messageDiv = document.getElementById('nationMessage');
+            messageDiv.innerHTML = `
+                <div style="background: rgba(0, 100, 0, 0.2); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--army-green);">⚔️ ВОЙНА ОБЪЯВЛЕНА T-SERIES!</h3>
+                    <p>Дизлайки активированы! Суб-боты на полную мощность!</p>
+                    <p><small>Мы снова выиграем...</small></p>
+                </div>
+            `;
+        }
+
+        function createMeme() {
+            const memes = [
+                "FLOOR GANG vs CHAIR GANG",
+                "SMASH LIKE FOR COOKIE",
+                "BRIDGERS ASSEMBLE",
+                "BIG PP vs SMOL PP"
+            ];
+            
+            const messageDiv = document.getElementById('nationMessage');
+            const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+            
+            messageDiv.innerHTML = `
+                <div style="background: rgba(157, 0, 255, 0.2); padding: 1.5rem; border-radius: 10px;">
+                    <h3 style="color: var(--meme-purple);">🖼️ ГОСУДАРСТВЕННЫЙ МЕМ СОЗДАН!</h3>
+                    <p style="font-family: 'Press Start 2P', cursive; font-size: 1.2rem;">
+                        "${randomMeme}"
+                    </p>
+                    <p><small>Распространяется по всей нации...</small></p>
+                </div>
+            `;
+        }
+
+        // Тест на 9-летнего
+        let score = 0;
+        
+        function checkAnswer(correctAnswer) {
+            const resultDiv = document.getElementById('testResult');
+            const answers = {
+                'floor': 'B) Кричать "FLOOR GANG!"',
+                'chair': 'B) CHAIR GANG OUH!',
+                'tseries': 'B) Враг нации #1'
+            };
+            
+            score++;
+            
+            resultDiv.innerHTML = `
+                <div style="background: rgba(0, 255, 0, 0.1); padding: 1rem; border-radius: 10px;">
+                    <p style="color: var(--army-green);">✅ ПРАВИЛЬНО!</p>
+                    <p>${answers[correctAnswer]}</p>
+                    <p>Ваш счёт: ${score}/3</p>
+                </div>
+            `;
+            
+            if (score === 3) {
+                setTimeout(() => {
+                    resultDiv.innerHTML += `
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 215, 0, 0.2); border-radius: 10px;">
+                            <h3 style="color: var(--gold-crown);">🎉 ВЫ ПРОШЛИ ТЕСТ!</h3>
+                            <p>Вы официально 9-летний! Добро пожаловать в нацию!</p>
+                            <p style="font-family: 'Press Start 2P', cursive;">👑 WELCOME BRO 👊</p>
+                        </div>
+                    `;
+                    createConfetti();
+                }, 500);
+            }
+        }
+
+        // Отправка брофиста
+        function sendBrofist() {
+            const statusDiv = document.getElementById('brofistStatus');
+            
+            const messages = [
+                "👊 BROFIST DELIVERED! Felix felt that!",
+                "💥 BROFIST IMPACT! Floor gang heard it!",
+                "🚀 BROFIST INCOMING! Chair gang duck!",
+                "🎯 BROFIST ACCURATE! T-Series scared!"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            statusDiv.textContent = randomMessage;
+            statusDiv.style.color = var('--brofist-red');
+            
+            // Анимация брофиста на экране
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const fist = document.createElement('div');
+                    fist.textContent = '👊';
+                    fist.style.position = 'fixed';
+                    fist.style.left = `${Math.random() * 100}vw`;
+                    fist.style.top = `${Math.random() * 100}vh`;
+                    fist.style.fontSize = `${Math.random() * 3 + 2}rem`;
+                    fist.style.zIndex = '9999';
+                    fist.style.pointerEvents = 'none';
+                    fist.style.animation = 'brofistPunch 1s forwards';
+                    
+                    document.body.appendChild(fist);
+                    
+                    setTimeout(() => {
+                        fist.remove();
+                    }, 1000);
+                }, i * 100);
+            }
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            animateCounter();
+            
+            // Автоматическое обновление счётчика каждые 10 секунд
+            setInterval(animateCounter, 10000);
+            
+            // Случайные анимации
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    document.querySelector('.brofist-animation').style.animation = 'none';
+                    void document.querySelector('.brofist-animation').offsetWidth;
+                    document.querySelector('.brofist-animation').style.animation = '';
+                }
+            }, 3000);
+            
+            // Секретная комбинация: БРОФИСТ
+            let brofistCode = [];
+            const targetCode = ['b', 'r', 'o', 'f', 'i', 's', 't'];
+            
+            document.addEventListener('keydown', function(e) {
+                brofistCode.push(e.key.toLowerCase());
+                if (brofistCode.length > targetCode.length) {
+                    brofistCode.shift();
+                }
+                
+                if (brofistCode.join('') === targetCode.join('')) {
+                    document.body.style.background = 'linear-gradient(45deg, #ff0000, #ffd700, #00ff00, #0099ff, #6600ff)';
+                    alert('👊 SECRET BROFIST CODE ACTIVATED! 👊\n\nYou are now an official 9-year-old!');
+                    createConfetti();
+                    brofistCode = [];
+                }
+            });
+        });
+
+        // Easter egg: Клик на корону
+        let crownClicks = 0;
+        document.querySelector('.article-title').addEventListener('click', function() {
+            crownClicks++;
+            if (crownClicks === 3) {
+                this.innerHTML = "PEWDIEPIE 👑<br><small style='font-size: 1rem; color: var(--gold-crown);'>THE ONE TRUE KING</small>";
+                crownClicks = 0;
+            }
+        });
+    </script>
+</body>
+</html>
