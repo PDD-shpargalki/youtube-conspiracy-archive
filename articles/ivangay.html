@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДОКУМЕНТ #666: ИВАНГАЙ - ВЕРХОВНЫЙ ЖРЕЦ КРИНЖА</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Rubik+Wet+Paint&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff00ff;
+            --secondary-color: #ffff00;
+            --accent-color: #00ffff;
+            --bg-color: #0a0a0a;
+            --text-color: #ff69b4;
+            --cringe-gradient: linear-gradient(45deg, #ff00ff, #ffff00, #00ffff);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Comic Neue', cursive;
+            line-height: 1.4;
+            background-image: 
+                url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="cringe" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="5" fill="%23ff00ff"/><circle cx="40" cy="20" r="5" fill="%23ffff00"/><circle cx="20" cy="40" r="5" fill="%2300ffff"/></pattern></defs><rect width="100%" height="100%" fill="url(%23cringe)"/></svg>');
+            min-height: 100vh;
+        }
+
+        /* ШАПКА В СТИЛЕ ДЕТСКОГО УТРЕННИКА */
+        .cringe-header {
+            background: var(--cringe-gradient);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 20px dashed var(--accent-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cringe-header::before {
+            content: "🤡 🤡 🤡";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            font-size: 3rem;
+            animation: spin 10s linear infinite;
+        }
+
+        .article-title {
+            font-family: 'Rubik Wet Paint', cursive;
+            font-size: 4rem;
+            text-shadow: 
+                5px 5px 0 #ff0000,
+                10px 10px 0 #00ff00,
+                15px 15px 0 #0000ff;
+            margin: 2rem 0;
+            color: white;
+            transform: rotate(-3deg);
+            animation: rainbow 2s infinite;
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .classification {
+            display: inline-block;
+            background: black;
+            color: yellow;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border: 5px dotted red;
+            transform: rotate(5deg);
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .cringe-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .cringe-container::before {
+            content: "КРИНЖ";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20rem;
+            color: rgba(255, 0, 255, 0.1);
+            z-index: -1;
+            font-weight: 900;
+        }
+
+        /* СЕКЦИИ С ЭФФЕКТАМИ */
+        .cringe-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 10px double var(--secondary-color);
+            border-radius: 0 50px 0 50px;
+            transform: rotate(0.5deg);
+            transition: all 0.3s;
+        }
+
+        .cringe-section:hover {
+            transform: rotate(-0.5deg) scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-decoration: underline wavy;
+            font-family: 'Rubik Wet Paint', cursive;
+        }
+
+        .cringe-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 black;
+        }
+
+        /* СПИСКИ КРИНЖА */
+        .cringe-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .cringe-item {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 0, 0.3), transparent);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-left: 10px solid var(--primary-color);
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .cringe-item::before {
+            content: "💩";
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        /* ЦИТАТЫ ИВАНГАЯ */
+        .quote {
+            background: rgba(0, 255, 255, 0.2);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 5px dotted yellow;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-style: italic;
+            text-align: center;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* КАРТИНКИ КРИНЖА */
+        .cringe-image {
+            width: 100%;
+            height: 300px;
+            background: var(--cringe-gradient);
+            margin: 2rem 0;
+            border: 15px solid;
+            border-image: repeating-linear-gradient(45deg, red, blue, green) 30;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cringe-image::after {
+            content: "ЭТО КРИНЖ";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 20px black;
+        }
+
+        /* ТЕОРИИ В ВИДЕ КНОПОК */
+        .theory-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+
+        .theory-btn {
+            background: var(--cringe-gradient);
+            border: none;
+            padding: 2rem 1rem;
+            border-radius: 20px;
+            font-family: 'Rubik Wet Paint', cursive;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: black;
+            text-shadow: 2px 2px 0 white;
+        }
+
+        .theory-btn:hover {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 0 50px var(--primary-color);
+        }
+
+        /* ШКАЛА КРИНЖА */
+        .cringe-meter {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(90deg, green, yellow, orange, red, purple);
+            margin: 2rem 0;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cringe-level {
+            height: 100%;
+            width: 98%; /* Ивангай на 98% кринжа! */
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { width: 98%; }
+            50% { width: 100%; }
+        }
+
+        .meter-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 0 10px black;
+        }
+
+        /* ФУТЕР */
+        .cringe-footer {
+            text-align: center;
+            padding: 3rem;
+            margin-top: 5rem;
+            background: black;
+            border-top: 20px double var(--accent-color);
+            position: relative;
+        }
+
+        .cringe-footer::before {
+            content: "ПРЕДУПРЕЖДЕНИЕ: ЧТЕНИЕ ЭТОЙ СТАТЬИ МОЖЕТ ВЫЗВАТЬ НЕОБРАТИМЫЙ КРИНЖ";
+            position: absolute;
+            top: -30px;
+            left: 0;
+            right: 0;
+            background: red;
+            color: yellow;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 900;
+            animation: warning 1s infinite;
+        }
+
+        @keyframes warning {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2.5rem;
+            }
+            
+            .cringe-container {
+                padding: 1rem;
+            }
+            
+            .cringe-section {
+                padding: 1rem;
+            }
+            
+            .theory-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ */
+        .blink {
+            animation: blink 0.5s infinite;
+        }
+
+        .rotate {
+            animation: spin 5s linear infinite;
+        }
+
+        .shake {
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА В СТИЛЕ ДЕТСКОГО ШОУ -->
+    <header class="cringe-header">
+        <div class="classification blink">
+            <i class="fas fa-poop"></i> УРОВЕНЬ КРИНЖА: КОСМИЧЕСКИЙ
+        </div>
+        
+        <h1 class="article-title shake">
+            ИВАНГАЙ:<br>
+            ВЕРХОВНЫЙ ЖРЕЦ КРИНЖЕВОГО АПОКАЛИПСИСА
+        </h1>
+        
+        <div style="font-size: 1.5rem; color: white; margin-top: 2rem;">
+            Научное расследование того, как один человек смог достичь абсолютного нуля качества
+        </div>
+    </header>
+
+    <div class="cringe-container">
+        <!-- ВВЕДЕНИЕ -->
+        <section class="cringe-section">
+            <h2 class="section-title">🎭 ГЛАВА 1: РОЖДЕНИЕ ЛЕГЕНДЫ КРИНЖА</h2>
+            
+            <p class="cringe-text">
+                В 2013 году произошло событие, изменившее ДНК русского YouTube навсегда. 
+                Появился <span style="color: #ff00ff; font-weight: 900;">Ивангай</span> — существо, способное генерировать кринж 
+                с силой 10 000 плохих школьных спектаклей.
+            </p>
+            
+            <div class="cringe-image rotate"></div>
+            
+            <p class="cringe-text">
+                Его миссия проста: довести зрителя до состояния, когда мозг отказывается понимать, 
+                что происходит, и начинает защитную реакцию в виде нервного смеха.
+            </p>
+        </section>
+
+        <!-- ДОСТИЖЕНИЯ -->
+        <section class="cringe-section">
+            <h2 class="section-title">🏆 ГЛАВА 2: ВЕЛИКИЕ ДОСТИЖЕНИЯ КРИНЖ-ИМПЕРАТОРА</h2>
+            
+            <ul class="cringe-list">
+                <li class="cringe-item">
+                    <strong>Рекорд по количеству кринжа в минуту:</strong> 47 единиц кринжа/сек 
+                    (в видео "ПРАНК НАД ДЕВУШКОЙ")
+                </li>
+                
+                <li class="cringe-item">
+                    <strong>Изобретение "мёртвого юмора":</strong> Шутки настолько плохие, 
+                    что их трупы до сих пор ищут в лесу
+                </li>
+                
+                <li class="cringe-item">
+                    <strong>Мастерство антиактёрской игры:</strong> Способность произносить 
+                    текст так, будто читает инструкцию к стиральной машине
+                </li>
+                
+                <li class="cringe-item">
+                    <strong>Кринж-пропаганда:</strong> Призывы детей на митинги — 
+                    новый уровень социального кринжа
+                </li>
+            </ul>
+            
+            <div class="quote">
+                "Ребята, давайте все дружно выйдем на площадь! 
+                Это будет как в моём видео, только с полицией!"<br>
+                — Цитата, возможно, сказанная Ивангаем
+            </div>
+        </section>
+
+        <!-- ТЕОРИИ -->
+        <section class="cringe-section">
+            <h2 class="section-title">🔬 ГЛАВА 3: НАУЧНЫЕ ТЕОРИИ ПРОИСХОЖДЕНИЯ</h2>
+            
+            <div class="theory-buttons">
+                <button class="theory-btn" onclick="showTheory(1)">
+                    <i class="fas fa-flask"></i><br>
+                    ИНОПЛАНЕТНЫЙ<br>ЭКСПЕРИМЕНТ
+                </button>
+                
+                <button class="theory-btn" onclick="showTheory(2)">
+                    <i class="fas fa-robot"></i><br>
+                    СЛОМАННЫЙ<br>Андроид
+                </button>
+                
+                <button class="theory-btn" onclick="showTheory(3)">
+                    <i class="fas fa-theater-masks"></i><br>
+                    СОЦИАЛЬНЫЙ<br>ЭКСПЕРИМЕНТ
+                </button>
+            </div>
+            
+            <div id="theory1" class="theory-content" style="display: none;">
+                <h3>ТЕОРИЯ 1: ИНОПЛАНЕТНЫЙ ЭКСПЕРИМЕТ</h3>
+                <p>Ивангай — пришелец, изучающий человеческую реакцию на максимальный кринж. 
+                Каждое видео — тест, а комментарии "это кринж" — положительные результаты эксперимента.</p>
+                <p><strong>Доказательство:</strong> Его мимика не соответствует человеческим эмоциям.</p>
+            </div>
+            
+            <div id="theory2" class="theory-content" style="display: none;">
+                <h3>ТЕОРИЯ 2: СЛОМАННЫЙ АНДРОИД</h3>
+                <p>Ивангай — андроид для создания контента, у которого сломался модуль "качество". 
+                Теперь он может только генерировать кринж, но не может это остановить.</p>
+                <p><strong>Доказательство:</strong> Механические повторяющиеся жесты в каждом видео.</p>
+            </div>
+            
+            <div id="theory3" class="theory-content" style="display: none;">
+                <h3>ТЕОРИЯ 3: СОЦИАЛЬНЫЙ ЭКСПЕРИМЕНТ КГБ</h3>
+                <p>Секретный проект по созданию "человека-кринжа". Цель: проверить, 
+                сколько кринжа может выдержать население до массового помешательства.</p>
+                <p><strong>Доказательство:</strong> Его карьера совпадает с ростом психических заболеваний.</p>
+            </div>
+        </section>
+
+        <!-- ШКАЛА КРИНЖА -->
+        <section class="cringe-section">
+            <h2 class="section-title">📊 ГЛАВА 4: ИЗМЕРЕНИЕ УРОВНЯ КРИНЖА</h2>
+            
+            <p class="cringe-text">
+                Наши учёные разработали специальный прибор — <strong>Кринжометр</strong>. 
+                Он измеряет уровень кринжа в единицах "ивангаев" (1И = кринж от одного видео).
+            </p>
+            
+            <div class="cringe-meter">
+                <div class="cringe-level"></div>
+                <div class="meter-label">98 ИВАНГАЕВ</div>
+            </div>
+            
+            <p class="cringe-text" style="text-align: center; font-size: 1.5rem;">
+                <span class="blink">⚠️ ОПАСНО ВЫСОКИЙ УРОВЕНЬ ⚠️</span><br>
+                <small>Рекомендация: Смотреть не более 30 секунд в день</small>
+            </p>
+        </section>
+
+        <!-- ЛЕЧЕНИЕ КРИНЖА -->
+        <section class="cringe-section">
+            <h2 class="section-title">🏥 ГЛАВА 5: КАК ЛЕЧИТЬСЯ ОТ ИВАНГАЯ</h2>
+            
+            <p class="cringe-text">
+                Если вы случайно посмотрели видео Ивангая, срочно примите меры:
+            </p>
+            
+            <ul class="cringe-list">
+                <li class="cringe-item">Посмотреть 5 часов качественного кино</li>
+                <li class="cringe-item">Прочитать одну умную книгу</li>
+                <li class="cringe-item">Послушать классическую музыку</li>
+                <li class="cringe-item">Поговорить с адекватным человеком</li>
+                <li class="cringe-item">Залить глаза отбеливателем (шутка! или нет?)</li>
+            </ul>
+            
+            <div class="quote">
+                "Я посмотрел все видео Ивангая для науки. Теперь я вижу кринж даже 
+                когда закрываю глаза."<br>
+                — Доброволец эксперимента №666
+            </div>
+        </section>
+
+        <!-- ИГРА: УГАДАЙ КРИНЖ -->
+        <section class="cringe-section">
+            <h2 class="section-title">🎮 ГЛАВА 6: ИГРА "УГАДАЙ, ЭТО ИВАНГАЙ ИЛИ НЕТ?"</h2>
+            
+            <div style="text-align: center; padding: 2rem; background: rgba(255,0,255,0.2); border-radius: 20px;">
+                <p class="cringe-text" style="font-size: 1.5rem;">
+                    Цитата из видео:
+                </p>
+                
+                <div id="quoteDisplay" style="background: black; padding: 2rem; margin: 1rem 0; border-radius: 10px; font-size: 1.3rem;">
+                    "Ребята, это просто пранк! Ха-ха-ха! Я же пошутил!"
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                    <button onclick="checkAnswer(true)" 
+                            style="background: green; color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-size: 1.2rem; cursor: pointer;">
+                        ЭТО ИВАНГАЙ
+                    </button>
+                    
+                    <button onclick="checkAnswer(false)" 
+                            style="background: red; color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-size: 1.2rem; cursor: pointer;">
+                        НЕ ИВАНГАЙ
+                    </button>
+                </div>
+                
+                <p id="gameResult" style="margin-top: 1rem; font-size: 1.5rem;"></p>
+            </div>
+        </section>
+
+        <!-- ПРЕДУПРЕЖДЕНИЕ -->
+        <section class="cringe-section" style="background: red; color: yellow;">
+            <h2 class="section-title" style="color: yellow;">⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h2>
+            
+            <p class="cringe-text" style="font-size: 1.5rem; text-align: center;">
+                Данная статья — сатира и юмор. Не принимайте её всерьёз.<br>
+                Ивангай — реальный человек, и эта статья создана в развлекательных целях.<br>
+                Кринж — это субъективно. Возможно, кому-то нравится.
+            </p>
+            
+            <p style="text-align: center; margin-top: 1rem; font-size: 2rem;">
+                😂 🎭 🤡
+            </p>
+        </section>
+    </div>
+
+    <footer class="cringe-footer">
+        <p style="font-size: 1.2rem;">
+            Создано в рамках исследования "Феномен кринжа в цифровой культуре"<br>
+            Научный руководитель: Доктор Кринжовский<br>
+            Лаборатория Изучения Интернет-Аномалий
+        </p>
+        
+        <p style="margin-top: 2rem; font-size: 1rem; color: #aaa;">
+            P.S. Если вы Ивангай и читаете это — мы восхищаемся вашей устойчивостью к кринжу!<br>
+            Снимите реакцию, пожалуйста. Это будет эпичный кринж.
+        </p>
+    </footer>
+
+    <script>
+        // Теории
+        function showTheory(num) {
+            // Скрываем все теории
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById('theory' + i).style.display = 'none';
+            }
+            
+            // Показываем выбранную
+            const theory = document.getElementById('theory' + num);
+            theory.style.display = 'block';
+            theory.style.animation = 'none';
+            void theory.offsetWidth; // Триггер рефлоу
+            theory.style.animation = 'fadeIn 0.5s';
+        }
+
+        // Игра "Угадай цитату"
+        const ivanQuotes = [
+            "Ребята, это пранк! Ха-ха-ха!",
+            "Подпишитесь на канал, поставьте лайк!",
+            "Это видео изменит вашу жизнь!",
+            "Я шучу, я всегда шучу!",
+            "Всем привет, это Ивангай!"
+        ];
+
+        const notIvanQuotes = [
+            "Сегодня мы обсудим философию Канта.",
+            "Квантовая физика — это fascinating.",
+            "Анализ рынка акций показывает рост.",
+            "Рецепт идеального суфле.",
+            "Как программировать на Python."
+        ];
+
+        let currentIsIvan = true;
+        let score = 0;
+
+        function newQuote() {
+            currentIsIvan = Math.random() > 0.5;
+            const quotes = currentIsIvan ? ivanQuotes : notIvanQuotes;
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('quoteDisplay').textContent = `"${randomQuote}"`;
+            document.getElementById('gameResult').textContent = '';
+        }
+
+        function checkAnswer(userSaysIsIvan) {
+            const resultElement = document.getElementById('gameResult');
+            
+            if (userSaysIsIvan === currentIsIvan) {
+                score++;
+                resultElement.innerHTML = `<span style="color: #00ff00;">✅ ПРАВИЛЬНО! Счёт: ${score}</span>`;
+                resultElement.classList.add('blink');
+                setTimeout(() => resultElement.classList.remove('blink'), 500);
+            } else {
+                resultElement.innerHTML = `<span style="color: #ff0000;">❌ НЕПРАВИЛЬНО! Это ${currentIsIvan ? 'Ивангай' : 'не Ивангай'}</span>`;
+                resultElement.classList.add('shake');
+                setTimeout(() => resultElement.classList.remove('shake'), 500);
+            }
+            
+            setTimeout(newQuote, 1500);
+        }
+
+        // Случайные эффекты на странице
+        document.addEventListener('DOMContentLoaded', function() {
+            newQuote();
+            
+            // Случайные анимации для элементов
+            const elements = document.querySelectorAll('.cringe-section, .theory-btn');
+            elements.forEach(el => {
+                if (Math.random() > 0.7) {
+                    el.classList.add('shake');
+                }
+                if (Math.random() > 0.8) {
+                    el.classList.add('blink');
+                }
+            });
+            
+            // Случайный звук при наведении на кнопки (эффект)
+            document.querySelectorAll('.theory-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    if (Math.random() > 0.5) {
+                        this.style.transform = `rotate(${Math.random() * 20 - 10}deg) scale(1.1)`;
+                    }
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+
+        // Секретная функция
+        let clickCount = 0;
+        document.querySelector('.article-title').addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 5) {
+                alert('🎉 ВЫ НАШЛИ СЕКРЕТ! 🎉\n\nВы достойны звания "Мастер Кринжа".\nВаш приз: вечный доступ к плохому контенту!');
+                document.body.style.background = 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)';
+                clickCount = 0;
+            }
+        });
+    </script>
+</body>
+</html>
