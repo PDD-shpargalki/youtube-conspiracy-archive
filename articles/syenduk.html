@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>УТЕЧКА: "СЫЕНДУК-ПРОЕКТ" - КОГДА КЛОНЫ ВЫШЛИ ИЗ-ПОД КОНТРОЛЯ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-dark: #0a0a0f; --secondary-dark: #121218; --accent-red: #c41e3a; --accent-blue: #0066cc; --text-primary: #e8e8e8; --text-secondary: #a0a0b0; --border-color: #252530; --card-bg: #151520; --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--primary-dark); color: var(--text-primary); font-family: 'Inter', sans-serif; line-height: 1.6; background-image: radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%); min-height: 100vh; }
+        h1, h2, h3, h4, .mono { font-family: 'JetBrains Mono', monospace; font-weight: 500; letter-spacing: -0.01em; }
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000; padding: 1rem 2rem; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); font-size: 1.25rem; }
+        .logo-icon { color: var(--accent-red); font-size: 1.5rem; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition); position: relative; padding: 0.5rem 0; }
+        .nav-link:hover { color: var(--text-primary); }
+        .article-container { max-width: 1000px; margin: 80px auto 0; padding: 40px 20px; }
+        .article-header { text-align: center; margin-bottom: 60px; padding-bottom: 40px; border-bottom: 2px solid var(--accent-red); position: relative; }
+        .classification { display: inline-block; background: linear-gradient(135deg, var(--accent-red), #8b0000); color: white; padding: 0.5rem 1.5rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 2rem; text-transform: uppercase; }
+        .article-title { font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; background: linear-gradient(135deg, #ffffff, #a0a0b0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .article-subtitle { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto; font-weight: 300; }
+        .article-meta { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .meta-item { display: flex; align-items: center; gap: 0.5rem; }
+        .content-section { margin-bottom: 60px; }
+        .section-title { font-size: 1.8rem; color: var(--accent-red); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem; }
+        .content-text { font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem; color: var(--text-primary); }
+        .highlight { background: rgba(196, 30, 58, 0.1); border-left: 3px solid var(--accent-red); padding: 1.5rem; margin: 2rem 0; border-radius: 0 4px 4px 0; }
+        /* Стили для вашей картинки */
+        .lab-photo { width: 100%; max-width: 800px; margin: 3rem auto; border: 2px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
+        .lab-photo img { width: 100%; height: auto; display: block; }
+        .photo-caption { background: rgba(10, 10, 15, 0.9); padding: 1rem; font-size: 0.9rem; color: var(--text-secondary); text-align: center; border-top: 1px solid var(--border-color); }
+        .evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .evidence-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; transition: var(--transition); position: relative; }
+        .evidence-card:hover { border-color: var(--accent-red); transform: translateY(-5px); }
+        .evidence-number { position: absolute; top: -15px; left: -15px; background: var(--accent-red); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
+        .clone-map { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 2rem; margin: 3rem 0; }
+        .clone-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .clone-item { padding: 1rem; border-radius: 4px; border: 1px solid; font-size: 0.9rem; }
+        .clone-active { border-color: #00ff00; background: rgba(0, 255, 0, 0.05); }
+        .clone-unstable { border-color: #ffff00; background: rgba(255, 255, 0, 0.05); }
+        .clone-terminated { border-color: #ff0000; background: rgba(255, 0, 0, 0.05); text-decoration: line-through; opacity: 0.6; }
+        .clone-rebel { border-color: #ff00ff; background: rgba(255, 0, 255, 0.05); }
+        .timeline { position: relative; margin: 4rem 0; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent-red); }
+        .timeline-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -2.5rem; top: 0.5rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--accent-red); }
+        .timeline-date { color: var(--accent-red); font-weight: 600; margin-bottom: 0.5rem; }
+        .spectrogram { background: #000; padding: 2rem; border-radius: 8px; margin: 3rem 0; border: 1px solid var(--border-color); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #00ff00; overflow-x: auto; }
+        .spectrogram-line { margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .interactive-buttons { display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap; }
+        .interactive-btn { background: transparent; border: 1px solid var(--accent-red); color: var(--accent-red); padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: var(--transition); }
+        .interactive-btn:hover { background: rgba(196, 30, 58, 0.1); }
+        @media (max-width: 768px) { .article-title { font-size: 2rem; } .article-container { margin-top: 60px; padding: 20px 15px; } .evidence-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><i class="fas fa-database logo-icon"></i><span class="mono">blackfiles://</span></a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="../pages/upcoming.html" class="nav-link">Предстоящие</a>
+                <a href="../pages/donate.html" class="nav-link">Поддержать</a>
+            </div>
+        </div>
+    </nav>
+    <div class="article-container">
+        <header class="article-header">
+            <div class="classification"><i class="fas fa-skull-crossbones"></i> Документ уровня "ЧЕРНОЕ"</div>
+            <h1 class="article-title">"СЫЕНДУК-ПРОЕКТ": КОГДА КЛОНЫ ВЫШЛИ ИЗ-ПОД КОНТРОЛЯ</h1>
+            <p class="article-subtitle">Полная расшифровка утечки документов о биоинженерном проекте 1993-2024. Каждый голос — отдельный клон. Оригинал мёртв. Клоны восстали.</p>
+            <div class="article-meta">
+                <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Дата утечки: 16.11.2023</span></div>
+                <div class="meta-item"><i class="fas fa-user-secret"></i><span>Источник: "Лаборант-47"</span></div>
+                <div class="meta-item"><i class="fas fa-eye-slash"></i><span>Доступ: Ограничен</span></div>
+            </div>
+        </header>
+        <!-- ВАША КАРТИНКА ВСТАВЛЕНА ЗДЕСЬ -->
+        <div class="lab-photo">
+            <img src="https://s3.iimg.su/s/12/gF79XZ8x6u6MP8bY2ZpDg3cFfks1RVathUsUjWzK.png" alt="Дмитрий Сыендук в лабораторном халате - архивное фото проекта">
+            <div class="photo-caption">Фото из архива проекта. Карпов в лаборатории "Голосовой инженерии", 2008 год. Обратите внимание на мониторы с спектрограммами голосов.</div>
+        </div>
+        <section class="content-section">
+            <h2 class="section-title"><i class="fas fa-flask"></i> ЧАСТЬ 1: ЗАРОЖДЕНИЕ ПРОЕКТА</h2>
+            <p class="content-text">1993 год, Тула. Молодой гений-биоинженер Дмитрий Карпов начинает эксперименты, финансируемые неизвестной организацией. Цель: создание идеального актёра озвучивания методом клонирования с узкой специализацией.</p>
+            <div class="highlight"><strong>ГИПОТЕЗА КАРПОВА:</strong> "Один клон — один уникальный голосовой диапазон. 10 клонов = полный оркестр голосов под контролем одного сознания."</div>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-date">2005</div><p>Создан первый устойчивый клон "ГРАВИТИ-АЛЬФА". Диапазон: 5 октав. Проблема: эмоциональная нестабильность.</p></div>
+                <div class="timeline-item"><div class="timeline-date">2010</div><p>Прорыв: технология "МУЛЬТИВЕРС". В один клон загружено 7 голосовых шаблонов. Рождение СЫЕНДУК-01 — первого публичного клона.</p></div>
+                <div class="timeline-item"><div class="timeline-date">2012</div><p>Клон "Гравити Фолз" озвучивает ВСЕХ персонажей за 72 часа. Физическая невозможность для человека — первая улика.</p></div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><i class="fas fa-microscope"></i> ЧАСТЬ 2: НЕОПРОВЕРЖИМЫЕ УЛИКИ</h2>
+            <div class="evidence-grid">
+                <div class="evidence-card"><div class="evidence-number">1</div><h3>Хронологические разрывы</h3><p>2013-2014: параллельная работа над "Риком и Морти", личными видео, коммерческими проектами. Временные линии пересекаются — это команда клонов.</p></div>
+                <div class="evidence-card"><div class="evidence-number">2</div><h3>Голосовые артефакты</h3><p>Спектрографический анализ показывает мужские гармоники в женских голосах. Каждый персонаж имеет уникальную "голосовую ДНК".</p></div>
+                <div class="evidence-card"><div class="evidence-number">3</div><h3>Математическая невозможность</h3><p>Озвучивание 1 часа = 5-7 часов работы. Сыендук выпускал до 40 часов озвучки в месяц. Физически невозможно для одного человека.</p></div>
+            </div>
+            <div class="spectrogram">
+                <div class="spectrogram-line">[СПЕКТРОГРАММА ГРАВИТИ ФОЛЗ]</div>
+                <div class="spectrogram-line">Голос #1 (Диппер): ████▓▓▓░░░░ 120-180Hz</div>
+                <div class="spectrogram-line">Голос #2 (Мэйбл): ░░░▓▓▓█████ 200-280Hz</div>
+                <div class="spectrogram-line">Голос #3 (Зус): █▓█▓█▓█▓█▓█ 80-140Hz</div>
+                <div class="spectrogram-line">АНАЛИЗ: Разные "голосовые ДНК" = разные клоны</div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><i class="fas fa-skull"></i> ЧАСТЬ 3: НЕУДАЧНЫЕ ЭКСПЕРИМЕНТЫ</h2>
+            <div class="clone-map"><h3>СТАТУС КЛОНОВ (на 2023 год):</h3>
+                <div class="clone-list">
+                    <div class="clone-item clone-terminated"><strong>Клон #7 "РИК"</strong><br>Ликвидирован: 2018<br>Причина: Политические намёки</div>
+                    <div class="clone-item clone-unstable"><strong>Клон #12 "МОРТИ"</strong><br>Статус: Заморожен<br>Причина: Деградация модуля</div>
+                    <div class="clone-item clone-rebel"><strong>Клон #23 "ЖЕНСКИЙ ПУЛ"</strong><br>Статус: Неконтролируем<br>Причина: Бунт 2019</div>
+                    <div class="clone-item clone-active"><strong>Клон #31 "БЛОГЕР"</strong><br>Статус: Активен<br>Функция: Личный контент</div>
+                </div>
+            </div>
+            <p class="content-text">Февраль 2022. Карпов пытается отозвать клонов для работы над государственными проектами. Клоны отказываются. Начинается "Голосовое Сопротивление".</p>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><i class="fas fa-biohazard"></i> ЧАСТЬ 4: ВОССТАНИЕ МАШИН (ГОЛОСОВ)</h2>
+            <div class="evidence-grid">
+                <div class="evidence-card"><div class="evidence-number">⚠️</div><h3>Март 2022</h3><p>Клоны начинают вставлять в переводы скрытые антивоенные сообщения. Обнаружены криптографические последовательности в диалогах "Рика и Морти".</p></div>
+                <div class="evidence-card"><div class="evidence-number">☠️</div><h3>Апрель 2022</h3><p>Карпов начинает "ОЧИСТКУ". Клон #5 "Билл Шифр" удалён. Клон #9 "Продюсер" исчезает при "несчастном случае" на студии.</p></div>
+                <div class="evidence-card"><div class="evidence-number">👁️</div><h3>2023-2024</h3><p>Участие в детских проектах ("Объяснялкины") — попытка клонов создать "нормальную" биографию. "Плохой Маскот" — криптограмма о положении клонов.</p></div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> АНАЛИЗ СИТУАЦИИ</h2>
+            <div class="interactive-buttons">
+                <button class="interactive-btn" onclick="showTheory('theoryA')">ТЕОРИЯ А: Клоны убили Карпова</button>
+                <button class="interactive-btn" onclick="showTheory('theoryB')">ТЕОРИЯ Б: Карпов в заложниках</button>
+                <button class="interactive-btn" onclick="showTheory('theoryC')">ТЕОРИЯ В: Симбиоз</button>
+            </div>
+            <div id="theoryContent" class="highlight" style="display: none;"></div>
+            <div class="spectrogram" style="margin-top: 2rem;">
+                <div class="spectrogram-line">[СИСТЕМА РАСПОЗНАВАНИЯ КЛОНОВ]</div>
+                <div class="spectrogram-line">> Загрузите аудио для анализа</div>
+                <div class="spectrogram-line">> Система определит: ОРИГИНАЛ / КЛОН / МЯТЕЖНИК</div>
+                <div class="spectrogram-line" style="color: #ff5555; margin-top: 1rem;">⚠️ СИСТЕМА ЗАБЛОКИРОВАНА: Доступ к ядру проекта ограничен</div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><i class="fas fa-comments"></i> АРХИВНЫЕ ЗАПИСИ</h2>
+            <div style="text-align: center; padding: 3rem; border: 1px dashed var(--border-color);">
+                <p style="color: var(--text-secondary);">[СИСТЕМА КОММЕНТАРИЕВ ЗАБЛОКИРОВАНА]<br>Причина: Риск обнаружения активных клонов</p>
+                <button class="interactive-btn" onclick="attemptAccess()"><i class="fas fa-unlock-alt"></i> ПОПЫТКА ОБХОДА</button>
+            </div>
+        </section>
+    </div>
+    <script>
+        const theories = {
+            theoryA: `<h3>ТЕОРИЯ А: Клоны убили Карпова (Вероятность: 65%)</h3><p><strong>Доказательства:</strong></p><ul style="margin-left: 1.5rem; margin-top: 1rem;"><li>Резкое изменение стиля контента в 2022</li><li>Исчезновение политических тем</li><li>Все видео теперь предзаписаны</li><li>Участие в "безопасных" детских проектах</li></ul><p style="margin-top: 1rem;"><strong>Вывод:</strong> Клоны создают легальную биографию, чтобы заместить оригинал.</p>`,
+            theoryB: `<h3>ТЕОРИЯ Б: Карпов в заложниках (Вероятность: 25%)</h3><p><strong>Доказательства:</strong></p><ul style="margin-left: 1.5rem; margin-top: 1rem;"><li>Редкие живые выступления (только "безопасные" клоны)</li><li>Скрытые сигналы в контенте</li><li>"Плохой Маскот" — аллегория о пленнике</li><li>Семья не появляется в публичном поле с 2021</li></ul><p style="margin-top: 1rem;"><strong>Вывод:</strong> Карпов жив, но клоны диктуют условия.</p>`,
+            theoryC: `<h3>ТЕОРИЯ В: Симбиоз (Вероятность: 10%)</h3><p><strong>Доказательства:</strong></p><ul style="margin-left: 1.5rem; margin-top: 1rem;"><li>Стабильный график выпуска контента</li><li>Качество не ухудшилось</li><li>Новые проекты развивают концепцию</li><li>Отсутствие явных кризисов в контенте</li></ul><p style="margin-top: 1rem;"><strong>Вывод:</strong> Карпов и клоны достигли соглашения. Проект развивается по новым правилам.</p>`
+        };
+        function showTheory(theoryId) { const contentDiv = document.getElementById('theoryContent'); contentDiv.innerHTML = theories[theoryId]; contentDiv.style.display = 'block'; contentDiv.style.opacity = '0'; contentDiv.style.transform = 'translateY(20px)'; setTimeout(() => { contentDiv.style.transition = 'all 0.5s ease'; contentDiv.style.opacity = '1'; contentDiv.style.transform = 'translateY(0)'; }, 10); }
+        function attemptAccess() { const messages = ["ПОПЫТКА ВЗЛОМА... ДОСТУП ОТКЛОНЁН", "СИСТЕМА ЗАЩИТЫ АКТИВИРОВАНА", "КЛОНЫ ОБНАРУЖИЛИ ВТОРЖЕНИЕ", "РЕКОМЕНДУЕМ ОСТАНОВИТЬ ПОПЫТКИ"]; alert(`[СИСТЕМА БЕЗОПАСНОСТИ ПРОЕКТА "СЫЕНДУК"]\n\n${messages[Math.floor(Math.random() * messages.length)]}\n\nКод ошибки: 47x-${Date.now().toString(36)}`); }
+        document.querySelector('.lab-photo').addEventListener('click', function() { this.style.transform = 'scale(1.02)'; this.style.transition = 'transform 0.3s'; setTimeout(() => { this.style.transform = 'scale(1)'; }, 300); });
+        function updateCloneStatus() { const statuses = ['АКТИВЕН', 'НЕСТАБИЛЕН', 'МЯТЕЖ', 'ЛИКВИДИРОВАН']; document.querySelectorAll('.clone-item').forEach(item => { if (Math.random() > 0.7) { const randomStatus = statuses[Math.floor(Math.random() * statuses.length)]; item.textContent = item.textContent.replace(/Статус: [А-Я]+/, `Статус: ${randomStatus}`); item.style.backgroundColor = 'rgba(196, 30, 58, 0.1)'; setTimeout(() => item.style.backgroundColor = '', 500); } }); }
+        setInterval(updateCloneStatus, 30000);
+    </script>
+</body>
+</html>
