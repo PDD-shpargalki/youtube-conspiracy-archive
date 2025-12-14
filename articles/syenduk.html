@@ -174,8 +174,8 @@
             font-style: italic;
         }
 
-        /* ГОЛОСОВОЙ ДЕТЕКТОР */
-        .voice-detector {
+        /* СЕКЦИЯ С АНАЛИЗОМ ИЗОБРАЖЕНИЯ */
+        .image-analysis {
             background: rgba(30, 20, 40, 0.8);
             padding: 3rem;
             margin: 3rem 0;
@@ -184,158 +184,100 @@
             text-align: center;
         }
 
-        .detector-title {
+        .analysis-title {
             font-size: 2rem;
             color: var(--accent-pink);
             margin-bottom: 1rem;
         }
 
-        .detector-subtitle {
+        .analysis-subtitle {
             color: var(--text-secondary);
             margin-bottom: 2rem;
-        }
-
-        .voice-sample {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            border: 1px solid var(--voice-blue);
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
             font-style: italic;
-            text-align: center;
         }
 
-        .voice-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+        .secret-image {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            border-radius: 10px;
+            border: 3px solid var(--accent-purple);
+            box-shadow: 0 10px 40px rgba(157, 0, 255, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .voice-option {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
+        .secret-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(157, 0, 255, 0.5);
+        }
+
+        .image-caption {
+            background: rgba(0, 0, 0, 0.7);
             padding: 1.5rem;
             border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
+            margin-top: 1.5rem;
+            text-align: left;
+            border-left: 3px solid var(--accent-pink);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
-        .voice-option:hover {
-            border-color: var(--accent-purple);
-            transform: scale(1.05);
-        }
-
-        .voice-option.correct {
-            background: rgba(0, 170, 0, 0.2);
-            border-color: #00ff00;
-        }
-
-        .voice-option.incorrect {
-            background: rgba(255, 0, 0, 0.2);
-            border-color: #ff0000;
-        }
-
-        .detector-result {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border: 1px solid var(--accent-purple);
-            display: none;
-        }
-
-        .result-score {
-            font-size: 2.5rem;
-            color: var(--accent-pink);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .result-text {
-            font-size: 1.2rem;
-            color: var(--text-primary);
-        }
-
-        /* КАЛЬКУЛЯТОР ШИЗОФРЕНИИ */
-        .schizo-calculator {
-            background: rgba(40, 20, 50, 0.8);
-            padding: 3rem;
-            margin: 3rem 0;
-            border-radius: 10px;
-            border: 2px solid var(--accent-pink);
-        }
-
-        .calculator-title {
-            font-size: 1.8rem;
-            color: var(--accent-pink);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .calculator-input {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .calc-input {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.8rem 1rem;
-            border-radius: 4px;
-            width: 200px;
-            text-align: center;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .calc-button {
-            background: var(--accent-pink);
-            color: black;
+        .reveal-button {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            color: white;
             border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 4px;
-            cursor: pointer;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
             transition: var(--transition);
+            margin: 1.5rem 0;
         }
 
-        .calc-button:hover {
-            background: #ff55ff;
-            transform: translateY(-2px);
+        .reveal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(157, 0, 255, 0.4);
         }
 
-        .calculator-result {
+        .analysis-result {
             background: rgba(0, 0, 0, 0.7);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-top: 2rem;
-            text-align: center;
             border: 1px solid var(--accent-purple);
             display: none;
+            text-align: left;
         }
 
-        .result-diagnosis {
-            font-size: 1.8rem;
+        .result-title {
+            font-size: 1.5rem;
             color: var(--accent-pink);
             margin-bottom: 1rem;
-            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+            padding-bottom: 0.5rem;
         }
 
-        .result-description {
-            color: var(--text-secondary);
-            font-style: italic;
+        .result-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .result-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .result-list li:before {
+            content: '▶';
+            color: var(--accent-purple);
+            position: absolute;
+            left: 0;
         }
 
         /* ТАБЛИЦА ГОЛОСОВ */
@@ -508,27 +450,38 @@
                 padding: 20px 15px;
             }
             
-            .voice-options {
-                grid-template-columns: 1fr;
-            }
-            
             .nav-links {
                 display: none;
             }
             
-            .voice-detector,
-            .schizo-calculator {
+            .image-analysis {
                 padding: 2rem 1rem;
             }
             
-            .calculator-input {
-                flex-direction: column;
-                align-items: center;
+            .secret-image {
+                border-width: 2px;
             }
             
-            .calc-input {
-                width: 100%;
+            .analysis-title {
+                font-size: 1.6rem;
             }
+        }
+
+        /* АНИМАЦИИ */
+        @keyframes scanLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(400px); }
+        }
+
+        .scan-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+            animation: scanLine 3s linear infinite;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -602,6 +555,51 @@
             </p>
         </section>
 
+        <!-- СЕКЦИЯ С СЕКРЕТНЫМ ИЗОБРАЖЕНИЕМ -->
+        <section class="image-analysis">
+            <h2 class="analysis-title">РАСШИФРОВКА ДАННЫХ</h2>
+            <p class="analysis-subtitle">
+                Наши аналитики получили доступ к внутренней архитектуре сознания. 
+                Это не фото — это рентген сознания. Нажми "Проанализировать", чтобы увидеть правду.
+            </p>
+            
+            <div class="secret-image-container">
+                <img src="https://s3.iimg.su/s/14/g6d11nyxTQRLeignCtybOXRDPGOyhvDagjndCsBQ.png" 
+                     alt="Архитектура сознания Сыендука" 
+                     class="secret-image"
+                     id="secretImage">
+                <div class="scan-effect" id="scanEffect"></div>
+            </div>
+            
+            <p class="image-caption">
+                <i class="fas fa-microscope" style="color: var(--accent-purple);"></i>
+                <strong>Изображение 07X-45B:</strong> Результат цифровой томографии сознания. 
+                Видны множественные голосовые модули, наложенные на базовую нейронную структуру. 
+                Цветовая дифференциация указывает на различные типы личностей.
+            </p>
+            
+            <button class="reveal-button" onclick="revealAnalysis()">
+                <i class="fas fa-search"></i> ПРОАНАЛИЗИРОВАТЬ ИЗОБРАЖЕНИЕ
+            </button>
+            
+            <div class="analysis-result" id="analysisResult">
+                <h3 class="result-title"><i class="fas fa-clipboard-check"></i> РЕЗУЛЬТАТЫ АНАЛИЗА:</h3>
+                <ul class="result-list">
+                    <li><strong>Слой 1 (Фиолетовый):</strong> Базовая личность — Дмитрий. Используется для ведения канала и оплаты счетов.</li>
+                    <li><strong>Слой 2 (Синий):</strong> Научный модуль "Рик". Отвечает за сарказм, отрыжки и межгалактические преступления.</li>
+                    <li><strong>Слой 3 (Розовый):</strong> Эмоциональный модуль "Мэйбл". Производство блёсток, свитеров и неконтролируемой радости.</li>
+                    <li><strong>Слой 4 (Зелёный):</strong> Панический модуль "Морти". Постоянная готовность к истерике и крикам "АААА!".</li>
+                    <li><strong>Слой 5 (Жёлтый):</strong> Демонический модуль "Билл Шифр". Геометрическая злоба и планы по захвату вселенной.</li>
+                    <li><strong>Слой 6 (Красный):</strong> Технический интерфейс. Управление переключением между модулями и распределение дохода.</li>
+                </ul>
+                <p style="color: var(--text-secondary); margin-top: 1rem; font-style: italic;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    ВНИМАНИЕ: Согласно анализу, свободные слои (серые зоны) готовы к заселению новыми персонажами. 
+                    Очередь на аренду составляет ~6 месяцев.
+                </p>
+            </div>
+        </section>
+
         <!-- ТАБЛИЦА ГОЛОСОВ -->
         <section class="content-section">
             <h2 class="section-title">
@@ -655,60 +653,6 @@
                 *Вероятность 100% означает, что это точно отдельная личность. 
                 150% — это уже сверхъестественное существо, которое платит за аренду душами.
             </p>
-        </section>
-
-        <!-- ГОЛОСОВОЙ ДЕТЕКТОР -->
-        <section class="voice-detector">
-            <h2 class="detector-title">ГОЛОСОВОЙ ДЕТЕКТОР</h2>
-            <p class="detector-subtitle">
-                Угадай, кто сейчас говорит в голове Сыендука? 
-                Или уже в твоей?
-            </p>
-            
-            <div class="voice-sample" id="voiceSample">
-                <!-- Фразы будут добавляться через JS -->
-            </div>
-            
-            <div class="voice-options" id="voiceOptions">
-                <!-- Варианты будут добавляться через JS -->
-            </div>
-            
-            <button class="calc-button" id="nextVoiceButton" style="display: none;">
-                <i class="fas fa-forward"></i> СЛЕДУЮЩИЙ ГОЛОС
-            </button>
-            
-            <div class="detector-result" id="detectorResult">
-                <div class="result-score" id="resultScore">0/5</div>
-                <div class="result-text" id="resultText">
-                    Ты почти не слышишь голоса? Возможно, у тебя слишком здоровая психика.
-                    Или ты просто плохо разбираешься в квартирантах чужих сознаний.
-                </div>
-            </div>
-        </section>
-
-        <!-- КАЛЬКУЛЯТОР ШИЗОФРЕНИИ -->
-        <section class="schizo-calculator">
-            <h2 class="calculator-title">КАЛЬКУЛЯТОР ШИЗОФРЕНИИ</h2>
-            <p class="article-text" style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-                Узнай, сколько личностей может поместиться в твоей голове. 
-                Если, конечно, там ещё есть свободное место.
-            </p>
-            
-            <div class="calculator-input">
-                <input type="number" class="calc-input" id="calcHours" placeholder="Часов в день" min="1" max="24">
-                <input type="number" class="calc-input" id="calcSkill" placeholder="Уровень навыка (1-10)">
-                <button class="calc-button" onclick="calculateSchizo()">
-                    <i class="fas fa-calculator"></i> РАССЧИТАТЬ
-                </button>
-            </div>
-            
-            <div class="calculator-result" id="calculatorResult">
-                <div class="result-diagnosis" id="resultDiagnosis">УМЕРЕННАЯ ШИЗОФРЕНИЯ</div>
-                <div class="result-description" id="resultDescription">
-                    В твоей голове может поместиться примерно 5-7 личностей. 
-                    До Сыендука тебе как до Луны, но начало положено.
-                </div>
-            </div>
         </section>
 
         <!-- РАЗДЕЛ 2: БИЗНЕС-МОДЕЛЬ -->
@@ -846,157 +790,49 @@
     </div>
 
     <script>
-        // ДАННЫЕ ДЛЯ ГОЛОСОВОГО ДЕТЕКТОРА
-        const voiceData = [
-            {
-                phrase: "Морти, нам нужно украсть мега-семена, это для науки! *отрыжка*",
-                correct: "Рик",
-                options: ["Рик", "Морти", "Билл Шифр", "Зус"],
-                desc: "Классический Рик. Наука, отрыжка, преступление — обычный вторник."
-            },
-            {
-                phrase: "Ой, смотрите, свитерок с единорогом! А это что? Блёстки!",
-                correct: "Мэйбл",
-                options: ["Мэйбл", "Диппер", "Зус", "Билл Шифр"],
-                desc: "100% Мэйбл. Только она может быть настолько гиперактивно-милой."
-            },
-            {
-                phrase: "ААААА! Дед, я не хочу умирать! Мы все умрём!",
-                correct: "Морти",
-                options: ["Морти", "Рик", "Диппер", "Мэйбл"],
-                desc: "Истеричный Морти. Его нормальное состояние — паника."
-            },
-            {
-                phrase: "ВСЕМ ПРИВЕТ, ЭТО СЫЕНДУК! Сегодня будем...",
-                correct: "Сыендук",
-                options: ["Сыендук", "Рик", "Морти", "Билл Шифр"],
-                desc: "Редкий случай, когда говорит сам хозяин головы. Цените момент."
-            },
-            {
-                phrase: "СОКРАТИТЕСЬ! Я БУДУ ПРАВИТЬ ВСЕЛЕННОЙ!",
-                correct: "Билл Шифр",
-                options: ["Билл Шифр", "Рик", "Зус", "Диппер"],
-                desc: "Демонический треугольник в хорошем настроении."
-            }
-        ];
-
-        // ГОЛОСОВОЙ ДЕТЕКТОР
-        let currentVoice = 0;
-        let score = 0;
-        const voiceSample = document.getElementById('voiceSample');
-        const voiceOptions = document.getElementById('voiceOptions');
-        const nextButton = document.getElementById('nextVoiceButton');
-        const resultDiv = document.getElementById('detectorResult');
-        const resultScore = document.getElementById('resultScore');
-        const resultText = document.getElementById('resultText');
-
-        function loadVoiceTest() {
-            if (currentVoice >= voiceData.length) {
-                showFinalResults();
-                return;
-            }
-
-            const data = voiceData[currentVoice];
-            voiceSample.textContent = `"${data.phrase}"`;
+        // ФУНКЦИЯ АНАЛИЗА ИЗОБРАЖЕНИЯ
+        function revealAnalysis() {
+            const resultDiv = document.getElementById('analysisResult');
+            const scanEffect = document.getElementById('scanEffect');
+            const image = document.getElementById('secretImage');
+            const button = document.querySelector('.reveal-button');
             
-            voiceOptions.innerHTML = '';
-            data.options.forEach(option => {
-                const button = document.createElement('div');
-                button.className = 'voice-option';
-                button.textContent = option;
-                button.addEventListener('click', () => checkAnswer(option, data.correct));
-                voiceOptions.appendChild(button);
-            });
-
-            nextButton.style.display = 'none';
-            resultDiv.style.display = 'none';
-        }
-
-        function checkAnswer(selected, correct) {
-            const buttons = document.querySelectorAll('.voice-option');
-            buttons.forEach(btn => {
-                if (btn.textContent === correct) {
-                    btn.classList.add('correct');
-                }
-                if (btn.textContent === selected && selected !== correct) {
-                    btn.classList.add('incorrect');
-                }
-                btn.style.pointerEvents = 'none';
-            });
-
-            if (selected === correct) {
-                score++;
-                voiceSample.innerHTML = `✅ Правильно! Это действительно ${correct}.<br><small>${voiceData[currentVoice].desc}</small>`;
-            } else {
-                voiceSample.innerHTML = `❌ Неправильно! Это ${correct}, а не ${selected}.<br><small>${voiceData[currentVoice].desc}</small>`;
-            }
-
-            nextButton.style.display = 'block';
-            currentVoice++;
-        }
-
-        function showFinalResults() {
-            voiceSample.style.display = 'none';
-            voiceOptions.style.display = 'none';
-            nextButton.style.display = 'none';
+            // Анимация сканирования
+            scanEffect.style.animation = 'scanLine 2s linear';
+            image.style.filter = 'brightness(1.3) contrast(1.2)';
             
-            resultScore.textContent = `${score}/${voiceData.length}`;
-            
-            let message = "";
-            if (score === voiceData.length) {
-                message = "Ты слышишь ВСЕ голоса! Возможно, у тебя в голове тоже живут квартиранты. Или ты просто слишком много смотришь Сыендука.";
-            } else if (score >= voiceData.length * 0.7) {
-                message = "Неплохо! Ты хорошо разбираешься в жильцах чужого сознания. Можешь попробовать сдать комнату в своей голове.";
-            } else if (score >= voiceData.length * 0.4) {
-                message = "Нормально. Ты отличаешь Рика от Морти, и это уже достижение. Остальные голоса — тёмный лес.";
-            } else {
-                message = "Ты почти не слышишь голоса? Возможно, у тебя слишком здоровая психика. Или ты просто плохо разбираешься в квартирантах чужих сознаний.";
-            }
-            
-            resultText.textContent = message;
-            resultDiv.style.display = 'block';
-        }
-
-        // КАЛЬКУЛЯТОР ШИЗОФРЕНИИ
-        function calculateSchizo() {
-            const hours = parseInt(document.getElementById('calcHours').value) || 8;
-            const skill = parseInt(document.getElementById('calcSkill').value) || 5;
-            
-            if (skill < 1 || skill > 10) {
-                alert('Навык должен быть от 1 до 10!');
-                return;
-            }
-            
-            // Формула: личности = (часы * навык) / 10 + случайность
-            let personalities = Math.floor((hours * skill) / 10);
-            personalities += Math.floor(Math.random() * 3) - 1; // +/- 1
-            personalities = Math.max(1, personalities); // минимум 1
-            
-            let diagnosis = "";
-            let description = "";
-            
-            if (personalities >= 10) {
-                diagnosis = "ПРОДВИНУТАЯ ШИЗОФРЕНИЯ";
-                description = `В твоей голове может поместиться примерно ${personalities} личностей. Ты почти как Сыендук! Осталось только научиться монетизировать это.`;
-            } else if (personalities >= 6) {
-                diagnosis = "УМЕРЕННАЯ ШИЗОФРЕНИЯ";
-                description = `В твоей голове может поместиться примерно ${personalities} личностей. Неплохо! Можешь открыть маленький пансион для голосов.`;
-            } else if (personalities >= 3) {
-                diagnosis = "ЛЁГКАЯ ДИССОЦИАЦИЯ";
-                description = `В твоей голове может поместиться примерно ${personalities} личности. Нормально для начинающего. Главное — не путать, кто из них настоящий ты.`;
-            } else {
-                diagnosis = "ЗДОРОВАЯ ПСИХИКА";
-                description = `В твоей голове может поместиться примерно ${personalities} личность. Ты сам. Скучно, но стабильно. Можешь попробовать сдать свободные комнаты.`;
-            }
-            
-            document.getElementById('resultDiagnosis').textContent = diagnosis;
-            document.getElementById('resultDescription').textContent = description;
-            document.getElementById('calculatorResult').style.display = 'block';
-            
-            // Добавляем результат в комментарии
             setTimeout(() => {
-                addCalcComment(personalities, diagnosis);
-            }, 1000);
+                // Показываем результаты
+                resultDiv.style.display = 'block';
+                resultDiv.style.opacity = '0';
+                resultDiv.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    resultDiv.style.transition = 'all 0.8s ease';
+                    resultDiv.style.opacity = '1';
+                    resultDiv.style.transform = 'translateY(0)';
+                }, 50);
+                
+                // Меняем кнопку
+                button.innerHTML = '<i class="fas fa-check"></i> АНАЛИЗ ЗАВЕРШЁН';
+                button.style.background = 'linear-gradient(135deg, #00cc00, #00ff00)';
+                button.disabled = true;
+                
+                // Восстанавливаем изображение
+                image.style.filter = 'brightness(1.1)';
+                scanEffect.style.animation = 'scanLine 3s linear infinite';
+                
+                // Добавляем комментарий от системы
+                setTimeout(() => {
+                    addAnalysisComment();
+                }, 1000);
+                
+            }, 2000);
+            
+            // Звуковой эффект (в воображении)
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 200, 50, 100]);
+            }
         }
 
         // СИСТЕМА КОММЕНТАРИЕВ
@@ -1064,6 +900,42 @@
             }
         }
 
+        // КОММЕНТАРИЙ ОТ СИСТЕМЫ АНАЛИЗА
+        function addAnalysisComment() {
+            const commentsList = document.getElementById('commentsList');
+            const date = new Date();
+            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+            
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">Система Анализа 07X</span>
+                    <span class="comment-date">${dateStr}</span>
+                </div>
+                <div class="comment-content">
+                    Томография сознания завершена. Обнаружено 6 активных голосовых модулей и 3 резервных слоя. 
+                    Уровень организации: "Продвинутая шизофрения с элементами гениальности". 
+                    Рекомендация: продолжать мониторинг. Сознание стабильно, арендные платежи поступают регулярно.
+                </div>
+                <div class="comment-voice">Диагноз: Монетизированная множественность</div>
+            `;
+            
+            commentsList.prepend(commentDiv);
+            
+            // Анимация
+            commentDiv.style.opacity = '0';
+            commentDiv.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                commentDiv.style.transition = 'all 0.5s ease';
+                commentDiv.style.opacity = '1';
+                commentDiv.style.transform = 'translateY(0)';
+            }, 10);
+            
+            saveComments();
+        }
+
         // ГЕНЕРАТОР ПРИЗНАНИЙ
         function generateVoiceConfession() {
             const names = ['Новый голос', 'Анонимный квартирант', 'Жилец из подсознания', 'Гость из мозга'];
@@ -1082,42 +954,6 @@
             document.getElementById('commentName').value = names[Math.floor(Math.random() * names.length)];
             document.getElementById('commentText').value = confessions[Math.floor(Math.random() * confessions.length)];
             document.getElementById('commentVoice').value = voices[Math.floor(Math.random() * voices.length)];
-        }
-
-        // АВТОКОММЕНТАРИЙ ОТ КАЛЬКУЛЯТОРА
-        function addCalcComment(personalities, diagnosis) {
-            const commentsList = document.getElementById('commentsList');
-            const date = new Date();
-            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
-            
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <span class="comment-author">Калькулятор Шизофрении™</span>
-                    <span class="comment-date">${dateStr}</span>
-                </div>
-                <div class="comment-content">
-                    Кто-то только что узнал, что в его голове поместится примерно ${personalities} личности. 
-                    Диагноз: ${diagnosis.toLowerCase()}. 
-                    ${personalities > 5 ? 'Поздравляем с просторной жилплощадью!' : 'Уютно, но тесновато.'}
-                </div>
-                <div class="comment-voice">Диагноз: ${diagnosis}</div>
-            `;
-            
-            commentsList.prepend(commentDiv);
-            
-            // Анимация
-            commentDiv.style.opacity = '0';
-            commentDiv.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                commentDiv.style.transition = 'all 0.5s ease';
-                commentDiv.style.opacity = '1';
-                commentDiv.style.transform = 'translateY(0)';
-            }, 10);
-            
-            saveComments();
         }
 
         // УТИЛИТЫ
@@ -1169,30 +1005,41 @@
 
         // ИНИЦИАЛИЗАЦИЯ
         document.addEventListener('DOMContentLoaded', () => {
-            loadVoiceTest();
             loadComments();
             
-            nextButton.addEventListener('click', loadVoiceTest);
+            // Эффект при наведении на изображение
+            const image = document.getElementById('secretImage');
+            image.addEventListener('mouseenter', () => {
+                document.getElementById('scanEffect').style.opacity = '0.8';
+            });
+            image.addEventListener('mouseleave', () => {
+                document.getElementById('scanEffect').style.opacity = '0.5';
+            });
             
-            // Случайные эффекты
+            // Случайные эффекты для таблицы
             setInterval(() => {
-                if (Math.random() > 0.7) {
+                if (Math.random() > 0.8) {
                     const cells = document.querySelectorAll('.voices-table td');
                     const randomCell = cells[Math.floor(Math.random() * cells.length)];
-                    randomCell.style.color = var('--accent-pink');
+                    randomCell.style.color = 'var(--accent-pink)';
                     setTimeout(() => {
                         randomCell.style.color = '';
-                    }, 500);
+                    }, 800);
                 }
-            }, 3000);
+            }, 4000);
             
-            // Секретная функция
-            document.querySelector('.article-title').addEventListener('click', () => {
-                if (Math.random() > 0.5) {
+            // Секретная функция: тройной клик по заголовку изображения
+            let clicks = 0;
+            document.querySelector('.analysis-title').addEventListener('click', () => {
+                clicks++;
+                if (clicks === 3) {
                     document.body.style.background = 'linear-gradient(135deg, #0a0a0f, #1a002a, #0a0a0f)';
+                    image.style.filter = 'hue-rotate(90deg) brightness(1.5)';
                     setTimeout(() => {
-                        alert('🔊 ГОЛОСА АКТИВИРОВАНЫ\n\nТеперь ты слышишь всех квартирантов. Не пугайся, они дружелюбные.');
+                        alert('🌀 РЕЖИМ ГЛУБОКОГО АНАЛИЗА АКТИВИРОВАН\n\nВсе голосовые модули синхронизированы. Рик предлагает выпить.');
+                        image.style.filter = '';
                     }, 300);
+                    clicks = 0;
                 }
             });
         });
