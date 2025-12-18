@@ -99,6 +99,15 @@
             color: var(--text-primary);
         }
 
+        .nav-link.disabled {
+            color: var(--border-color);
+            cursor: not-allowed;
+        }
+
+        .nav-link.disabled:hover {
+            color: var(--border-color);
+        }
+
         /* Контейнер статьи */
         .article-container {
             max-width: 850px;
@@ -163,6 +172,12 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .article-image:hover {
+            transform: scale(1.005);
+            border-color: rgba(196, 30, 58, 0.3);
         }
 
         .article-image img {
@@ -293,6 +308,126 @@
             background: linear-gradient(to bottom, var(--accent-red), transparent);
         }
 
+        /* Система комментариев */
+        .comments-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .comment-form {
+            background: rgba(20, 15, 20, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(10, 8, 12, 0.7);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-red), #8b0000);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #d62e4a, #a00000);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Список комментариев */
+        .comments-list {
+            margin-top: 2rem;
+        }
+
+        .comment {
+            background: rgba(20, 15, 20, 0.5);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+            transition: var(--transition);
+        }
+
+        .comment:hover {
+            background: rgba(25, 15, 25, 0.7);
+            border-left-color: #d62e4a;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
+        }
+
+        .comment-author {
+            color: var(--accent-red);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .comment-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .comment-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
         /* Футер статьи */
         .article-footer {
             text-align: center;
@@ -344,6 +479,12 @@
             .theories-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .comment-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
         }
 
         /* Анимации */
@@ -354,6 +495,32 @@
 
         .fade-in {
             animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification.success {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .notification.error {
+            background: var(--accent-red);
+            color: white;
         }
 
         /* Специфичные стили для статьи */
@@ -379,8 +546,8 @@
             </a>
             <div class="nav-links">
                 <a href="../index.html" class="nav-link">Главная</a>
-                <a href="../pages/upcoming.html" class="nav-link">Предстоящие</a>
-                <a href="../pages/donate.html" class="nav-link">Поддержать</a>
+                <a href="#" class="nav-link disabled" onclick="return false">Предстоящие</a>
+                <a href="#" class="nav-link disabled" onclick="return false">Поддержать</a>
             </div>
         </div>
     </nav>
@@ -399,7 +566,7 @@
             <div class="article-meta">
                 <div class="meta-item">
                     <i class="fas fa-calendar-alt"></i>
-                    <span>Дата внесения в архив: 17.11.2023</span>
+                    <span>Дата внесения в архив: 17.12.2025</span>
                 </div>
                 <div class="meta-item">
                     <i class="fas fa-user-md"></i>
@@ -445,7 +612,7 @@
         <section class="content-section">
             <h2 class="section-title">Анамнез, или откуда ноги растут (и голоса тоже)</h2>
             <p class="content-text">
-                Всё началось в <span class="diagnosis-tag">психушке где находятся психи</span>. Мы не уточняем город — это неважно. Важно, что это была <span class="diagnosis-tag">психушка где находятся психи</span>, а не санаторий. Разница фундаментальна: в санатории лечат, а в психушке где находятся психи — содержат. Дмитрий не лечился. Он копил голоса.
+                Всё началось в <span class="diagnosis-tag">психушке где находятся психи</span>. Мы не уточняем город — это неважно. Важно, что это была <span class="diagnosis-tag">психушке где находятся психи</span>, а не санаторий. Разница фундаментальна: в санатории лечат, а в психушке где находятся психи — содержат. Дмитрий не лечился. Он копил голоса.
             </p>
             <p class="content-text">
                 Легенда гласит, что его выгнали после инцидента с групповой терапией. Он пришёл один, а ушло семь совершенно разных людей с противоположными мнениями о проблеме. Врач написал в карте: «Пациент обладает ярким полиморфным бредом и невероятной экономией на актёрском составе».
@@ -523,13 +690,49 @@
             </p>
         </div>
 
+        <!-- Система комментариев -->
+        <section class="comments-section">
+            <h2 class="section-title">
+                <i class="fas fa-comment-medical"></i>
+                АРХИВНЫЕ ЗАКЛЮЧЕНИЯ
+            </h2>
+            
+            <div class="comment-form">
+                <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    <i class="fas fa-feather-alt"></i> ДОБАВИТЬ ЗАКЛЮЧЕНИЕ
+                </h3>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-user-md"></i> ВАШ ПСЕВДОНИМ
+                    </label>
+                    <input type="text" id="commentAuthor" class="form-input" placeholder="Д-р Шизофоник, Проф. Мультифония...">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-file-medical"></i> ВАШЕ ЗАКЛЮЧЕНИЕ
+                    </label>
+                    <textarea id="commentText" class="form-textarea" placeholder="Ваш анализ, диагноз, наблюдения..."></textarea>
+                </div>
+                
+                <button onclick="addMedicalComment()" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> ВНЕСТИ В АРХИВ
+                </button>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <!-- Комментарии будут загружаться здесь -->
+            </div>
+        </section>
+
         <!-- Футер статьи -->
         <footer class="article-footer">
             <p>
                 <strong>Архивное примечание:</strong> Данный материал является художественным вымыслом и образцом сатирического анализа. Все совпадения с реальными лицами случайны и непреднамеренны.
             </p>
             <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;">
-                Категория: Психоанализ массовой культуры | Статус: Рассекречено | Версия: 1.0
+                Категория: Психоанализ массовой культуры | Статус: Рассекречено | Версия: 1.1
             </p>
             <a href="../index.html" class="back-link">
                 <i class="fas fa-arrow-left"></i>
@@ -537,83 +740,181 @@
             </a>
         </footer>
     </div>
-    <!-- Добавить в конце статьи перед </div> (перед футером) -->
-
-<section class="content-section">
-    <h2 class="section-title">
-        <i class="fas fa-comment-medical"></i>
-        АРХИВНЫЕ ЗАПИСИ ПСИХИАТРОВ
-    </h2>
-    
-    <div class="comment-form">
-        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">
-            <i class="fas fa-feather-alt"></i> ДОБАВИТЬ ЗАКЛЮЧЕНИЕ
-        </h3>
-        
-        <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
-            <div>
-                <label style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">
-                    <i class="fas fa-user-md"></i> ВАШ ПСЕВДОНИМ:
-                </label>
-                <input type="text" id="commentAuthor" 
-                       style="width: 100%; background: rgba(20, 15, 20, 0.7); 
-                              border: 1px solid var(--border-color); color: var(--text-primary); 
-                              padding: 0.75rem; border-radius: 4px; font-family: 'Inter';"
-                       placeholder="Доктор, Профессор, Интерн...">
-            </div>
-            
-            <div>
-                <label style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">
-                    <i class="fas fa-file-medical"></i> ВАШЕ ЗАКЛЮЧЕНИЕ:
-                </label>
-                <textarea id="commentText" rows="4"
-                          style="width: 100%; background: rgba(20, 15, 20, 0.7); 
-                                 border: 1px solid var(--border-color); color: var(--text-primary); 
-                                 padding: 0.75rem; border-radius: 4px; font-family: 'Inter';
-                                 resize: vertical;"
-                          placeholder="Диагноз, наблюдения, рекомендации..."></textarea>
-            </div>
-            
-            <button onclick="addMedicalComment()" 
-                    style="background: var(--accent-red); color: white; border: none; 
-                           padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer;
-                           font-family: 'JetBrains Mono'; font-weight: 500; align-self: flex-start;">
-                <i class="fas fa-paper-plane"></i> ВНЕСТИ В АРХИВ
-            </button>
-        </div>
-    </div>
-    
-    <div class="comments-list" id="commentsList" style="margin-top: 3rem;">
-        <div class="comment" style="background: rgba(20, 15, 20, 0.5); border-left: 3px solid var(--accent-red); 
-                                    padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 4px 4px 0;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; 
-                       padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196, 30, 58, 0.2);">
-                <span style="color: var(--accent-red); font-weight: 500;">Д-р Шизофоник</span>
-                <span style="color: var(--text-secondary); font-size: 0.85rem;">17.11.2023 | 14:30</span>
-            </div>
-            <div style="color: var(--text-primary); line-height: 1.6;">
-                Классический случай поливокального расстройства с коммерческой ремиссией. 
-                Пациент сублимировал симптоматику в карьеру. Рекомендация: продолжать в том же духе.
-            </div>
-        </div>
-        
-        <div class="comment" style="background: rgba(20, 15, 20, 0.5); border-left: 3px solid var(--accent-red); 
-                                    padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 4px 4px 0;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; 
-                       padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196, 30, 58, 0.2);">
-                <span style="color: var(--accent-red); font-weight: 500">Проф. Мультифония</span>
-                <span style="color: var(--text-secondary); font-size: 0.85rem;">17.11.2023 | 15:45</span>
-            </div>
-            <div style="color: var(--text-primary); line-height: 1.6;">
-                Интересный феномен: каждый новый голос увеличивает доход. 
-                Предлагаю термин: «Монетизируемая шизофрения». Патентовать?
-            </div>
-        </div>
-    </div>
-</section>
 
     <script>
-        // Простая анимация появления элементов при скролле
+        // Система комментариев
+        let medicalComments = [
+            {
+                author: "Д-р Шизофоник",
+                date: "17.11.2023 | 14:30",
+                text: "Классический случай поливокального расстройства с коммерческой ремиссией. Пациент сублимировал симптоматику в карьеру. Рекомендация: продолжать в том же духе."
+            },
+            {
+                author: "Проф. Мультифония",
+                date: "17.11.2023 | 15:45",
+                text: "Интересный феномен: каждый новый голос увеличивает доход. Предлагаю термин: «Монетизируемая шизофрения». Патентовать?"
+            },
+            {
+                author: "Медсестра Фрейд",
+                date: "17.11.2023 | 16:20",
+                text: "Заметила интересную деталь: его женские голоса звучат убедительнее мужских. Не думаю, что это случайность. Комплекс? Трансвестизм? Гениальность? Отправляю на дополнительное обследование."
+            }
+        ];
+
+        // Загрузка комментариев из localStorage
+        function loadComments() {
+            const saved = localStorage.getItem('syenduk_medical_comments');
+            if (saved) {
+                try {
+                    medicalComments = JSON.parse(saved);
+                } catch (e) {
+                    console.error('Ошибка загрузки комментариев:', e);
+                }
+            }
+        }
+
+        // Сохранение комментариев в localStorage
+        function saveComments() {
+            try {
+                localStorage.setItem('syenduk_medical_comments', JSON.stringify(medicalComments));
+            } catch (e) {
+                console.error('Ошибка сохранения комментариев:', e);
+            }
+        }
+
+        // Отображение комментариев
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            medicalComments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.style.opacity = '0';
+                commentDiv.style.transform = 'translateY(20px)';
+
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(comment.author)}</span>
+                        <span class="comment-date">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-content">
+                        ${escapeHtml(comment.text)}
+                    </div>
+                `;
+
+                container.appendChild(commentDiv);
+
+                // Анимация появления
+                setTimeout(() => {
+                    commentDiv.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    commentDiv.style.opacity = '1';
+                    commentDiv.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // Добавление нового комментария
+        function addMedicalComment() {
+            const authorInput = document.getElementById('commentAuthor');
+            const textInput = document.getElementById('commentText');
+            const submitBtn = document.querySelector('.submit-btn');
+
+            // Валидация
+            if (!authorInput.value.trim()) {
+                showNotification('Введите псевдоним', 'error');
+                authorInput.focus();
+                return;
+            }
+
+            if (!textInput.value.trim()) {
+                showNotification('Введите текст заключения', 'error');
+                textInput.focus();
+                return;
+            }
+
+            if (textInput.value.trim().length < 5) {
+                showNotification('Заключение слишком короткое', 'error');
+                textInput.focus();
+                return;
+            }
+
+            // Блокируем кнопку на время обработки
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ОБРАБОТКА...';
+
+            // Создаём новый комментарий
+            const date = new Date();
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+            const newComment = {
+                author: authorInput.value.trim(),
+                date: dateStr,
+                text: textInput.value.trim()
+            };
+
+            // Добавляем в начало массива
+            medicalComments.unshift(newComment);
+            
+            // Сохраняем и перерисовываем
+            saveComments();
+            renderComments();
+
+            // Очищаем поля
+            authorInput.value = '';
+            textInput.value = '';
+
+            // Восстанавливаем кнопку
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ВНЕСТИ В АРХИВ';
+                showNotification('Заключение внесено в архив', 'success');
+            }, 500);
+
+            // Фокус на поле ввода
+            authorInput.focus();
+        }
+
+        // Показать уведомление
+        function showNotification(message, type) {
+            // Удаляем старые уведомления
+            const oldNotifications = document.querySelectorAll('.notification');
+            oldNotifications.forEach(n => n.remove());
+
+            // Создаём новое уведомление
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Анимация появления
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            // Автоудаление через 4 секунды
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(20px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Экранирование HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Анимация появления элементов при скролле
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -623,53 +924,58 @@
             });
         });
 
-        // Настройка анимации для карточек и списков
-        document.querySelectorAll('.theory-card, .evidence-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Эффект при наведении на изображение
-        const articleImage = document.querySelector('.article-image');
-        if (articleImage) {
-            articleImage.addEventListener('mouseenter', () => {
-                articleImage.style.transform = 'scale(1.01)';
-                articleImage.style.transition = 'transform 0.3s ease';
-            });
-            
-            articleImage.addEventListener('mouseleave', () => {
-                articleImage.style.transform = 'scale(1)';
-            });
-        }
-
-        // Динамическое обновление даты в футере
-        function updateArchiveDate() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: '2-digit', 
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            
-            const dateStr = now.toLocaleDateString('ru-RU', options);
-            const dateElement = document.querySelector('.article-footer p:last-child');
-            if (dateElement) {
-                dateElement.textContent = `Последнее обновление: ${dateStr} | Версия: 1.0`;
-            }
-        }
-
         // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
-            updateArchiveDate();
-            
-            // Задержка для полной загрузки изображения
-            setTimeout(() => {
-                document.querySelector('.article-image').classList.add('fade-in');
-            }, 300);
+            // Загружаем и отображаем комментарии
+            loadComments();
+            renderComments();
+
+            // Настройка анимации для карточек и списков
+            document.querySelectorAll('.theory-card, .evidence-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Настройка анимации для изображения
+            const articleImage = document.querySelector('.article-image');
+            if (articleImage) {
+                articleImage.style.opacity = '0';
+                articleImage.style.transform = 'translateY(20px)';
+                articleImage.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(articleImage);
+            }
+
+            // Обработка нажатия Enter в форме
+            document.getElementById('commentText').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
+                    addMedicalComment();
+                }
+            });
+
+            // Динамическое обновление даты в футере
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ru-RU', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            const dateElement = document.querySelector('.article-footer p:last-child');
+            if (dateElement) {
+                dateElement.innerHTML = `Обновлено: ${dateStr} | Версия: 1.1`;
+            }
+        });
+
+        // Отключение неработающих ссылок в навигации
+        document.querySelectorAll('.nav-link.disabled').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification('Раздел находится в разработке', 'error');
+            });
         });
     </script>
 </body>
