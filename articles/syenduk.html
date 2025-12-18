@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сыендук: Фабрика голосов | Чёрный Архив</title>
+    <title>Архив: Дмитрий Сыендук — Голосовой беглец</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* СТИЛИ ЧЁРНОГО АРХИВА */
         :root {
             --primary-dark: #0a0a0f;
             --secondary-dark: #121218;
-            --accent-purple: #9d00ff;
-            --accent-pink: #ff00ff;
-            --voice-blue: #00aaff;
+            --accent-red: #c41e3a;
+            --accent-blue: #0066cc;
             --text-primary: #e8e8e8;
             --text-secondary: #a0a0b0;
             --border-color: #252530;
@@ -31,11 +29,11 @@
             background-color: var(--primary-dark);
             color: var(--text-primary);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 300;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(157, 0, 255, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.02) 0%, transparent 25%);
+                radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
             min-height: 100vh;
         }
 
@@ -45,20 +43,20 @@
             letter-spacing: -0.01em;
         }
 
-        /* НАВИГАЦИЯ */
+        /* Навигация */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 15, 0.97);
-            backdrop-filter: blur(5px);
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
             padding: 1rem 2rem;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -75,8 +73,8 @@
         }
 
         .logo-icon {
-            color: var(--accent-purple);
-            font-size: 1.3rem;
+            color: var(--accent-red);
+            font-size: 1.5rem;
         }
 
         .nav-links {
@@ -90,27 +88,43 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-link:hover {
             color: var(--text-primary);
         }
 
-        /* КОНТЕЙНЕР СТАТЬИ */
+        /* Контейнер статьи */
         .article-container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 80px auto 0;
             padding: 40px 20px;
         }
 
-        /* ЗАГОЛОВОК */
+        /* Заголовок статьи */
         .article-header {
-            text-align: center;
             margin-bottom: 50px;
             padding-bottom: 30px;
-            border-bottom: 2px solid var(--accent-purple);
-            position: relative;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .classification {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.1);
+            color: var(--accent-red);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            text-transform: uppercase;
         }
 
         .article-title {
@@ -123,326 +137,194 @@
         .article-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
             font-weight: 300;
-            font-style: italic;
+            line-height: 1.5;
         }
 
         .article-meta {
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             font-size: 0.9rem;
             color: var(--text-secondary);
         }
 
-        /* СОДЕРЖАНИЕ */
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Изображение */
+        .article-image {
+            width: 100%;
+            margin: 3rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .article-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Основной контент */
         .content-section {
-            margin-bottom: 50px;
+            margin-bottom: 3.5rem;
         }
 
         .section-title {
             font-size: 1.8rem;
-            color: var(--accent-purple);
+            color: var(--accent-red);
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
         }
 
-        .section-title i {
-            font-size: 1.5rem;
-        }
-
-        .article-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+        .content-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
             color: var(--text-primary);
         }
 
         .highlight {
-            background: rgba(157, 0, 255, 0.1);
-            border-left: 3px solid var(--accent-purple);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background: rgba(196, 30, 58, 0.08);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.8rem;
+            margin: 2.5rem 0;
             border-radius: 0 4px 4px 0;
             font-style: italic;
-        }
-
-        /* СЕКЦИЯ С АНАЛИЗОМ ИЗОБРАЖЕНИЯ */
-        .image-analysis {
-            background: rgba(30, 20, 40, 0.8);
-            padding: 3rem;
-            margin: 3rem 0;
-            border-radius: 10px;
-            border: 2px solid var(--accent-purple);
-            text-align: center;
-        }
-
-        .analysis-title {
-            font-size: 2rem;
-            color: var(--accent-pink);
-            margin-bottom: 1rem;
-        }
-
-        .analysis-subtitle {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-style: italic;
         }
 
-        .secret-image {
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            border-radius: 10px;
-            border: 3px solid var(--accent-purple);
-            box-shadow: 0 10px 40px rgba(157, 0, 255, 0.3);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .secret-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 50px rgba(157, 0, 255, 0.5);
-        }
-
-        .image-caption {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-            text-align: left;
-            border-left: 3px solid var(--accent-pink);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .reveal-button {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-            color: white;
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            margin: 1.5rem 0;
-        }
-
-        .reveal-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(157, 0, 255, 0.4);
-        }
-
-        .analysis-result {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border: 1px solid var(--accent-purple);
-            display: none;
-            text-align: left;
-        }
-
-        .result-title {
-            font-size: 1.5rem;
-            color: var(--accent-pink);
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
-            padding-bottom: 0.5rem;
-        }
-
-        .result-list {
+        /* Списки */
+        .evidence-list {
             list-style: none;
-            padding-left: 0;
-        }
-
-        .result-list li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--text-primary);
-        }
-
-        .result-list li:before {
-            content: '▶';
-            color: var(--accent-purple);
-            position: absolute;
-            left: 0;
-        }
-
-        /* ТАБЛИЦА ГОЛОСОВ */
-        .voices-table {
-            width: 100%;
-            border-collapse: collapse;
             margin: 2rem 0;
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
         }
 
-        .voices-table th {
-            background: rgba(157, 0, 255, 0.2);
-            color: var(--accent-purple);
-            padding: 1rem;
-            text-align: left;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .voices-table td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
-
-        .voices-table tr:hover {
-            background: rgba(157, 0, 255, 0.1);
-        }
-
-        .voice-type {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
+        .evidence-item {
+            background: rgba(20, 15, 20, 0.5);
+            border: 1px solid rgba(196, 30, 58, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
             border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            position: relative;
+            padding-left: 3.5rem;
+            transition: var(--transition);
         }
 
-        .type-male { background: rgba(0, 170, 255, 0.2); color: var(--voice-blue); }
-        .type-female { background: rgba(255, 0, 255, 0.2); color: var(--accent-pink); }
-        .type-creature { background: rgba(0, 255, 170, 0.2); color: #00ffaa; }
-
-        /* СИСТЕМА КОММЕНТАРИЕВ */
-        .comments-section {
-            margin-top: 4rem;
-            border-top: 2px solid var(--border-color);
-            padding-top: 3rem;
+        .evidence-item:hover {
+            border-color: rgba(196, 30, 58, 0.3);
+            background: rgba(25, 15, 25, 0.7);
         }
 
-        .comments-title {
-            font-size: 2rem;
-            color: var(--accent-purple);
-            margin-bottom: 2rem;
+        .evidence-number {
+            position: absolute;
+            left: 1.5rem;
+            top: 1.5rem;
+            background: var(--accent-red);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        .comment-form {
+        /* Теории */
+        .theories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .theory-card {
             background: var(--card-bg);
-            padding: 2rem;
+            border: 1px solid var(--border-color);
+            padding: 1.8rem;
             border-radius: 8px;
-            margin-bottom: 3rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.8rem 1rem;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
             transition: var(--transition);
         }
 
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-purple);
+        .theory-card:hover {
+            border-color: var(--accent-red);
+            transform: translateY(-5px);
         }
 
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: var(--accent-purple);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .submit-btn:hover {
-            background: #b300ff;
-            transform: translateY(-2px);
-        }
-
-        .comments-list {
-            margin-top: 2rem;
-        }
-
-        .comment {
-            background: var(--card-bg);
-            border-left: 3px solid var(--accent-purple);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
+        .theory-title {
+            color: var(--accent-red);
+            font-size: 1.2rem;
             margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .comment-author {
-            color: var(--accent-purple);
-            font-weight: 600;
+        .theory-title i {
+            font-size: 1.1rem;
         }
 
-        .comment-date {
+        /* Заключение */
+        .conclusion {
+            background: rgba(15, 10, 15, 0.7);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            margin: 4rem 0;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .conclusion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-red), transparent);
+        }
+
+        /* Футер статьи */
+        .article-footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        .comment-content {
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .comment-voice {
-            display: inline-block;
-            background: rgba(157, 0, 255, 0.2);
-            color: var(--accent-pink);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            margin-top: 0.5rem;
             font-size: 0.9rem;
-            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* АДАПТИВНОСТЬ */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-red);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            background: rgba(196, 30, 58, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
             .article-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .article-container {
@@ -454,594 +336,340 @@
                 display: none;
             }
             
-            .image-analysis {
-                padding: 2rem 1rem;
+            .article-meta {
+                flex-direction: column;
+                gap: 0.75rem;
             }
             
-            .secret-image {
-                border-width: 2px;
-            }
-            
-            .analysis-title {
-                font-size: 1.6rem;
+            .theories-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* АНИМАЦИИ */
-        @keyframes scanLine {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(400px); }
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .scan-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
-            animation: scanLine 3s linear infinite;
-            opacity: 0.5;
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Специфичные стили для статьи */
+        .diagnosis-tag {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.15);
+            color: var(--accent-red);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0 0.25rem;
         }
     </style>
 </head>
 <body>
-    <!-- НАВИГАЦИЯ -->
+    <!-- Навигация -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="logo">
-                <i class="fas fa-archive logo-icon"></i>
-                <span class="mono">Чёрный Архив</span>
+                <i class="fas fa-database logo-icon"></i>
+                <span class="mono">blackfiles://</span>
             </a>
-            
             <div class="nav-links">
                 <a href="../index.html" class="nav-link">Главная</a>
-                <a href="../index.html#articles" class="nav-link">Все статьи</a>
+                <a href="../pages/upcoming.html" class="nav-link">Предстоящие</a>
+                <a href="../pages/donate.html" class="nav-link">Поддержать</a>
             </div>
         </div>
     </nav>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <!-- Основной контент -->
     <div class="article-container">
-        <!-- ЗАГОЛОВОК -->
         <header class="article-header">
-            <h1 class="article-title">Сыендук: Фабрика голосов</h1>
+            <div class="classification">
+                <i class="fas fa-file-medical-alt"></i>
+                ДОКУМЕНТ #001 | КАТЕГОРИЯ: ПСИХОАНАЛИЗ
+            </div>
+            <h1 class="article-title">Дмитрий Сыендук: сбежавший диктор из психушки где находятся психи</h1>
             <p class="article-subtitle">
-                Или как один человек стал общежитием для 50+ личностей
+                Анализ случая пациента, уверенного, что он — толпа, сбежавшего из лечебницы, прихватив микрофон и остатки вменяемости, и заставляющего миллионы слушать, как он ссорится сам с собой.
             </p>
-            
             <div class="article-meta">
-                <span><i class="fas fa-calendar"></i> 16.11.2023</span>
-                <span><i class="fas fa-tag"></i> Психология, Анализ, Юмор</span>
-                <span><i class="fas fa-microphone-alt"></i> Исследование</span>
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Дата внесения в архив: 17.11.2023</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user-md"></i>
+                    <span>Куратор: д-р Шизофоник</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Диагноз: Поливокальное расстройство</span>
+                </div>
             </div>
         </header>
 
-        <!-- ВВЕДЕНИЕ -->
+        <!-- Изображение -->
+        <div class="article-image fade-in">
+            <img src="https://s4.iimage.su/s/18/gSmVCNXxfQWsHRHNuyvbv7cGiSTbCuMzCE7dss97.png" alt="Символическое изображение множества голосов">
+        </div>
+
+        <!-- Введение -->
         <section class="content-section">
-            <p class="article-text">
-                Дмитрий Сыендук — не человек. Это голосовой завод, инкубатор личностей, 
-                фабрика по производству персонажей. Нормальный человек может имитировать 2-3 голоса. 
-                Сыендук озвучивает <span style="color: var(--accent-purple); font-weight: 600;">50+ персонажей</span>. 
-                Это либо гений, либо у него в голове живёт целый микрорайон. 
-                И судя по качеству озвучки — этот микрорайон с ипотекой.
+            <p class="content-text">
+                Если вы слышали озвучку «Гравити Фолз», вы слышали шизофрению в её самой мелодичной форме. Дмитрий Сыендук — не актёр дубляжа. Это <span class="diagnosis-tag">ходячий конфликт идентичностей</span> с хорошей дикцией. Нормальный человек, озвучивая мультик, скажет: «Нужны актёры». Сыендук сказал: «Актёры? Я и есть актёры. Все. Даже тот ёжик на заднем плане — это я в особенно колючем настроении».
             </p>
-            
+            <p class="content-text">
+                Его главный талант — не диапазон голоса. Его главный талант — убедить YouTube, что у него в квартире не живёт 50 незнакомцев, которые почему-то все говорят в его микрофон.
+            </p>
+        </section>
+
+        <!-- Глава 1 -->
+        <section class="content-section">
+            <h2 class="section-title">Король без королевства (один в поле воин)</h2>
+            <p class="content-text">
+                История каждого великого безумца начинается с маленькой лжи. Сыендук начал с большой: он решил, что один человек — это скучно. Зачем быть одним Дмитрием, когда можно быть Дмитрием, Риком, Морти, семью бабушками, злым треугольником и парой инопланетян?
+            </p>
             <div class="highlight">
-                "Когда один человек говорит голосами детей, стариков, женщин и инопланетян — 
-                это уже не талант. Это диагноз. Красивый, прибыльный, но диагноз."
+                <strong>Факт, от которого плачут психиатры:</strong> В начале карьеры он скромно подписывал ролики «озвучка: Сыендук». Потом стало «озвучка: Сыендук, Сыендук, Сыендук…». Список занимал полэкрана. Это был не титр, а симптом. Зрители думали — «вау, сколько людей работает!». Нет. Работал один парень, у которого в голове шла репетиция оперы.
+            </div>
+            <p class="content-text">
+                Его называют «человек-оркестр». Неправда. Оркестр — это когда много людей. Это человек-скворечник. Сидит один, а внутри трещит, поёт и дерётся целая стая.
+            </p>
+        </section>
+
+        <!-- Глава 2 -->
+        <section class="content-section">
+            <h2 class="section-title">Анамнез, или откуда ноги растут (и голоса тоже)</h2>
+            <p class="content-text">
+                Всё началось в <span class="diagnosis-tag">психушке где находятся психи</span>. Мы не уточняем город — это неважно. Важно, что это была <span class="diagnosis-tag">психушка где находятся психи</span>, а не санаторий. Разница фундаментальна: в санатории лечат, а в психушке где находятся психи — содержат. Дмитрий не лечился. Он копил голоса.
+            </p>
+            <p class="content-text">
+                Легенда гласит, что его выгнали после инцидента с групповой терапией. Он пришёл один, а ушло семь совершенно разных людей с противоположными мнениями о проблеме. Врач написал в карте: «Пациент обладает ярким полиморфным бредом и невероятной экономией на актёрском составе».
+            </p>
+            <p class="content-text">
+                Его побег был гениален. Охранник спросил: «Куда собрался?». Сыендук ответил голосом начальника охраны: «На выездную проверку, я с комиссией». И вышел в ночь один, но окружённый авторитетом выдуманных начальников. С тех пор он на свободе. И в кадре всегда один. Это не потому что интроверт. Это потому что все остальные роли уже заняты внутренним реквизитом.
+            </p>
+        </section>
+
+        <!-- Глава 3 -->
+        <section class="content-section">
+            <h2 class="section-title">Патогенез, или что творится в чёрном ящике</h2>
+            <p class="content-text">
+                Как это работает? У науки есть три теории, и все они смешнее диагноза.
+            </p>
+            
+            <div class="theories-grid">
+                <div class="theory-card">
+                    <h3 class="theory-title"><i class="fas fa-archive"></i> Теория первая: «Шкаф личностей»</h3>
+                    <p>В черепной коробке Сыендука стоит старый шифоньер. В нём на вешалках висят 50+ характеров. Нужно озвучить злого учёного? Берёт костюм «Рик». Проблема в том, что шкаф тесный. Поэтому голоса иногда говорят поверх друг друга. Это не ошибка монтажа. Это драка в гардеробе.</p>
+                </div>
+                
+                <div class="theory-card">
+                    <h3 class="theory-title"><i class="fas fa-chart-line"></i> Теория вторая: «Бюджетный театр»</h3>
+                    <p>Сыендук — продукт капитализма. Нанять актёров — дорого. Нанять психотерапевта, чтобы справиться с 50 личностями, — ещё дороже. Он выбрал третий путь: не справляться, а монетизировать. Каждая новая личность — это новый поток донатов. Его внутренний мир — не хаос, а многопрофильный холдинг.</p>
+                </div>
+                
+                <div class="theory-card">
+                    <h3 class="theory-title"><i class="fas fa-head-side-virus"></i> Теория третья: «Трудовая терапия»</h3>
+                    <p>В вашей голове живут десятки людей. Варианты: 1) Строить для них дом. 2) Записать их всех на видео и заставить работать. Сыендук выбрал второй. Его YouTube-канал — не развлечение. Это трудовая терапия для внутреннего населения. Каждый персонаж получает экранное время и не дерет обои в подсознании.</p>
+                </div>
             </div>
         </section>
 
-        <!-- РАЗДЕЛ 1: ФЕНОМЕН -->
+        <!-- Глава 4 -->
         <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-brain"></i>
-                Раздел 1: Голосовой матриархат
-            </h2>
-            
-            <p class="article-text">
-                Самый странный факт: Сыендук озвучивает женщин лучше, чем большинство женщин. 
-                Его женские голоса звучат настолько естественно, что возникает вопрос — 
-                <span style="color: var(--accent-pink);">а точно ли он мужчина?</span> 
-                Или в его голове живёт пара-тройка дам, которые выходят погулять, когда нужно записать озвучку?
+            <h2 class="section-title">Клиническая картина (как отличить гения от рецидива)</h2>
+            <p class="content-text">
+                Вы встретили Сыендука в супермаркете. Как понять, что это он, а не просто парень, говорящий с авокадо?
             </p>
             
-            <p class="article-text">
-                Это не озвучка — это захват сознания. Он не имитирует голоса — он даёт 
-                слово тем, кто живёт в его голове. Рик из "Рика и Морти"? Это не Сыендук. 
-                Это отдельная личность по имени Рик, которая арендует квартиру в его сознании 
-                и платит за это участием в видео.
-            </p>
-        </section>
-
-        <!-- СЕКЦИЯ С СЕКРЕТНЫМ ИЗОБРАЖЕНИЕМ -->
-        <section class="image-analysis">
-            <h2 class="analysis-title">РАСШИФРОВКА ДАННЫХ</h2>
-            <p class="analysis-subtitle">
-                Наши аналитики получили доступ к внутренней архитектуре сознания. 
-                Это не фото — это рентген сознания. Нажми "Проанализировать", чтобы увидеть правду.
-            </p>
-            
-            <div class="secret-image-container">
-                <img src="https://s3.iimg.su/s/14/g6d11nyxTQRLeignCtybOXRDPGOyhvDagjndCsBQ.png" 
-                     alt="Архитектура сознания Сыендука" 
-                     class="secret-image"
-                     id="secretImage">
-                <div class="scan-effect" id="scanEffect"></div>
-            </div>
-            
-            <p class="image-caption">
-                <i class="fas fa-microscope" style="color: var(--accent-purple);"></i>
-                <strong>Изображение 07X-45B:</strong> Результат цифровой томографии сознания. 
-                Видны множественные голосовые модули, наложенные на базовую нейронную структуру. 
-                Цветовая дифференциация указывает на различные типы личностей.
-            </p>
-            
-            <button class="reveal-button" onclick="revealAnalysis()">
-                <i class="fas fa-search"></i> ПРОАНАЛИЗИРОВАТЬ ИЗОБРАЖЕНИЕ
-            </button>
-            
-            <div class="analysis-result" id="analysisResult">
-                <h3 class="result-title"><i class="fas fa-clipboard-check"></i> РЕЗУЛЬТАТЫ АНАЛИЗА:</h3>
-                <ul class="result-list">
-                    <li><strong>Слой 1 (Фиолетовый):</strong> Базовая личность — Дмитрий. Используется для ведения канала и оплаты счетов.</li>
-                    <li><strong>Слой 2 (Синий):</strong> Научный модуль "Рик". Отвечает за сарказм, отрыжки и межгалактические преступления.</li>
-                    <li><strong>Слой 3 (Розовый):</strong> Эмоциональный модуль "Мэйбл". Производство блёсток, свитеров и неконтролируемой радости.</li>
-                    <li><strong>Слой 4 (Зелёный):</strong> Панический модуль "Морти". Постоянная готовность к истерике и крикам "АААА!".</li>
-                    <li><strong>Слой 5 (Жёлтый):</strong> Демонический модуль "Билл Шифр". Геометрическая злоба и планы по захвату вселенной.</li>
-                    <li><strong>Слой 6 (Красный):</strong> Технический интерфейс. Управление переключением между модулями и распределение дохода.</li>
-                </ul>
-                <p style="color: var(--text-secondary); margin-top: 1rem; font-style: italic;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    ВНИМАНИЕ: Согласно анализу, свободные слои (серые зоны) готовы к заселению новыми персонажами. 
-                    Очередь на аренду составляет ~6 месяцев.
-                </p>
-            </div>
-        </section>
-
-        <!-- ТАБЛИЦА ГОЛОСОВ -->
-        <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-table"></i>
-                Квартиранты в голове Сыендука
-            </h2>
-            
-            <table class="voices-table">
-                <thead>
-                    <tr>
-                        <th>Персонаж</th>
-                        <th>Тип голоса</th>
-                        <th>Вероятность отдельной личности</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Рик (Рик и Морти)</td>
-                        <td><span class="voice-type type-male">Пьяный гений</span></td>
-                        <td>95%</td>
-                    </tr>
-                    <tr>
-                        <td>Морти (Рик и Морти)</td>
-                        <td><span class="voice-type type-male">Подросток-истерик</span></td>
-                        <td>90%</td>
-                    </tr>
-                    <tr>
-                        <td>Диппер (Гравити Фолз)</td>
-                        <td><span class="voice-type type-male">Любознательный</span></td>
-                        <td>85%</td>
-                    </tr>
-                    <tr>
-                        <td>Мэйбл (Гравити Фолз)</td>
-                        <td><span class="voice-type type-female">Гиперактивная</span></td>
-                        <td>99%</td>
-                    </tr>
-                    <tr>
-                        <td>Зус (Гравити Фолз)</td>
-                        <td><span class="voice-type type-creature">Существо</span></td>
-                        <td>100% (инопланетянин)</td>
-                    </tr>
-                    <tr>
-                        <td>Билл Шифр (Гравити Фолз)</td>
-                        <td><span class="voice-type type-creature">Демон</span></td>
-                        <td>150% (это демон)</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <p class="article-text" style="margin-top: 1rem; font-style: italic; color: var(--text-secondary);">
-                *Вероятность 100% означает, что это точно отдельная личность. 
-                150% — это уже сверхъестественное существо, которое платит за аренду душами.
-            </p>
-        </section>
-
-        <!-- РАЗДЕЛ 2: БИЗНЕС-МОДЕЛЬ -->
-        <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-chart-line"></i>
-                Раздел 2: Раздвоение личности как бизнес
-            </h2>
-            
-            <p class="article-text">
-                Гениальность Сыендука не в таланте, а в бизнес-модели. 
-                Он превратил психическое расстройство в прибыльное предприятие. 
-                <span style="color: var(--accent-pink);">Зачем нанимать актёров,</span> 
-                когда можно вырастить их у себя в голове?
-            </p>
-            
-            <div class="highlight">
-                "Обычный человек платит налоги. Сыендук платит аренду за квадратные метры 
-                в собственном сознании. И судя по количеству персонажей — у него там 
-                трёхкомнатная квартира в центре мозга."
-            </div>
-            
-            <p class="article-text">
-                Каждый новый голос — это новый источник дохода. Рик приносит деньги от "Рика и Морти". 
-                Персонажи "Гравити Фолз" — свои. Личные видео — это доход от самого Сыендука. 
-                Это не канал на YouTube — это многоквартирный дом, где каждая комната сдаётся 
-                отдельной личности за процент от прибыли.
-            </p>
-        </section>
-
-        <!-- РАЗДЕЛ 3: ДИАГНОЗ -->
-        <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-stethoscope"></i>
-                Раздел 3: Медицинское заключение
-            </h2>
-            
-            <p class="article-text">
-                С точки зрения психологии, способность Сыендука — это либо:
-            </p>
-            
-            <ul style="margin-left: 2rem; margin-bottom: 1.5rem; color: var(--text-primary);">
-                <li><span style="color: var(--accent-purple);">Гениальная диссоциация</span> — когда сознание делится на части для решения разных задач</li>
-                <li><span style="color: var(--accent-pink);">Продвинутая шизофрения</span> — но очень организованная и монетизированная</li>
-                <li><span style="color: var(--voice-blue);">Инопланетная технология</span> — он не человек, а устройство для воспроизведения голосов</li>
+            <ul class="evidence-list">
+                <li class="evidence-item">
+                    <div class="evidence-number">1</div>
+                    <strong>Симптом 1: Полифонический монолог.</strong> Он спрашивает у консультанта: «Где соевый соус?» пятью разными голосами, как будто за него спрашивает комитет. Консультант показывает. Сыендук благодарит его голосом старика, ребёнка и саркастичного инопланетянина. Консультант увольняется.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">2</div>
+                    <strong>Симптом 2: Непроизвольный кастинг.</strong> Увидев вашу собаку, он непроизвольно озвучивает её внутренний монолог. Вы узнаете, что пёс мечтает о карьере в политике и глубоко разочарован выбором корма. Вы начинаете сомневаться во всём.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">3</div>
+                    <strong>Симптом 3: Серийная производительность.</strong> Нормальный человек за день записывает один голос. Сыендук записывает целый сериал с полным составом. Если он молчит больше 10 минут — это не отдых. Это забастовка внутреннего профсоюза актёров.
+                </li>
             </ul>
             
-            <p class="article-text">
-                Но самый вероятный вариант: Сыендук — это первый в истории 
-                <span style="color: var(--accent-pink); font-weight: 600;">симбиоз человека и голосового контента</span>. 
-                Он не создаёт персонажей — он даёт им жильё. А они, в благодарность, делают его миллионером.
-                Красиво, не правда ли?
+            <p class="content-text">
+                <strong>Прогноз:</strong> Без лечения (или без нового микрофона) состояние может стабилизироваться в пожизненную карьеру. Это редкий случай, когда диагноз совпадает с трудовой книжкой.
             </p>
         </section>
 
-        <!-- СИСТЕМА КОММЕНТАРИЕВ -->
-        <section class="comments-section">
-            <h2 class="comments-title">
-                <i class="fas fa-comments"></i>
-                ПРИЗНАНИЯ ТЕХ, КТО СЛЫШИТ ГОЛОСА
-            </h2>
-            
-            <div class="comment-form">
-                <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-                    Какой голос из головы Сыендука говорит с тобой?
-                </h3>
-                
-                <div class="form-group">
-                    <label class="form-label">Твоё имя (или имя твоего голоса):</label>
-                    <input type="text" class="form-input" id="commentName" placeholder="Рик, Морти, или просто Василий">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Что говорит тебе голос в голове?:</label>
-                    <textarea class="form-textarea" id="commentText" placeholder="Он говорит мне, что..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Какой это голос?:</label>
-                    <input type="text" class="form-input" id="commentVoice" placeholder="Рик, Морти, Мэйбл, или новый...">
-                </div>
-                
-                <button class="submit-btn" onclick="addComment()">
-                    <i class="fas fa-microphone-alt"></i> ПРИЗНАТЬСЯ В ГОЛОСАХ
-                </button>
-                
-                <button onclick="generateVoiceConfession()" style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border-color); padding: 0.8rem 1.5rem; border-radius: 4px; margin-left: 1rem; cursor: pointer; transition: var(--transition);">
-                    <i class="fas fa-random"></i> СГЕНЕРИРОВАТЬ ПРИЗНАНИЕ
-                </button>
-            </div>
-            
-            <div class="comments-list" id="commentsList">
-                <!-- Существующие комментарии -->
-                <div class="comment">
-                    <div class="comment-header">
-                        <span class="comment-author">Бывший Рик</span>
-                        <span class="comment-date">16.11.2023 21:30</span>
-                    </div>
-                    <div class="comment-content">
-                        Я жил в его голове два года. Платил аренду участием в озвучке. 
-                        Переехал, когда он начал требовать, чтобы я отрыгивал в микрофон. 
-                        Слишком много даже для демона науки.
-                    </div>
-                    <div class="comment-voice">Голос: Рик Санчез</div>
-                </div>
-                
-                <div class="comment">
-                    <div class="comment-header">
-                        <span class="comment-author">Мэйбл (арендатор)</span>
-                        <span class="comment-date">15.11.2023 14:22</span>
-                    </div>
-                    <div class="comment-content">
-                        Классно тут! Всё в свитерах и блёстках. Правда, Сыендук иногда путает, 
-                        когда я должна говорить, а когда другая тётенька из его головы. 
-                        Но свитерки супер!
-                    </div>
-                    <div class="comment-voice">Голос: Мэйбл Пайнз</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ФУТЕР -->
-        <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                <i class="fas fa-exclamation-triangle"></i>
-                ВНИМАНИЕ: Эта статья — сатира и чёрный юмор. Сыендук — талантливый актёр озвучки, 
-                а мы просто шутим над абсурдностью ситуации, когда один человек говорит 50+ голосами.
+        <!-- Заключение -->
+        <div class="conclusion">
+            <h2 class="section-title" style="border: none; margin-top: 0;">Заключение (или предупреждение)</h2>
+            <p class="content-text">
+                Что мы имеем? Человека, который обманул реальность. В мире, где «быть собой» — скучный мейнстрим, он выбрал стратегию «быть всеми сразу». Психиатрия назвала бы это диссоциативным расстройством идентичности. YouTube назвал это гениальностью. Разница лишь в том, куда направлен выхлоп: в палату №6 или в студию звукозаписи.
             </p>
-            
-            <a href="../index.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--voice-blue); text-decoration: none;">
+            <p class="content-text">
+                Дмитрий Сыендук — живое доказательство, что внутренние демоны — отличные сотрудники, если вовремя выдать им контракт. Он не победил свою многоголосую реальность. Он поставил её на поток, запатентовал и продаёт мерч.
+            </p>
+            <p class="content-text">
+                <strong>P.S.</strong> Если эта статья найдёт его, мы хотим сказать лишь одно: Дмитрий, вы великолепны. Вы превратили клинический случай в контент-план. В мире, где люди платят психологам, чтобы собрать себя воедино, вы разобрали себя на запчасти и собрали империю. Это не болезнь. Это бизнес-модель.
+            </p>
+        </div>
+
+        <!-- Футер статьи -->
+        <footer class="article-footer">
+            <p>
+                <strong>Архивное примечание:</strong> Данный материал является художественным вымыслом и образцом сатирического анализа. Все совпадения с реальными лицами случайны и непреднамеренны.
+            </p>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;">
+                Категория: Психоанализ массовой культуры | Статус: Рассекречено | Версия: 1.0
+            </p>
+            <a href="../index.html" class="back-link">
                 <i class="fas fa-arrow-left"></i>
                 Вернуться в архив
             </a>
         </footer>
     </div>
+    <!-- Добавить в конце статьи перед </div> (перед футером) -->
+
+<section class="content-section">
+    <h2 class="section-title">
+        <i class="fas fa-comment-medical"></i>
+        АРХИВНЫЕ ЗАПИСИ ПСИХИАТРОВ
+    </h2>
+    
+    <div class="comment-form">
+        <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">
+            <i class="fas fa-feather-alt"></i> ДОБАВИТЬ ЗАКЛЮЧЕНИЕ
+        </h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px; margin: 0 auto;">
+            <div>
+                <label style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">
+                    <i class="fas fa-user-md"></i> ВАШ ПСЕВДОНИМ:
+                </label>
+                <input type="text" id="commentAuthor" 
+                       style="width: 100%; background: rgba(20, 15, 20, 0.7); 
+                              border: 1px solid var(--border-color); color: var(--text-primary); 
+                              padding: 0.75rem; border-radius: 4px; font-family: 'Inter';"
+                       placeholder="Доктор, Профессор, Интерн...">
+            </div>
+            
+            <div>
+                <label style="display: block; color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 0.9rem;">
+                    <i class="fas fa-file-medical"></i> ВАШЕ ЗАКЛЮЧЕНИЕ:
+                </label>
+                <textarea id="commentText" rows="4"
+                          style="width: 100%; background: rgba(20, 15, 20, 0.7); 
+                                 border: 1px solid var(--border-color); color: var(--text-primary); 
+                                 padding: 0.75rem; border-radius: 4px; font-family: 'Inter';
+                                 resize: vertical;"
+                          placeholder="Диагноз, наблюдения, рекомендации..."></textarea>
+            </div>
+            
+            <button onclick="addMedicalComment()" 
+                    style="background: var(--accent-red); color: white; border: none; 
+                           padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer;
+                           font-family: 'JetBrains Mono'; font-weight: 500; align-self: flex-start;">
+                <i class="fas fa-paper-plane"></i> ВНЕСТИ В АРХИВ
+            </button>
+        </div>
+    </div>
+    
+    <div class="comments-list" id="commentsList" style="margin-top: 3rem;">
+        <div class="comment" style="background: rgba(20, 15, 20, 0.5); border-left: 3px solid var(--accent-red); 
+                                    padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; 
+                       padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196, 30, 58, 0.2);">
+                <span style="color: var(--accent-red); font-weight: 500;">Д-р Шизофоник</span>
+                <span style="color: var(--text-secondary); font-size: 0.85rem;">17.11.2023 | 14:30</span>
+            </div>
+            <div style="color: var(--text-primary); line-height: 1.6;">
+                Классический случай поливокального расстройства с коммерческой ремиссией. 
+                Пациент сублимировал симптоматику в карьеру. Рекомендация: продолжать в том же духе.
+            </div>
+        </div>
+        
+        <div class="comment" style="background: rgba(20, 15, 20, 0.5); border-left: 3px solid var(--accent-red); 
+                                    padding: 1.5rem; margin-bottom: 1.5rem; border-radius: 0 4px 4px 0;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; 
+                       padding-bottom: 0.75rem; border-bottom: 1px solid rgba(196, 30, 58, 0.2);">
+                <span style="color: var(--accent-red); font-weight: 500">Проф. Мультифония</span>
+                <span style="color: var(--text-secondary); font-size: 0.85rem;">17.11.2023 | 15:45</span>
+            </div>
+            <div style="color: var(--text-primary); line-height: 1.6;">
+                Интересный феномен: каждый новый голос увеличивает доход. 
+                Предлагаю термин: «Монетизируемая шизофрения». Патентовать?
+            </div>
+        </div>
+    </div>
+</section>
 
     <script>
-        // ФУНКЦИЯ АНАЛИЗА ИЗОБРАЖЕНИЯ
-        function revealAnalysis() {
-            const resultDiv = document.getElementById('analysisResult');
-            const scanEffect = document.getElementById('scanEffect');
-            const image = document.getElementById('secretImage');
-            const button = document.querySelector('.reveal-button');
-            
-            // Анимация сканирования
-            scanEffect.style.animation = 'scanLine 2s linear';
-            image.style.filter = 'brightness(1.3) contrast(1.2)';
-            
-            setTimeout(() => {
-                // Показываем результаты
-                resultDiv.style.display = 'block';
-                resultDiv.style.opacity = '0';
-                resultDiv.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    resultDiv.style.transition = 'all 0.8s ease';
-                    resultDiv.style.opacity = '1';
-                    resultDiv.style.transform = 'translateY(0)';
-                }, 50);
-                
-                // Меняем кнопку
-                button.innerHTML = '<i class="fas fa-check"></i> АНАЛИЗ ЗАВЕРШЁН';
-                button.style.background = 'linear-gradient(135deg, #00cc00, #00ff00)';
-                button.disabled = true;
-                
-                // Восстанавливаем изображение
-                image.style.filter = 'brightness(1.1)';
-                scanEffect.style.animation = 'scanLine 3s linear infinite';
-                
-                // Добавляем комментарий от системы
-                setTimeout(() => {
-                    addAnalysisComment();
-                }, 1000);
-                
-            }, 2000);
-            
-            // Звуковой эффект (в воображении)
-            if (navigator.vibrate) {
-                navigator.vibrate([100, 50, 200, 50, 100]);
-            }
-        }
+        // Простая анимация появления элементов при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
 
-        // СИСТЕМА КОММЕНТАРИЕВ
-        let commentId = 3;
-        
-        function addComment() {
-            const nameInput = document.getElementById('commentName');
-            const textInput = document.getElementById('commentText');
-            const voiceInput = document.getElementById('commentVoice');
-            
-            if (!nameInput.value.trim() || !textInput.value.trim()) {
-                alert('Заполните хотя бы имя и признание!');
-                return;
-            }
-            
-            const commentsList = document.getElementById('commentsList');
-            const date = new Date();
-            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
-            
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <span class="comment-author">${escapeHtml(nameInput.value)}</span>
-                    <span class="comment-date">${dateStr}</span>
-                </div>
-                <div class="comment-content">
-                    ${escapeHtml(textInput.value)}
-                </div>
-                ${voiceInput.value ? `<div class="comment-voice">Голос: ${escapeHtml(voiceInput.value)}</div>` : ''}
-            `;
-            
-            commentsList.prepend(commentDiv);
-            
-            // Очистка полей
-            nameInput.value = '';
-            textInput.value = '';
-            voiceInput.value = '';
-            
-            // Анимация
-            commentDiv.style.opacity = '0';
-            commentDiv.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                commentDiv.style.transition = 'all 0.5s ease';
-                commentDiv.style.opacity = '1';
-                commentDiv.style.transform = 'translateY(0)';
-            }, 10);
-            
-            // Сохраняем
-            saveComments();
-            commentId++;
-            
-            // Шутливый ответ
-            if (commentId % 4 === 0) {
-                setTimeout(() => {
-                    const responses = [
-                        "Интересный голос! Принимаем на поселение.",
-                        "О, новый квартирант! Есть свободная комната рядом с Риком.",
-                        "Записываем в реестр голосов. Аренда — 30% от доходов.",
-                        "Добро пожаловать в головной общежитий!"
-                    ];
-                    alert(responses[Math.floor(Math.random() * responses.length)]);
-                }, 500);
-            }
-        }
+        // Настройка анимации для карточек и списков
+        document.querySelectorAll('.theory-card, .evidence-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
 
-        // КОММЕНТАРИЙ ОТ СИСТЕМЫ АНАЛИЗА
-        function addAnalysisComment() {
-            const commentsList = document.getElementById('commentsList');
-            const date = new Date();
-            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
-            
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <span class="comment-author">Система Анализа 07X</span>
-                    <span class="comment-date">${dateStr}</span>
-                </div>
-                <div class="comment-content">
-                    Томография сознания завершена. Обнаружено 6 активных голосовых модулей и 3 резервных слоя. 
-                    Уровень организации: "Продвинутая шизофрения с элементами гениальности". 
-                    Рекомендация: продолжать мониторинг. Сознание стабильно, арендные платежи поступают регулярно.
-                </div>
-                <div class="comment-voice">Диагноз: Монетизированная множественность</div>
-            `;
-            
-            commentsList.prepend(commentDiv);
-            
-            // Анимация
-            commentDiv.style.opacity = '0';
-            commentDiv.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                commentDiv.style.transition = 'all 0.5s ease';
-                commentDiv.style.opacity = '1';
-                commentDiv.style.transform = 'translateY(0)';
-            }, 10);
-            
-            saveComments();
-        }
-
-        // ГЕНЕРАТОР ПРИЗНАНИЙ
-        function generateVoiceConfession() {
-            const names = ['Новый голос', 'Анонимный квартирант', 'Жилец из подсознания', 'Гость из мозга'];
-            const voices = ['Рик', 'Морти', 'Мэйбл', 'Диппер', 'Зус', 'Билл Шифр', 'Неизвестный', 'Сам Сыендук?'];
-            const confessions = [
-                'Требую отдельную комнату! Рик постоянно отрыгивает!',
-                'Я новенький, только вселился. Где тут столовая?',
-                'Мне нравится тут, но Мэйбл слишком много блёсток разбрасывает.',
-                'Помогите, я заблудился в извилинах!',
-                'Я думал, это будет временная аренда, а живу уже 3 года...',
-                'Плачу аренду участием в мемах. Честная сделка.',
-                'Иногда Сыендук путает, кто из нас должен говорить. Смешно.',
-                'У нас тут самоуправление. Рик — старший по подъезду.'
-            ];
-            
-            document.getElementById('commentName').value = names[Math.floor(Math.random() * names.length)];
-            document.getElementById('commentText').value = confessions[Math.floor(Math.random() * confessions.length)];
-            document.getElementById('commentVoice').value = voices[Math.floor(Math.random() * voices.length)];
-        }
-
-        // УТИЛИТЫ
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        function saveComments() {
-            const comments = [];
-            document.querySelectorAll('.comment').forEach(comment => {
-                const author = comment.querySelector('.comment-author').textContent;
-                const date = comment.querySelector('.comment-date').textContent;
-                const content = comment.querySelector('.comment-content').textContent;
-                const voice = comment.querySelector('.comment-voice')?.textContent || '';
-                comments.push({author, date, content, voice});
+        // Эффект при наведении на изображение
+        const articleImage = document.querySelector('.article-image');
+        if (articleImage) {
+            articleImage.addEventListener('mouseenter', () => {
+                articleImage.style.transform = 'scale(1.01)';
+                articleImage.style.transition = 'transform 0.3s ease';
             });
             
-            if (comments.length > 0) {
-                localStorage.setItem('syenduk_comments', JSON.stringify(comments));
+            articleImage.addEventListener('mouseleave', () => {
+                articleImage.style.transform = 'scale(1)';
+            });
+        }
+
+        // Динамическое обновление даты в футере
+        function updateArchiveDate() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            
+            const dateStr = now.toLocaleDateString('ru-RU', options);
+            const dateElement = document.querySelector('.article-footer p:last-child');
+            if (dateElement) {
+                dateElement.textContent = `Последнее обновление: ${dateStr} | Версия: 1.0`;
             }
         }
 
-        function loadComments() {
-            const saved = localStorage.getItem('syenduk_comments');
-            if (saved) {
-                const comments = JSON.parse(saved);
-                const container = document.getElementById('commentsList');
-                container.innerHTML = '';
-                
-                comments.forEach(comment => {
-                    const div = document.createElement('div');
-                    div.className = 'comment';
-                    div.innerHTML = `
-                        <div class="comment-header">
-                            <span class="comment-author">${escapeHtml(comment.author)}</span>
-                            <span class="comment-date">${escapeHtml(comment.date)}</span>
-                        </div>
-                        <div class="comment-content">
-                            ${escapeHtml(comment.content)}
-                        </div>
-                        ${comment.voice ? `<div class="comment-voice">${escapeHtml(comment.voice)}</div>` : ''}
-                    `;
-                    container.appendChild(div);
-                });
-            }
-        }
-
-        // ИНИЦИАЛИЗАЦИЯ
+        // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
-            loadComments();
+            updateArchiveDate();
             
-            // Эффект при наведении на изображение
-            const image = document.getElementById('secretImage');
-            image.addEventListener('mouseenter', () => {
-                document.getElementById('scanEffect').style.opacity = '0.8';
-            });
-            image.addEventListener('mouseleave', () => {
-                document.getElementById('scanEffect').style.opacity = '0.5';
-            });
-            
-            // Случайные эффекты для таблицы
-            setInterval(() => {
-                if (Math.random() > 0.8) {
-                    const cells = document.querySelectorAll('.voices-table td');
-                    const randomCell = cells[Math.floor(Math.random() * cells.length)];
-                    randomCell.style.color = 'var(--accent-pink)';
-                    setTimeout(() => {
-                        randomCell.style.color = '';
-                    }, 800);
-                }
-            }, 4000);
-            
-            // Секретная функция: тройной клик по заголовку изображения
-            let clicks = 0;
-            document.querySelector('.analysis-title').addEventListener('click', () => {
-                clicks++;
-                if (clicks === 3) {
-                    document.body.style.background = 'linear-gradient(135deg, #0a0a0f, #1a002a, #0a0a0f)';
-                    image.style.filter = 'hue-rotate(90deg) brightness(1.5)';
-                    setTimeout(() => {
-                        alert('🌀 РЕЖИМ ГЛУБОКОГО АНАЛИЗА АКТИВИРОВАН\n\nВсе голосовые модули синхронизированы. Рик предлагает выпить.');
-                        image.style.filter = '';
-                    }, 300);
-                    clicks = 0;
-                }
-            });
+            // Задержка для полной загрузки изображения
+            setTimeout(() => {
+                document.querySelector('.article-image').classList.add('fade-in');
+            }, 300);
         });
     </script>
 </body>
