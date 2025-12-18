@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheBrianMaps: Системный сбой реальности | Чёрный Архив</title>
+    <title>Архив: TheBrianMaps — Он не психопат. Он Брайан</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-dark: #0a0a0f;
             --secondary-dark: #121218;
-            --accent-mud: #8B7355;
-            --accent-dirt: #556B2F;
-            --accent-piss: #B8860B;
-            --accent-blood: #8B0000;
+            --accent-red: #c41e3a;
+            --accent-blue: #0066cc;
             --text-primary: #e8e8e8;
             --text-secondary: #a0a0b0;
-            --border-color: #2a332a;
-            --card-bg: #151a15;
+            --border-color: #252530;
+            --card-bg: #151520;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -31,26 +29,25 @@
             background-color: var(--primary-dark);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            font-weight: 300;
+            line-height: 1.7;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(139, 115, 85, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(85, 107, 47, 0.03) 0%, transparent 20%);
+                radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, .mono {
             font-family: 'JetBrains Mono', monospace;
             font-weight: 500;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
+        /* Навигация */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 15, 0.98);
+            background: rgba(10, 10, 15, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
@@ -58,7 +55,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -75,8 +72,8 @@
         }
 
         .logo-icon {
-            color: var(--accent-piss);
-            font-size: 1.3rem;
+            color: var(--accent-red);
+            font-size: 1.5rem;
         }
 
         .nav-links {
@@ -90,464 +87,344 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             transition: var(--transition);
-            position: relative;
         }
 
         .nav-link:hover {
-            color: var(--accent-piss);
+            color: var(--text-primary);
         }
 
-        .nav-link:hover::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--accent-piss);
+        .nav-link.disabled {
+            color: var(--border-color);
+            cursor: not-allowed;
         }
 
+        /* Контейнер статьи */
         .article-container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 80px auto 0;
             padding: 40px 20px;
         }
 
+        /* Заголовок */
         .article-header {
-            text-align: center;
             margin-bottom: 50px;
             padding-bottom: 30px;
-            border-bottom: 2px solid var(--accent-mud);
-            position: relative;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .classification {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.1);
+            color: var(--accent-red);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            text-transform: uppercase;
         }
 
         .article-title {
             font-size: 2.8rem;
             line-height: 1.2;
             margin-bottom: 1rem;
-            color: var(--accent-piss);
-            text-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+            color: var(--text-primary);
         }
 
         .article-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
             font-weight: 300;
-            font-style: italic;
+            line-height: 1.5;
         }
 
         .article-meta {
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             font-size: 0.9rem;
             color: var(--text-secondary);
         }
 
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Основной контент */
         .content-section {
-            margin-bottom: 60px;
+            margin-bottom: 3.5rem;
         }
 
         .section-title {
             font-size: 1.8rem;
-            color: var(--accent-mud);
+            color: var(--accent-red);
             margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
         }
 
-        .section-title i {
-            font-size: 1.5rem;
-            color: var(--accent-piss);
-        }
-
-        .article-text {
+        .content-text {
             font-size: 1.15rem;
             line-height: 1.8;
             margin-bottom: 1.8rem;
             color: var(--text-primary);
-            position: relative;
-            padding-left: 2rem;
-            border-left: 2px solid transparent;
-            transition: var(--transition);
-        }
-
-        .article-text:hover {
-            border-left: 2px solid var(--accent-mud);
-            padding-left: 2.5rem;
         }
 
         .highlight {
-            background: rgba(139, 115, 85, 0.1);
-            border: 1px solid var(--accent-mud);
-            border-left: 5px solid var(--accent-piss);
-            padding: 2rem;
+            background: rgba(196, 30, 58, 0.08);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.8rem;
             margin: 2.5rem 0;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 4px 4px 0;
             font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Улики */
+        .evidence-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .evidence-item {
+            background: rgba(20, 15, 20, 0.5);
+            border: 1px solid rgba(196, 30, 58, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
             position: relative;
-            overflow: hidden;
+            padding-left: 3.5rem;
+            transition: var(--transition);
         }
 
-        .highlight::before {
-            content: '⚠';
+        .evidence-item:hover {
+            border-color: rgba(196, 30, 58, 0.3);
+            background: rgba(25, 15, 25, 0.7);
+        }
+
+        .evidence-number {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 2rem;
-            color: var(--accent-mud);
-            opacity: 0.1;
+            left: 1.5rem;
+            top: 1.5rem;
+            background: var(--accent-red);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        /* СЕКЦИЯ ГЕНЕРАТОРА */
-        .generator-section {
-            background: rgba(20, 25, 15, 0.8);
+        /* Изображение сравнения */
+        .comparison-image {
+            width: 100%;
+            margin: 3rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .comparison-image:hover {
+            transform: scale(1.005);
+            border-color: rgba(196, 30, 58, 0.3);
+        }
+
+        .comparison-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Большое открытие */
+        .big-reveal {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(10, 10, 15, 0.9));
+            border: 2px solid var(--accent-red);
             padding: 3rem;
             margin: 4rem 0;
-            border-radius: 15px;
-            border: 3px solid var(--accent-dirt);
+            border-radius: 8px;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .generator-title {
-            font-size: 2.2rem;
-            color: var(--accent-piss);
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .generator-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .chaos-selector {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .chaos-option {
-            background: rgba(0, 0, 0, 0.4);
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .chaos-option:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-mud);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .chaos-option.selected {
-            border-color: var(--accent-piss);
-            background: rgba(184, 134, 11, 0.1);
-        }
-
-        .chaos-option i {
-            font-size: 2rem;
-            color: var(--accent-dirt);
-            margin-bottom: 1rem;
-        }
-
-        .chaos-text {
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .generate-button {
-            background: linear-gradient(135deg, var(--accent-mud), var(--accent-piss));
-            color: black;
-            border: none;
-            padding: 1.2rem 3rem;
-            border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            margin: 1rem 0 2rem;
-            letter-spacing: 1px;
-        }
-
-        .generate-button:hover:not(:disabled) {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(184, 134, 11, 0.4);
-        }
-
-        .generate-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .map-result {
-            background: rgba(10, 15, 10, 0.9);
-            padding: 2.5rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border: 2px solid var(--accent-dirt);
-            display: none;
-            text-align: left;
-            position: relative;
-        }
-
-        .map-title {
-            font-size: 1.8rem;
-            color: var(--accent-piss);
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--accent-mud);
-            padding-bottom: 0.5rem;
-        }
-
-        .map-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .grid-cell {
-            background: rgba(139, 115, 85, 0.1);
-            border: 1px solid var(--accent-mud);
-            padding: 1rem;
-            border-radius: 4px;
-            min-height: 100px;
-            position: relative;
-        }
-
-        .cell-label {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--accent-piss);
-            background: rgba(0,0,0,0.7);
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
-
-        .cell-content {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .map-legend {
-            background: rgba(0,0,0,0.5);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 2rem;
-            border-left: 4px solid var(--accent-blood);
-        }
-
-        .legend-title {
-            color: var(--accent-blood);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        /* КОММЕНТАРИИ */
-        .comments-section {
-            margin-top: 5rem;
-            border-top: 3px solid var(--border-color);
-            padding-top: 3rem;
-        }
-
-        .comments-title {
-            font-size: 2.2rem;
-            color: var(--accent-mud);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .comment-form {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 10px;
-            margin-bottom: 3rem;
-            border: 2px solid var(--accent-mud);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .comment-form::before {
+        .big-reveal::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-mud), var(--accent-piss), var(--accent-mud));
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .reveal-title {
+            font-size: 2.2rem;
+            color: var(--accent-red);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(196, 30, 58, 0.3);
+        }
+
+        .reveal-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Система комментариев */
+        .comments-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .comment-form {
+            background: rgba(20, 15, 20, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
         }
 
         .form-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-label {
             display: block;
-            color: var(--accent-dirt);
-            margin-bottom: 0.7rem;
-            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
         .form-input, .form-textarea {
             width: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(10, 8, 12, 0.7);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 1rem 1.2rem;
-            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
             font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
         }
 
         .form-input:focus, .form-textarea:focus {
             outline: none;
-            border-color: var(--accent-piss);
-            box-shadow: 0 0 0 2px rgba(184, 134, 11, 0.2);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.1);
         }
 
         .form-textarea {
-            min-height: 180px;
+            min-height: 120px;
             resize: vertical;
-            line-height: 1.6;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, var(--accent-mud), var(--accent-blood));
+            background: linear-gradient(135deg, var(--accent-red), #8b0000);
             color: white;
             border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 6px;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
             cursor: pointer;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 500;
+            font-size: 0.95rem;
             transition: var(--transition);
-            letter-spacing: 0.5px;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.3);
+            background: linear-gradient(135deg, #d62e4a, #a00000);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
         }
 
-        .funny-btn {
-            background: transparent;
-            color: var(--accent-dirt);
-            border: 2px solid var(--accent-dirt);
-            padding: 1rem 2rem;
-            border-radius: 6px;
-            margin-left: 1rem;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .funny-btn:hover {
-            background: rgba(85, 107, 47, 0.1);
-            color: var(--accent-piss);
-            border-color: var(--accent-piss);
-        }
-
+        /* Список комментариев */
         .comments-list {
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .comment {
-            background: linear-gradient(145deg, rgba(21, 26, 21, 0.8), rgba(30, 35, 30, 0.8));
-            border-left: 4px solid var(--accent-mud);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 0 10px 10px 0;
-            position: relative;
+            background: rgba(20, 15, 20, 0.5);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
             transition: var(--transition);
         }
 
         .comment:hover {
-            border-left-color: var(--accent-piss);
-            transform: translateX(5px);
+            background: rgba(25, 15, 25, 0.7);
         }
 
         .comment-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(139, 115, 85, 0.3);
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
         }
 
         .comment-author {
-            color: var(--accent-piss);
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-
-        .comment-author i {
-            font-size: 0.9rem;
-            opacity: 0.7;
+            color: var(--accent-red);
+            font-weight: 500;
         }
 
         .comment-date {
-            color: var(--accent-dirt);
+            color: var(--text-secondary);
             font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .comment-content {
             color: var(--text-primary);
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
-        .comment-chaos {
-            display: inline-block;
-            background: rgba(139, 115, 85, 0.2);
-            color: var(--accent-piss);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            border: 1px solid rgba(184, 134, 11, 0.3);
+        /* Футер */
+        .article-footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
         }
 
-        /* АДАПТИВ */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-red);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            background: rgba(196, 30, 58, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
             .article-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .article-container {
@@ -559,769 +436,503 @@
                 display: none;
             }
             
-            .generator-section {
+            .article-meta {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .big-reveal {
                 padding: 2rem 1rem;
             }
             
-            .map-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .chaos-selector {
-                grid-template-columns: 1fr;
+            .reveal-title {
+                font-size: 1.8rem;
             }
         }
 
-        /* АНИМАЦИИ */
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .glitch {
-            animation: glitch 0.3s infinite;
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
         }
 
-        @keyframes mapReveal {
-            0% { opacity: 0; transform: scale(0.8) rotateX(20deg); }
-            100% { opacity: 1; transform: scale(1) rotateX(0); }
-        }
-
-        .map-reveal {
-            animation: mapReveal 0.8s ease-out;
-        }
-
-        /* ЭФФЕКТ БУМАГИ */
-        .paper-texture {
+        /* Уведомления */
+        .notification {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%238B7355" stroke-width="0.5"/></svg>');
-            pointer-events: none;
-            z-index: -1;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification.success {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .notification.error {
+            background: var(--accent-red);
+            color: white;
         }
     </style>
 </head>
 <body>
-    <!-- ТЕКСТУРА БУМАГИ -->
-    <div class="paper-texture"></div>
-
-    <!-- НАВИГАЦИЯ -->
+    <!-- Навигация -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="logo">
-                <i class="fas fa-skull-crossbones logo-icon"></i>
-                <span class="mono">Чёрный Архив</span>
+                <i class="fas fa-database logo-icon"></i>
+                <span class="mono">blackfiles://</span>
             </a>
-            
             <div class="nav-links">
                 <a href="../index.html" class="nav-link">Главная</a>
-                <a href="../index.html#articles" class="nav-link">Все статьи</a>
-                <a href="#" class="nav-link" onclick="alert('Мы ещё не решили, какую теорию подтверждать следующей')">Следующая жертва</a>
+                <a href="#" class="nav-link disabled">Предстоящие</a>
+                <a href="#" class="nav-link disabled">Поддержать</a>
             </div>
         </div>
     </nav>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <!-- Основной контент -->
     <div class="article-container">
-        <!-- ЗАГОЛОВОК -->
         <header class="article-header">
-            <h1 class="article-title">TheBrianMaps: Системный сбой реальности</h1>
+            <div class="classification">
+                <i class="fas fa-exclamation-triangle"></i>
+                ДОКУМЕНТ #003 | КАТЕГОРИЯ: ИДЕНТИФИКАЦИЯ
+            </div>
+            <h1 class="article-title">TheBrianMaps: Он не психопат. Он Брайан</h1>
             <p class="article-subtitle">
-                Исследование парня, который лечит свою тревогу закартировыванием чужих миров. <br>
-                А мы, конченые, за этим наблюдаем.
+                Расследование началось с поиска психопата. Закончилось открытием: Максим Тарасенко — это Брайан из "Гриффинов". Доказательства внутри.
             </p>
-            
             <div class="article-meta">
-                <span><i class="fas fa-calendar-alt"></i> 17.11.2023</span>
-                <span><i class="fas fa-tags"></i> Психология, Абсурд, Картография</span>
-                <span><i class="fas fa-brain"></i> Диагноз: Хронический перфекционизм</span>
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Дата внесения в архив: 18.11.2023</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Куратор: Агент Мультик</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-film"></i>
+                    <span>Источник: 1327 часов видео</span>
+                </div>
             </div>
         </header>
 
-        <!-- СЕКЦИЯ 1: НАЧАЛО АБСУРДА -->
+        <!-- Часть 1: Улики психопатии -->
         <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-map-pin"></i>
-                Глава 1: Нормальный человек так не делает
-            </h2>
-            
-            <p class="article-text">
-                Давайте начистоту: нормальный человек, поиграв в Skyrim 200 часов, делает одно из двух: либо бросает игру, 
-                либо начинает проходить её голым с кухонным ножом. Нормальный человек НЕ тратит следующие 400 часов на то, 
-                чтобы <span style="color: var(--accent-piss); font-weight: 600;">зарисовать каждый хуевый куст, каждую сраную тропинку и каждую заброшенную хижину</span>, 
-                в которой даже квестов нет.
+            <h2 class="section-title">ЧАСТЬ 1: УЛИКИ ПСИХОПАТИИ (МЫ ИХ НАШЛИ)</h2>
+            <p class="content-text">
+                Сидим, смотрим его видео. И видим — парень нечист. Вот доказательства.
             </p>
             
-            <p class="article-text">
-                Кузя — не нормальный человек. Кузя — это то, что происходит, когда инженеру-программисту дают волю и акварельные кисти. 
-                Это цифровой вариант того парня из общаги, который мыл полы зубной щёткой. Сначала ты смеёшься. Потом завидуешь. 
-                Потом задаёшься вопросом — а не гений ли он? А потом понимаешь: нет, не гений. 
-                Это <span style="color: var(--accent-blood);">клинический случай</span>.
-            </p>
-            
-            <div class="highlight">
-                "Его спокойный голос — это не спокойствие. Это звук того, как тревога тонет в чернилах. 
-                Пока ты паникуешь из-за дедлайна, он методично зарисовывает контур горы в игре 2011 года. 
-                Кто из вас двоих более адекватен — вопрос философский."
-            </div>
+            <ul class="evidence-list">
+                <li class="evidence-item">
+                    <div class="evidence-number">1</div>
+                    <strong>Улика 1:</strong> Он улыбается, когда говорит о проблемах.<br>
+                    <em>Вывод:</em> Нормальные люди хмурятся. Он улыбается. <strong>Психопат.</strong> У него эмоции подключены наоборот.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">2</div>
+                    <strong>Улика 2:</strong> Он носит одинаковые футболки.<br>
+                    <em>Вывод:</em> У него нет разнообразия в душе. <strong>Психопат.</strong> Однообразие — признак внутренней пустоты.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">3</div>
+                    <strong>Улика 3:</strong> Он слишком спокоен.<br>
+                    <em>Вывод:</em> Здоровый человек вздрогнул бы. Он — нет. <strong>Психопат.</strong> Реакции притуплены.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">4</div>
+                    <strong>Улика 4:</strong> Он делает вид, что ему смешно.<br>
+                    <em>Вывод:</em> Настоящий смех — хаос. Его смех — программа. <strong>Психопат.</strong> Он симулирует эмоции.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">5</div>
+                    <strong>Улика 5:</strong> Он смотрит в камеру, а не в глаза.<br>
+                    <em>Вывод:</em> Он избегает настоящего контакта. <strong>Психопат.</strong> Боится, что его раскусят.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">6</div>
+                    <strong>Улика 6:</strong> У него нет видео с бабушкой.<br>
+                    <em>Вывод:</em> Бабушка — символ тепла. Он избегает тепла. <strong>Психопат.</strong> Душа холодная.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">7</div>
+                    <strong>Улика 7:</strong> Он говорит "нам" вместо "я".<br>
+                    <em>Вывод:</em> У него раздвоение личности. <strong>Психопат.</strong> Или он считает, что мы с ним одно целое. Ещё страшнее.
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">8</div>
+                    <strong>Улика 8:</strong> Его логотип — жёлтый круг.<br>
+                    <em>Вывод:</em> Круг — символ замкнутости. Жёлтый — цвет предупреждения. <strong>Психопат.</strong> Он сам себя предупреждает.
+                </li>
+            </ul>
         </section>
 
-        <!-- СЕКЦИЯ 2: АБСУРД НАРАСТАЕТ -->
+        <!-- Часть 2: Анализ -->
         <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-diagnoses"></i>
-                Глава 2: Диагноз — бегство в пиксели
-            </h2>
-            
-            <p class="article-text">
-                Теория номер один: у Кузи случился настолько жестокий выгорание в реальном мире, 
-                что его мозг нашёл единственный способ выжить — <span style="color: var(--accent-piss);">создать альтернативную реальность, в которой всё можно контролировать</span>. 
-                В его мире нет внезапных увольнений, сломанных стиральных машин и сообщений "нам нужно поговорить". 
-                В его мире есть только координаты X, Y, Z и прекрасная, божественная предсказуемость игрового движка.
+            <h2 class="section-title">ЧАСТЬ 2: АНАЛИЗ (МЫ ДУМАЛИ)</h2>
+            <p class="content-text">
+                Собрали все улики. Сидим, смотрим на список. Ясно как день — <strong>TheBrianMaps психопат.</strong> Признаков много. Все сходятся.
             </p>
-            
-            <p class="article-text">
-                Его видео — это не геймплей. Это <span style="text-decoration: line-through;">терапия</span> гипноз. 
-                Он берёт хаос (игровой мир) и превращает его в порядок (карту). 
-                С каждым новым пикселем его тревога уменьшается. А наша — увеличивается, потому что мы смотрим на это и думаем: 
-                "Бля, а что Я сделал со своей жизнью?"
+            <p class="content-text">
+                Один говорит: "Да, психопат. Ясно же."<br>
+                Второй говорит: "Стоп. А почему психопат? Может, он просто... не человек?"
             </p>
-            
             <div class="highlight">
-                "Если бы кошка могла рисовать карты после того, как вылизала себя до лысин, 
-                она бы рисовала как Кузя. Та же навязчивая цикличность. Та же попытка контролировать хоть что-то в этом мире. 
-                Разница в том, что кошка делает это бесплатно, а Кузя — за донаты."
+                Все замолчали. Посмотрели друг на друга. <strong>И тут пришло.</strong>
             </div>
         </section>
 
-        <!-- ИНТЕРАКТИВНЫЙ ГЕНЕРАТОР -->
-        <section class="generator-section">
-            <h2 class="generator-title">ГЕНЕРАТОР КАРТЫ ТВОЕГО ПИЗДЕЦА</h2>
-            <p class="generator-subtitle">
-                Выбери свой личный хаос. Нажми кнопку. Получи бесполезную, но идеально структурированную карту спасения от Кузи.
+        <!-- Большое открытие -->
+        <div class="big-reveal">
+            <h2 class="reveal-title">ВНИМАНИЕ! THEBRIANMAPS НЕ ПСИХОПАТ!</h2>
+            <p class="reveal-text">
+                <strong>ОН НЕ ЧЕЛОВЕК ВООБЩЕ!</strong>
             </p>
-            
-            <div class="chaos-selector" id="chaosSelector">
-                <div class="chaos-option" data-chaos="mess">
-                    <i class="fas fa-home"></i>
-                    <div class="chaos-text">Моя квартира — <br>помойка</div>
-                </div>
-                <div class="chaos-option" data-chaos="work">
-                    <i class="fas fa-briefcase"></i>
-                    <div class="chaos-text">Работа — это <br>квест без сейвов</div>
-                </div>
-                <div class="chaos-option" data-chaos="love">
-                    <i class="fas fa-heart"></i>
-                    <div class="chaos-text">Отношения — <br>багнутый симулятор</div>
-                </div>
-                <div class="chaos-option" data-chaos="mind">
-                    <i class="fas fa-brain"></i>
-                    <div class="chaos-text">Мои мысли — <br>рояль в кустах</div>
-                </div>
-                <div class="chaos-option" data-chaos="life">
-                    <i class="fas fa-skull"></i>
-                    <div class="chaos-text">Вся жизнь — <br>хардкор-режим</div>
-                </div>
-                <div class="chaos-option" data-chaos="random">
-                    <i class="fas fa-dice"></i>
-                    <div class="chaos-text">Да всё хуйня, <br>просто покажи карту</div>
-                </div>
-            </div>
-            
-            <button class="generate-button" id="generateButton" disabled>
-                <i class="fas fa-map-marked-alt"></i> СГЕНЕРИРОВАТЬ КАРТУ СПАСЕНИЯ
-            </button>
-            
-            <div class="map-result" id="mapResult">
-                <h3 class="map-title" id="mapTitle">КАРТА ЛОКАЦИИ: "ТВОЙ ХАОС"</h3>
-                
-                <div class="map-grid" id="mapGrid">
-                    <!-- Сюда вставляются клетки карты -->
-                </div>
-                
-                <div class="map-legend">
-                    <h4 class="legend-title"><i class="fas fa-clipboard-list"></i> ЛЕГЕНДА КАРТЫ:</h4>
-                    <p id="legendText">Большинство ваших проблем можно решить, если перестать быть тряпкой. Но это слишком сложно, поэтому вот карта.</p>
-                </div>
-                
-                <p style="margin-top: 1.5rem; color: var(--accent-dirt); font-style: italic; font-size: 0.9rem;">
-                    <i class="fas fa-lightbulb"></i> РЕКОМЕНДАЦИЯ ОТ КУЗИ: Просто закартируй это. Серьёзно. Возьми бумагу и начни рисовать схемы. 
-                    Не поможет, но будет красиво.
-                </p>
-            </div>
-        </section>
+            <p class="reveal-text">
+                <strong>ОН — БРАЙАН ИЗ АМЕРИКАНСКОГО МУЛЬТСЕРИАЛА "ГРИФФИНЫ"!</strong>
+            </p>
+            <p class="reveal-text" style="font-size: 1.5rem; color: var(--accent-red);">
+                ВОТ ЭТО РАЗВЯЗКА! НЕ ОЖИДАЛИ?!
+            </p>
+        </div>
 
-        <!-- СЕКЦИЯ 3: ПИК АБСУРДА -->
+        <!-- Фото сравнения -->
+        <div class="comparison-image fade-in">
+            <img src="https://s4.iimage.su/s/18/glS19EGxWl1Jd4CVJKICyBPib8OKj6zLYi9SuHDF.png" alt="Сравнение: TheBrianMaps и Брайан из Гриффинов">
+        </div>
+
+        <!-- Часть 3: Новые доказательства -->
         <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-radiation-alt"></i>
-                Глава 3: Настоящая теория (тут будет больно)
-            </h2>
+            <h2 class="section-title">ЧАСТЬ 3: НОВЫЕ ДОКАЗАТЕЛЬСТВА (ТЕПЕРЬ ДРУГИЕ)</h2>
             
-            <p class="article-text">
-                А теперь забудь всё, что было выше. Это была разминка. Настоящая теория звучит так:
-            </p>
-            
-            <p class="article-text">
-                <span style="color: var(--accent-blood); font-size: 1.3rem; font-weight: 700;">Кузя — это не человек. Это интерфейс.</span>
-            </p>
-            
-            <p class="article-text">
-                Между нашей реальностью и цифровыми мирами существует тонкий слой — <span style="color: var(--accent-piss);">Картографический Пласт</span>. 
-                Он всегда был. Первобытные шаманы чувствовали его, когда рисовали на стенах пещер. Мореплаватели — когда чертили карты. 
-                Теперь этот Пласт требует нового проводника. И он выбрал случайного парня по имени Дмитрий.
-            </p>
-            
-            <p class="article-text">
-                Что значит "выбрал"? Он его <span style="text-decoration: line-through; color: var(--accent-blood);">переформатировал</span> оптимизировал.
-            </p>
-            
-            <div class="highlight">
-                <strong>ЧТО БЫЛО УДАЛЕНО:</strong><br>
-                • 87% эмоционального спектра (осталось только "спокойствие" и "лёгкая заинтересованность")<br>
-                • Потребность в социальном одобрении<br>
-                • Понимание того, что такое "нормально"<br>
-                • Способность останавливаться<br><br>
+            <ul class="evidence-list">
+                <li class="evidence-item">
+                    <div class="evidence-number">A</div>
+                    <strong>Доказательство 1:</strong> Имя.<br>
+                    TheBrianMaps. Брайан. В мультике пса зовут Брайан. Совпадение? <strong>Нет.</strong> Это он.
+                </li>
                 
-                <strong>ЧТО БЫЛО ДОБАВЛЕНО:</strong><br>
-                • Встроенный компас, работающий в любом игровом движке<br>
-                • Зрение, видящее не "картинку", а "векторную сетку"<br>
-                • Непреодолимую потребность завершать начатое<br>
-                • Голосовой модуль с частотой "убаюкивающий ASMR"
-            </div>
-            
-            <p class="article-text">
-                Его канал — это не развлечение. Это <span style="color: var(--accent-piss);">отчёт о санации</span>. 
-                Каждое видео — это очистка очередного сектора цифровой вселенной от хаоса. 
-                Мы смотрим и чувствуем странное успокоение, потому что подсознательно понимаем: где-то там, 
-                хоть в одном уголке мультивселенной, <span style="font-weight: 600;">всё расставлено по полочкам</span>.
-            </p>
-            
-            <p class="article-text">
-                А теперь самое страшное: <span style="color: var(--accent-blood);">что если он закончит?</span> Что если он закартирует ВСЁ? 
-                Все игровые миры, все локации, все пиксели? Картографический Пласт удовлетворится и отпустит его? 
-                Или... ему придётся начать картировать нашу реальность?
-            </p>
-            
-            <p class="article-text">
-                Представь: однажды ты просыпаешься, а за окном стоит Кузя с планшетом. Спокойным голосом он говорит: 
-                "Сектор B-7, дом 14. Обнаружена аномалия: несортированный мусор. Рекомендую систематизировать." 
-                И начинает зарисовывать твою жизнь.
-            </p>
-            
-            <div class="highlight">
-                "Вот почему он никогда не показывает лицо. Он не скромный. Он — инструмент. 
-                А инструменты не имеют лиц. Они имеют функции. Его функция — приводить в порядок то, 
-                что никогда не просило порядка. И он выполняет её безупречно. 
-                Как механическая кошка, которая вылизывает Вселенную до блеска."
-            </div>
+                <li class="evidence-item">
+                    <div class="evidence-number">B</div>
+                    <strong>Доказательство 2:</strong> Он говорит.<br>
+                    В мультике Брайан говорит. TheBrianMaps говорит. Собаки не говорят. <strong>Значит, он не собака, а мультяшный пёс.</strong>
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">C</div>
+                    <strong>Доказательство 3:</strong> Он ходит на двух ногах.<br>
+                    Настоящие собаки — на четырёх. TheBrianMaps — на двух. Как Брайан в мультике. <strong>Всё сходится.</strong>
+                </li>
+                
+                <li class="evidence-item">
+                    <div class="evidence-number">D</div>
+                    <strong>Доказательство 4:</strong> Он снимает видео.<br>
+                    В одной серии Брайан брал камеру. TheBrianMaps всё снимает. <strong>Он просто развил хобби.</strong>
+                </li>
+            </ul>
         </section>
 
-        <!-- СЕКЦИЯ 4: ЭПИЛОГ -->
+        <!-- Часть 4: Что это меняет -->
         <section class="content-section">
-            <h2 class="section-title">
-                <i class="fas fa-monument"></i>
-                Эпилог: Почему мы это смотрим
-            </h2>
-            
-            <p class="article-text">
-                Потому что в его безумии есть чистота. Потому что пока мы мечемся между работой, долгами и пустотой, 
-                он сидит и рисует идеальные линии. Он нашел свой способ не сойти с ума. И этот способ настолько красив в своей бесполезности, 
-                что завораживает.
-            </p>
-            
-            <p class="article-text">
-                Мы не смотрим на карты. Мы смотрим на <span style="color: var(--accent-piss);">медитацию</span>. 
-                На цифровой фен-шуй. На молитву, обращённую к богам перфекционизма. 
-                И в глубине души надеемся, что как-нибудь и у нас получится так же аккуратно разложить свою жизнь по полочкам.
-            </p>
-            
-            <p class="article-text" style="font-size: 1.4rem; text-align: center; margin-top: 3rem; color: var(--accent-dirt); font-style: italic;">
-                "Единственная карта, которая ведёт хоть куда-то в этом веке — это та, которую рисует парень, 
-                сбежавший от реальности в пиксели. И это, блять, поэзия."
+            <h2 class="section-title">ЧАСТЬ 4: ЧТО ЭТО МЕНЯЕТ (ВСЁ)</h2>
+            <p class="content-text">
+                1. <strong>Он не психопат.</strong> У него просто <strong>мультяшная психика.</strong> Она работает иначе.<br>
+                2. <strong>Все "улики" объясняются.</strong> Он улыбается не потому, что психопат. А потому что <strong>у него нарисованная улыбка.</strong><br>
+                3. <strong>Он носит одинаковые футболки,</strong> потому что у мультяшек <strong>один гардероб на все серии.</strong><br>
+                4. <strong>Он спокоен,</strong> потому что <strong>его нарисовали спокойным.</strong><br>
+                5. <strong>У него нет видео с бабушкой,</strong> потому что <strong>у Брайана из Гриффинов бабушка не показана.</strong> Логично.
             </p>
         </section>
 
-        <!-- СИСТЕМА КОММЕНТАРИЕВ -->
+        <!-- Часть 5: Главный вопрос -->
+        <section class="content-section">
+            <h2 class="section-title">ЧАСТЬ 5: ГЛАВНЫЙ ВОПРОС (СЕРЬЁЗНО)</h2>
+            <p class="content-text">
+                Если TheBrianMaps — это Брайан из Гриффинов, то:<br>
+                1. <strong>Как он сбежал из мультика?</strong><br>
+                2. <strong>Где сейчас Питер Гриффин?</strong><br>
+                3. <strong>Почему он в Питере, а не в Куахоге?</strong><br>
+                4. <strong>Он платит налоги как физическое лицо или как анимационный персонаж?</strong>
+            </p>
+        </section>
+
+        <!-- Система комментариев -->
         <section class="comments-section">
-            <h2 class="comments-title">
-                <i class="fas fa-comment-medical"></i>
-                ИСПОВЕДИ ТАКИХ ЖЕ СЛОМАННЫХ
+            <h2 class="section-title">
+                <i class="fas fa-comments"></i>
+                АРХИВНЫЕ ЗАПИСИ
             </h2>
             
             <div class="comment-form">
-                <h3 style="color: var(--accent-dirt); margin-bottom: 1.8rem; font-size: 1.3rem;">
-                    Какой хаос ты бы попросил закартировать Кузе?
+                <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    <i class="fas fa-feather-alt"></i> ДОБАВИТЬ ГИПОТЕЗУ
                 </h3>
                 
                 <div class="form-group">
-                    <label class="form-label">Твоё имя (или диагноз):</label>
-                    <input type="text" class="form-input" id="commentName" placeholder="Например: 'Анонимный паникёр'">
+                    <label class="form-label">
+                        <i class="fas fa-user"></i> ВАШ ПСЕВДОНИМ
+                    </label>
+                    <input type="text" id="commentAuthor" class="form-input" placeholder="Скептик, Веритель, Аниматор...">
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">Опиши свой личный пиздец (Кузя оценит детализацию):</label>
-                    <textarea class="form-textarea" id="commentText" placeholder="Мой хаос выглядит так..."></textarea>
+                    <label class="form-label">
+                        <i class="fas fa-lightbulb"></i> ВАША ГИПОТЕЗА
+                    </label>
+                    <textarea id="commentText" class="form-textarea" placeholder="Ваша теория, вопрос, наблюдение..."></textarea>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label">Какой тип карты нужен?:</label>
-                    <input type="text" class="form-input" id="commentChaos" placeholder="Например: 'Карта выживания в офисе'">
-                </div>
-                
-                <button class="submit-btn" onclick="addComment()">
-                    <i class="fas fa-map-marked-alt"></i> ПРЕДОСТАВИТЬ МАТЕРИАЛЫ ДЛЯ КАРТЫ
-                </button>
-                
-                <button class="funny-btn" onclick="generateChaosConfession()">
-                    <i class="fas fa-random"></i> СГЕНЕРИРОВАТЬ ИСПОВЕДЬ
+                <button onclick="addComment()" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> ОТПРАВИТЬ В АРХИВ
                 </button>
             </div>
             
             <div class="comments-list" id="commentsList">
-                <!-- Стартовые комментарии -->
-                <div class="comment">
-                    <div class="comment-header">
-                        <div class="comment-author">
-                            <i class="fas fa-user-injured"></i> Офисный планктон №447
-                        </div>
-                        <div class="comment-date">17.11.2023 20:15</div>
-                    </div>
-                    <div class="comment-content">
-                        Мой open space — это как Dark Souls на минималках. Туалет — это бонфайр. 
-                        Кухня — ловушка с ядом (потому что там стоит Юля, которая рассказывает про свою кошку). 
-                        Кабинет начальника — босс, которого нельзя победить, можно только переждать.
-                    </div>
-                    <div class="comment-chaos">Тип хаоса: Корпоративный ад</div>
-                </div>
-                
-                <div class="comment">
-                    <div class="comment-header">
-                        <div class="comment-author">
-                            <i class="fas fa-graduation-cap"></i> Студент-археолог
-                        </div>
-                        <div class="comment-date">17.11.2023 18:42</div>
-                    </div>
-                    <div class="comment-content">
-                        Моя комната в общаге уже сама по себе археологический слой. Нижний слой — носки 2021 года. 
-                        Средний — конспекты, которые никогда не понадобятся. Верхний — пустые банки от энергетиков. 
-                        Нужна не карта, а раскопки.
-                    </div>
-                    <div class="comment-chaos">Тип хаоса: Стратиграфический беспорядок</div>
-                </div>
+                <!-- Комментарии загружаются здесь -->
             </div>
         </section>
 
-        <!-- ФУТЕР -->
-        <footer style="text-align: center; margin-top: 5rem; padding-top: 3rem; border-top: 1px solid var(--border-color);">
-            <p style="color: var(--text-secondary); margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <i class="fas fa-exclamation-triangle"></i>
-                <strong>ВАЖНО:</strong> Эта статья — сатира и чёрный юмор, приправленный цинизмом и лёгким безумием. 
-                TheBrianMaps — талантливый создатель контента, а мы просто исследуем, как далеко может зайти человеческий мозг в поисках порядка. 
-                Не воспринимайте близко к сердцу. Или воспринимайте. Нам всё равно.
+        <!-- Футер статьи -->
+        <footer class="article-footer">
+            <p>
+                <strong>Архивное примечание:</strong> Данный материал является художественным вымыслом и образцом сатирического анализа. 
+                TheBrianMaps (Максим Тарасенко) — талантливый блогер, а Брайан из "Гриффинов" — вымышленный персонаж. 
+                Все совпадения случайны и непреднамеренны.
             </p>
-            
-            <a href="../index.html" style="display: inline-flex; align-items: center; gap: 0.7rem; color: var(--accent-piss); text-decoration: none; font-weight: 600; font-size: 1.1rem; margin-top: 2rem;">
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                Категория: Идентификация аномалий | Статус: Рассекречено | Версия: 1.0
+            </p>
+            <a href="../index.html" class="back-link">
                 <i class="fas fa-arrow-left"></i>
-                Вернуться в архив (пока не закартировали)
+                Вернуться в архив
             </a>
         </footer>
     </div>
 
     <script>
-        // ДАННЫЕ ДЛЯ ГЕНЕРАТОРА КАРТ
-        const chaosData = {
-            mess: {
-                title: "КАРТА ЛОКАЦИИ: 'КВАРТИРА-ПОМОЙКА'",
-                cells: [
-                    { label: "A-1", content: "Зона 'Диван'. Источник гравитации и прокрастинации. В центре — впадина, повторяющая форму тела." },
-                    { label: "B-3", content: "Сектор 'Кухня'. Аномалия: холодильник издаёт звуки по ночам. На столе — артефакт 'Посуда недельной выдержки'." },
-                    { label: "C-2", content: "Коридор-лабиринт. На полу — случайные носки-телепорты. Ведут в никуда." },
-                    { label: "D-4", content: "Балкон-кладбище. Здесь покоятся: мёртвый цветок, старый монитор и надежды на ремонт." },
-                    { label: "E-1", content: "Точка интереса: Розетка. Единственный стабильный источник энергии в локации." },
-                    { label: "F-3", content: "Секретная комната: Под кроватью. Содержит: пылевых кроликов, потерянную совесть." }
-                ],
-                legend: "Рекомендация: Начать с сектора A-1. Выполнить квест 'Вынести мусор'. Награда: +5 к самоуважению, чистая поверхность."
+        // Система комментариев
+        let comments = [
+            {
+                author: "Скептик",
+                date: "18.11.2023 | 14:20",
+                text: "Если он Брайан, то где его ошейник? И почему он не лает? Не сходится."
             },
-            work: {
-                title: "КАРТА ЛОКАЦИИ: 'ОФИСНЫЙ АД'",
-                cells: [
-                    { label: "BOSS", content: "Кабинет начальника. Зона высокой опасности. Вход только после ритуала 'отчёт'." },
-                    { label: "TRAP-1", content: "Кухня. Ловушка: Коллега с фото детей. Атака разговорами длится 15-45 минут." },
-                    { label: "SAVE", content: "Туалет. Единственная точка сохранения. Работает 5 минут, потом стучат." },
-                    { label: "GRIND", content: "Open Space. Зона для фарма XP (опыта). Осторожно: открытые пространства вызывают тревогу." },
-                    { label: "GLITCH", content: "Принтер. Бугнутый NPC. Поглощает бумагу и души. Не взаимодействовать." },
-                    { label: "EXIT", content: "Выход. Заблокирован до 18:00. Можно попробовать баг с 'больным родственником'." }
-                ],
-                legend: "Стратегия: Обходить BOSS. Использовать SAVE каждые 2 часа. TRAP-1 пропускать кнопкой 'Извини, звонок'. Цель: дожить до EXIT."
+            {
+                author: "Веритель",
+                date: "18.11.2023 | 13:45",
+                text: "Всё правильно! Я давно замечал — его уши неестественно подвижные. Как у мультяшного пса!"
             },
-            love: {
-                title: "КАРТА ЛОКАЦИИ: 'ОТНОШЕНИЯ.EXE (НЕ ОТВЕЧАЕТ)'",
-                cells: [
-                    { label: "START", content: "Точка знакомства. Теперь выглядит как древние руины. Надпись: 'Здесь было хорошо'." },
-                    { label: "MAZE", content: "Лабиринт недомолвок. Все пути ведут к 'нам нужно поговорить'. Тупик." },
-                    { label: "LAKE", content: "Озеро слёз. Глубина неизвестна. Плавать не рекомендуется." },
-                    { label: "CAVE", content: "Пещера прошлого. Обитает: призрак бывшего, старые подарки, невыполненные обещания." },
-                    { label: "CLIFF", content: "Обрыв 'Последнего шанса'. Вид отличный. Падение — фатальное." },
-                    { label: "?", content: "Неизвестная территория. Возможно, будущее. Возможно, ещё один бывший. Данных нет." }
-                ],
-                legend: "Навигация: Избегать MAZE. Не нырять в LAKE. CAVE посещать только с факелом алкоголя. Цель: найти квест 'Терапевт'."
-            },
-            mind: {
-                title: "КАРТА ЛОКАЦИИ: 'МОЙ МОЗГ ПОСЛЕ 3 ЧАСА НОЧИ'",
-                cells: [
-                    { label: "PANIC", content: "Зона паники. Активна при воспоминаниях о прошлом и мыслях о будущем. Круглосуточно." },
-                    { label: "RANDOM", content: "Случайные мысли: 'А что если динозавры были большими курицами?' Работает в фоновом режиме." },
-                    { label: "CRAFT", content: "Мастерская гениальных идей. Открывается в 3 ночи. К утру всё ломается." },
-                    { label: "LIBRARY", content: "Библиотека паролей. Содержит: пароль от старой почты 2007 года. Всё." },
-                    { label: "VOID", content: "Пустота. Наступает при попытке вспомнить, зачем пришёл на кухню." },
-                    { label: "BOSS", content: 'Мысль "Всё бессмысленно". Респавнится каждый понедельник. Слаб к алкоголю.' }
-                ],
-                legend: "Управление: PANIC игнорировать. RANDOM — источник мемов. VOID использовать для медитации. BOSS — временный."
-            },
-            life: {
-                title: "КАРТА ЛОКАЦИИ: 'ЖИЗНЬ (ХАРДКОР РЕЖИМ)'",
-                cells: [
-                    { label: "DEBT", content: "Гора долгов. Постоянный эффект: -50 к настроению. Можно фармить, но долго." },
-                    { label: "JOB", content: "Плантация стресса. Даёт ресурс 'Деньги'. Забирает ресурс 'Душа'." },
-                    { label: "TIME", content: "Песочные часы. Тикают. Быстро. Очень быстро. Блять, уже декабрь?" },
-                    { label: "SOCIAL", content: "Требования социума: быть успешным. Доступ запрещён: не хватает ключа 'Уверенность'." },
-                    { label: "HEALTH", content: "Здоровье. Постепенно уменьшается. Бафф 'Спорт' временно замедляет уменьшение." },
-                    { label: "EXIT", content: "Выхода нет. Шучу. Или нет? Данные противоречивы." }
-                ],
-                legend: "Прохождение: Фармить JOB для DEBT. Игнорировать SOCIAL. HEALTH поддерживать баффами. TIME — принять как данность."
-            },
-            random: {
-                title: "КАРТА ЛОКАЦИИ: 'ВСЁ ХУЙНЯ'",
-                cells: [
-                    { label: "FUN", content: "Зона кратковременного веселья. Открывается после вещества 'Алкоголь'. Закрывается утром." },
-                    { label: "REGRET", content: "Поле сожалений. Особенно активно по утрам. Растёт с возрастом." },
-                    { label: "NETFLIX", content: "Болото прокрастинации. Затягивает. Сезон за сезоном. Помощи не будет." },
-                    { label: "CAT", content: "Кот. Единственный стабильный элемент системы. Кормить каждые 4 часа." },
-                    { label: "PHONE", content: "Чёрная дыра. Поглощает время. Выдаёт: мемы, тревогу, зависть." },
-                    { label: "BED", content: "Последнее пристанище. Здесь всё заканчивается. И начинается. И опять заканчивается." }
-                ],
-                legend: "Философия: Всё действительно хуйня. Но CAT милый. Поэтому продолжаем. Карта не нужна, просто плыви по течению."
+            {
+                author: "Аниматор",
+                date: "18.11.2023 | 12:30",
+                text: "С технической точки зрения: если он действительно из мультика, то его нужно рендерить. Кто его рендерит в реальном времени? Интересный вопрос."
             }
-        };
+        ];
 
-        // ГЕНЕРАТОР КАРТ
-        let selectedChaos = null;
-        
-        document.querySelectorAll('.chaos-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.chaos-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                this.classList.add('selected');
-                selectedChaos = this.dataset.chaos;
-                document.getElementById('generateButton').disabled = false;
-                
-                // Лёгкая вибрация
-                if (navigator.vibrate) navigator.vibrate(30);
-            });
-        });
-        
-        document.getElementById('generateButton').addEventListener('click', function() {
-            if (!selectedChaos) return;
-            
-            const data = chaosData[selectedChaos];
-            const mapResult = document.getElementById('mapResult');
-            const mapGrid = document.getElementById('mapGrid');
-            const button = this;
-            
-            // Анимация кнопки
-            button.innerHTML = '<i class="fas fa-cog fa-spin"></i> КАРТОГРАФИРУЕМ...';
-            button.disabled = true;
-            
-            // Эффект загрузки
-            mapGrid.innerHTML = '';
-            for (let i = 0; i < 6; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'grid-cell';
-                cell.innerHTML = `
-                    <div class="cell-label">LOADING</div>
-                    <div class="cell-content">Сканирование сектора...</div>
+        // Загрузка комментариев
+        function loadComments() {
+            const saved = localStorage.getItem('brianmaps_comments');
+            if (saved) {
+                try {
+                    comments = JSON.parse(saved);
+                } catch (e) {
+                    console.error('Ошибка загрузки комментариев:', e);
+                }
+            }
+        }
+
+        // Сохранение комментариев
+        function saveComments() {
+            try {
+                localStorage.setItem('brianmaps_comments', JSON.stringify(comments));
+            } catch (e) {
+                console.error('Ошибка сохранения:', e);
+            }
+        }
+
+        // Отображение комментариев
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            comments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.style.opacity = '0';
+                commentDiv.style.transform = 'translateY(20px)';
+
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(comment.author)}</span>
+                        <span class="comment-date">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-content">
+                        ${escapeHtml(comment.text)}
+                    </div>
                 `;
-                mapGrid.appendChild(cell);
-            }
-            
-            mapResult.style.display = 'block';
-            mapResult.classList.remove('map-reveal');
-            void mapResult.offsetWidth;
-            mapResult.classList.add('map-reveal');
-            
-            // Имитация процесса картографии
-            setTimeout(() => {
-                document.getElementById('mapTitle').textContent = data.title;
-                mapGrid.innerHTML = '';
-                
-                data.cells.forEach(cellData => {
-                    const cell = document.createElement('div');
-                    cell.className = 'grid-cell';
-                    cell.innerHTML = `
-                        <div class="cell-label">${cellData.label}</div>
-                        <div class="cell-content">${cellData.content}</div>
-                    `;
-                    mapGrid.appendChild(cell);
-                });
-                
-                document.getElementById('legendText').textContent = data.legend;
-                
-                button.innerHTML = '<i class="fas fa-redo"></i> ПЕРЕГЕНЕРИРОВАТЬ КАРТУ';
-                button.disabled = false;
-                
-                // Добавляем авто-комментарий
-                setTimeout(() => {
-                    addAutoComment(selectedChaos);
-                }, 800);
-                
-                // Эффект
-                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
-                
-            }, 1500);
-        });
 
-        // СИСТЕМА КОММЕНТАРИЕВ
-        let commentId = 3;
-        
+                container.appendChild(commentDiv);
+
+                // Анимация
+                setTimeout(() => {
+                    commentDiv.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    commentDiv.style.opacity = '1';
+                    commentDiv.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // Добавление комментария
         function addComment() {
-            const nameInput = document.getElementById('commentName');
+            const authorInput = document.getElementById('commentAuthor');
             const textInput = document.getElementById('commentText');
-            const chaosInput = document.getElementById('commentChaos');
-            
-            if (!nameInput.value.trim() || !textInput.value.trim()) {
-                alert('Заполни хоть имя и описание хаоса! Кузя не картографирует пустоту.');
+            const submitBtn = document.querySelector('.submit-btn');
+
+            // Валидация
+            if (!authorInput.value.trim()) {
+                showNotification('Введите псевдоним', 'error');
+                authorInput.focus();
                 return;
             }
-            
-            const commentsList = document.getElementById('commentsList');
-            const date = new Date();
-            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
-            
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <div class="comment-author">
-                        <i class="fas fa-user-secret"></i> ${escapeHtml(nameInput.value)}
-                    </div>
-                    <div class="comment-date">${dateStr}</div>
-                </div>
-                <div class="comment-content">
-                    ${escapeHtml(textInput.value)}
-                </div>
-                ${chaosInput.value ? `<div class="comment-chaos">Тип хаоса: ${escapeHtml(chaosInput.value)}</div>` : ''}
-            `;
-            
-            commentsList.prepend(commentDiv);
-            
-            // Очистка
-            nameInput.value = '';
-            textInput.value = '';
-            chaosInput.value = '';
-            
-            // Анимация
-            commentDiv.style.opacity = '0';
-            commentDiv.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                commentDiv.style.transition = 'all 0.6s ease';
-                commentDiv.style.opacity = '1';
-                commentDiv.style.transform = 'translateY(0)';
-            }, 10);
-            
-            // Сохранение
-            saveComments();
-            commentId++;
-            
-            // Шутка каждые 3 коммента
-            if (commentId % 3 === 0) {
-                setTimeout(() => {
-                    const jokes = [
-                        "Добавлено в очередь на картографирование. Ожидание: ~3 рабочих дня.",
-                        "Кузя получил данные. Говорит: 'Интересная конфигурация хаоса.'",
-                        "Ваш хаос добавлен в коллекцию. Возможно, когда-нибудь мы его закартируем.",
-                        "Спасибо за материал! Отличный пример деструктурированной реальности."
-                    ];
-                    alert(jokes[Math.floor(Math.random() * jokes.length)]);
-                }, 300);
+
+            if (!textInput.value.trim()) {
+                showNotification('Введите текст', 'error');
+                textInput.focus();
+                return;
             }
-        }
 
-        // АВТОКОММЕНТ ОТ СИСТЕМЫ ПОСЛЕ ГЕНЕРАЦИИ КАРТЫ
-        function addAutoComment(chaosType) {
-            const commentsList = document.getElementById('commentsList');
+            // Блокировка кнопки
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ОТПРАВКА...';
+
+            // Новый комментарий
             const date = new Date();
-            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
-            
-            const chaosNames = {
-                mess: "Бытовой хаос",
-                work: "Профессиональный ад",
-                love: "Эмоциональный лабиринт",
-                mind: "Ментальный туман",
-                life: "Экзистенциальный кризис",
-                random: "Общая хуйня"
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+            const newComment = {
+                author: authorInput.value.trim(),
+                date: dateStr,
+                text: textInput.value.trim()
             };
-            
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <div class="comment-author">
-                        <i class="fas fa-robot"></i> Система картографии #07X
-                    </div>
-                    <div class="comment-date">${dateStr}</div>
-                </div>
-                <div class="comment-content">
-                    Сгенерирована карта для типа хаоса "${chaosNames[chaosType]}". 
-                    Локация просканирована, сектора размечены. Карта отправлена в архив для дальнейшего анализа.
-                </div>
-                <div class="comment-chaos">Статус: Обработано системой Кузи</div>
-            `;
-            
-            commentsList.prepend(commentDiv);
-            
-            commentDiv.style.opacity = '0';
-            commentDiv.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                commentDiv.style.transition = 'all 0.6s ease';
-                commentDiv.style.opacity = '1';
-                commentDiv.style.transform = 'translateY(0)';
-            }, 10);
-            
+
+            // Добавление
+            comments.unshift(newComment);
             saveComments();
+            renderComments();
+
+            // Очистка
+            authorInput.value = '';
+            textInput.value = '';
+
+            // Восстановление кнопки
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ОТПРАВИТЬ В АРХИВ';
+                showNotification('Гипотеза добавлена в архив', 'success');
+            }, 500);
         }
 
-        // ГЕНЕРАТОР ИСПОВЕДЕЙ
-        function generateChaosConfession() {
-            const names = ['Анонимный дезорганизатор', 'Хаос-носитель', 'Жертва быта', 'Офисное страдание', 'Ментальный турист'];
-            const chaosTypes = ['Быт', 'Работа', 'Любовь', 'Мозг', 'Всё сразу', 'Неизвестно что'];
-            const confessions = [
-                "Мой холодильник издаёт звуки, как умирающий кибер-зверь. Я боюсь его открывать.",
-                "У меня на столе лежит чек за июнь. Сейчас ноябрь. Я просто смотрю на него иногда.",
-                "Мои отношения напоминают багнутый квест: диалоги зацикливаются, а выхода нет.",
-                "Я могу забыть, зачем пришёл на кухню, но помню каждый провал с 2012 года.",
-                "Моя жизнь — это сборник сайд-квестов, которые я ненавижу, но прохожу.",
-                "Иногда я просто сижу и думаю: 'А вот если бы у динозавров были смартфоны...'"
-            ];
-            
-            document.getElementById('commentName').value = names[Math.floor(Math.random() * names.length)];
-            document.getElementById('commentText').value = confessions[Math.floor(Math.random() * confessions.length)];
-            document.getElementById('commentChaos').value = chaosTypes[Math.floor(Math.random() * chaosTypes.length)];
-            
-            // Лёгкий эффект
-            if (navigator.vibrate) navigator.vibrate(50);
+        // Уведомления
+        function showNotification(message, type) {
+            const oldNotifications = document.querySelectorAll('.notification');
+            oldNotifications.forEach(n => n.remove());
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
         }
 
-        // УТИЛИТЫ
+        // Экранирование HTML
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
-        function saveComments() {
-            const comments = [];
-            document.querySelectorAll('.comment').forEach(comment => {
-                const author = comment.querySelector('.comment-author').textContent;
-                const date = comment.querySelector('.comment-date').textContent;
-                const content = comment.querySelector('.comment-content').textContent;
-                const chaos = comment.querySelector('.comment-chaos')?.textContent || '';
-                comments.push({author, date, content, chaos});
-            });
-            
-            if (comments.length > 0) {
-                localStorage.setItem('brianmaps_comments', JSON.stringify(comments));
-            }
-        }
-
-        function loadComments() {
-            const saved = localStorage.getItem('brianmaps_comments');
-            if (saved) {
-                const comments = JSON.parse(saved);
-                const container = document.getElementById('commentsList');
-                container.innerHTML = '';
-                
-                comments.forEach(comment => {
-                    const div = document.createElement('div');
-                    div.className = 'comment';
-                    div.innerHTML = `
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <i class="fas fa-user-secret"></i> ${escapeHtml(comment.author)}
-                            </div>
-                            <div class="comment-date">${escapeHtml(comment.date)}</div>
-                        </div>
-                        <div class="comment-content">
-                            ${escapeHtml(comment.content)}
-                        </div>
-                        ${comment.chaos ? `<div class="comment-chaos">${escapeHtml(comment.chaos)}</div>` : ''}
-                    `;
-                    container.appendChild(div);
-                });
-            }
-        }
-
-        // ИНИЦИАЛИЗАЦИЯ
+        // Инициализация
         document.addEventListener('DOMContentLoaded', () => {
             loadComments();
-            
-            // Случайные эффекты для текста
-            setInterval(() => {
-                if (Math.random() > 0.9) {
-                    const texts = document.querySelectorAll('.article-text');
-                    const randomText = texts[Math.floor(Math.random() * texts.length)];
-                    randomText.classList.add('glitch');
-                    setTimeout(() => {
-                        randomText.classList.remove('glitch');
-                    }, 300);
-                }
-            }, 5000);
-            
-            // Секретный режим: тройной клик по заголовку
-            let titleClicks = 0;
-            document.querySelector('.article-title').addEventListener('click', () => {
-                titleClicks++;
-                if (titleClicks === 3) {
-                    document.body.style.background = 'linear-gradient(135deg, #0a0a0f, #1a2a1a, #0a0a0f)';
-                    const cells = document.querySelectorAll('.grid-cell');
-                    cells.forEach(cell => {
-                        cell.style.borderColor = '#00ff00';
-                        cell.style.background = 'rgba(0, 255, 0, 0.1)';
-                    });
-                    setTimeout(() => {
-                        alert('⚙️ РЕЖИМ КАРТОГРАФИЧЕСКОГО ПЛАСТА АКТИВИРОВАН\n\nВсе системы функционируют. Кузя наблюдает.');
-                        cells.forEach(cell => {
-                            cell.style.borderColor = '';
-                            cell.style.background = '';
-                        });
-                    }, 500);
-                    titleClicks = 0;
-                }
-            });
-            
-            // Ховер-эффект для хаос-селектора
-            document.querySelectorAll('.chaos-option').forEach(option => {
-                option.addEventListener('mouseenter', function() {
-                    if (!this.classList.contains('selected')) {
-                        this.style.transform = 'translateY(-8px) scale(1.05)';
-                    }
-                });
-                option.addEventListener('mouseleave', function() {
-                    if (!this.classList.contains('selected')) {
-                        this.style.transform = '';
+            renderComments();
+
+            // Анимация для элементов
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
                     }
                 });
             });
+
+            // Наблюдение за элементами
+            document.querySelectorAll('.evidence-item, .comparison-image').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Отключение неработающих ссылок
+            document.querySelectorAll('.nav-link.disabled').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showNotification('Раздел в разработке', 'error');
+                });
+            });
+
+            // Обновление даты
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ru-RU', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric'
+            });
+            const dateElement = document.querySelector('.article-footer p:last-child');
+            if (dateElement) {
+                dateElement.innerHTML = `Обновлено: ${dateStr} | Версия: 1.0`;
+            }
+        });
+
+        // Обработка Ctrl+Enter
+        document.getElementById('commentText').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                e.preventDefault();
+                addComment();
+            }
         });
     </script>
 </body>
