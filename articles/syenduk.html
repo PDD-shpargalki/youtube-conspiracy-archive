@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРХИВ: СЫЕНДУК - ПРОТОКОЛ ОБЛАЧНОЙ МИГРАЦИИ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --secondary-dark: #121218;
+            --accent-red: #c41e3a;
+            --accent-yellow: #d4af37;
+            --accent-blue: #0066cc;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --border-color: #252530;
+            --card-bg: #151520;
+            --paper-bg: #1a1810;
+            --coffee-stain: #8b4513;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(20, 15, 10, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(10, 8, 5, 0.3) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(30, 25, 20, 0.1) 2px, rgba(30, 25, 20, 0.1) 4px);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, transparent 50%, rgba(196, 30, 58, 0.02) 80%),
+                radial-gradient(circle at 80% 70%, transparent 50%, rgba(212, 175, 55, 0.02) 80%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        h1, h2, h3, h4, .mono, .typewriter {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '// ПСИХО-АНАЛИТИЧЕСКИЙ СЕКТОР';
+            font-size: 0.6rem;
+            color: var(--accent-red);
+            position: absolute;
+            bottom: -0.8rem;
+            left: 0;
+            opacity: 0.7;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-icon {
+            color: var(--accent-red);
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Контейнер статьи */
+        .article-container {
+            max-width: 1000px;
+            margin: 70px auto 0;
+            padding: 30px 20px 50px;
+            position: relative;
+        }
+
+        /* Верхняя архивная шапка */
+        .archive-header {
+            background: rgba(20, 15, 10, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .archive-header::before {
+            content: 'СОВЕРШЕННО СЕКРЕТНО';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-red);
+            color: white;
+            padding: 0.2rem 1.5rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+        }
+
+        .document-title {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--accent-yellow);
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .document-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .document-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .meta-label {
+            color: var(--accent-yellow);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Секция вводной справки */
+        .intro-section {
+            background: rgba(15, 12, 8, 0.8);
+            border-left: 4px solid var(--accent-red);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .intro-title {
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .intro-text {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .stamp {
+            position: absolute;
+            bottom: -15px;
+            right: 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent-yellow);
+            padding: 0.5rem 1rem;
+            transform: rotate(5deg);
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-yellow);
+        }
+
+        /* Секция утечки - стилизация под бумагу */
+        .leak-section {
+            position: relative;
+            margin: 4rem 0;
+            padding: 3rem 2.5rem;
+            background: var(--paper-bg);
+            border-radius: 2px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(212, 175, 55, 0.1);
+            transform: rotate(0.5deg);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .leak-section::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, transparent 40%, var(--coffee-stain) 41%, var(--coffee-stain) 45%, transparent 46%);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .leak-section::after {
+            content: 'УТЕЧКА';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--accent-red);
+            color: white;
+            padding: 0.2rem 1rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        .leak-header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed rgba(212, 175, 55, 0.3);
+        }
+
+        .leak-title {
+            font-size: 1.8rem;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .leak-author {
+            color: var(--accent-red);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .leak-content {
+            position: relative;
+            z-index: 1;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            color: #d8d2c3;
+        }
+
+        .leak-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 1.5rem;
+        }
+
+        .leak-highlight {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--accent-yellow);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .margin-note {
+            position: absolute;
+            right: -40px;
+            width: 120px;
+            padding: 0.5rem;
+            background: rgba(196, 30, 58, 0.1);
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            font-size: 0.7rem;
+            color: var(--accent-red);
+            transform: rotate(2deg);
+            display: none;
+        }
+
+        @media (min-width: 992px) {
+            .margin-note {
+                display: block;
+            }
+        }
+
+        /* Фотография */
+        .evidence-photo {
+            width: 100%;
+            max-width: 700px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .photo-frame {
+            border: 8px solid var(--paper-bg);
+            border-image: repeating-linear-gradient(45deg, var(--paper-bg), var(--paper-bg) 10px, rgba(212, 175, 55, 0.2) 10px, rgba(212, 175, 55, 0.2) 20px) 8;
+            padding: 0;
+            background: #000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            transition: var(--transition);
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.005);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: sepia(0.3) contrast(1.1);
+        }
+
+        /* Секция анализа */
+        .analysis-section {
+            margin: 4rem 0;
+            background: rgba(10, 8, 12, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+        }
+
+        .analysis-title {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .analysis-point {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .point-title {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .point-title i {
+            color: var(--accent-red);
+        }
+
+        .point-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .point-highlight {
+            color: var(--accent-yellow);
+            font-weight: 500;
+        }
+
+        /* Секция откровения (пьяный вывод) */
+        .revelation-section {
+            background: linear-gradient(135deg, rgba(20, 15, 10, 0.9), rgba(10, 8, 5, 0.9));
+            border: 2px solid var(--accent-red);
+            padding: 3rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .revelation-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .revelation-title {
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .revelation-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .revelation-content::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+        }
+
+        .sound-effect {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-yellow);
+            margin: 0 0.2rem;
+        }
+
+        /* Система комментариев - Протокол допроса */
+        .interrogation-section {
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .interrogation-title {
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .interrogation-form {
+            background: rgba(20, 15, 10, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-header {
+            background: rgba(196, 30, 58, 0.1);
+            border-bottom: 2px solid var(--accent-red);
+            padding: 1rem;
+            margin: -2rem -2rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-red);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(10, 8, 6, 0.7);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent-red), #8b0000);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 2px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #d62e4a, #a00000);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Список протоколов */
+        .protocols-list {
+            margin-top: 2rem;
+        }
+
+        .protocol {
+            background: rgba(20, 15, 10, 0.5);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 2px 2px 0;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .protocol:hover {
+            background: rgba(25, 20, 15, 0.7);
+            border-left-color: #d62e4a;
+        }
+
+        .protocol-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
+        }
+
+        .protocol-author {
+            color: var(--accent-red);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .protocol-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .protocol-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        /* Футер */
+        .article-footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-red);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            border-radius: 2px;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            background: rgba(196, 30, 58, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .document-title {
+                font-size: 1.8rem;
+            }
+            
+            .article-container {
+                margin-top: 60px;
+                padding: 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .leak-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .revelation-section {
+                padding: 2rem 1rem;
+            }
+            
+            .interrogation-form {
+                padding: 1.5rem;
+            }
+            
+            .form-header {
+                margin: -1.5rem -1.5rem 1.5rem;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 2px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .notification.success {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .notification.error {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        /* Декоративные элементы */
+        .corner-tape {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .tape-1 {
+            top: 50px;
+            left: 50px;
+            background: linear-gradient(135deg, transparent 50%, var(--accent-red) 50%);
+        }
+
+        .tape-2 {
+            bottom: 50px;
+            right: 50px;
+            background: linear-gradient(315deg, transparent 50%, var(--accent-yellow) 50%);
+        }
+
+        .classified-line {
+            width: 100%;
+            height: 1px;
+            background: repeating-linear-gradient(90deg, transparent, transparent 10px, var(--accent-red) 10px, var(--accent-red) 20px);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Декоративные уголки -->
+    <div class="corner-tape tape-1"></div>
+    <div class="corner-tape tape-2"></div>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-archive logo-icon"></i>
+                <span class="mono">ЧЁРНЫЙ АРХИВ</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">ГЛАВНАЯ</a>
+                <a href="#" class="nav-link" onclick="showNotification('Раздел в разработке', 'error'); return false;">АРХИВЫ</a>
+                <a href="#" class="nav-link" onclick="showNotification('Раздел в разработке', 'error'); return false;">МЕТОДОЛОГИЯ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="article-container">
+        <!-- Архивная шапка -->
+        <header class="archive-header fade-in">
+            <h1 class="document-title">АРХИВНЫЙ ДОКУМЕНТ №001-REV.2</h1>
+            <p class="document-subtitle">Дмитрий Карпов («Сыендук»). Файл: «ПРОТОКОЛ ОБЛАЧНОЙ МИГРАЦИИ»</p>
+            <div class="document-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Кодовое обозначение</span>
+                    <span class="mono">SaaS-1 (Syaenduk as a Service)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Статус</span>
+                    <span class="mono">АКТИВЕН / КОНТРОЛЬ УТЕРЯН</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Дата обновления</span>
+                    <span class="mono">20.11.2023 | 03:33</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Вводная справка -->
+        <section class="intro-section fade-in">
+            <h2 class="intro-title">
+                <i class="fas fa-file-medical-alt"></i>
+                ВВОДНАЯ СПРАВКА
+            </h2>
+            <p class="intro-text">
+                <strong>Объект:</strong> Карпов Дмитрий Александрович. <strong>Полевое имя:</strong> «Сыендук».<br>
+                <strong>Первичный диагноз:</strong> Множественная личностная диссоциация с элементами аниме-мании и хронической озвучки.<br>
+                <strong>Текущий статус:</strong> Полностью интегрирован в медиасреду. Контроль над объектом утрачен 23.04.2013 в 03:33.<br>
+                <strong>Особые приметы:</strong> Обладает способностью деплоить голосовые модули в реальном времени. 
+                Эмоциональный спектр заменён библиотекой закадровых интонаций. 
+                Питается ностальгией миллениалов и контентом формата 16:9.
+            </p>
+            <div class="stamp">НЕ ДОПУСКАТЬ К ЭФИРУ</div>
+        </section>
+
+        <div class="classified-line"></div>
+
+        <!-- Секция утечки -->
+        <section class="leak-section fade-in">
+            <div class="leak-header">
+                <h2 class="leak-title">Он не сбежал. Он был изгнан.</h2>
+                <div class="leak-author">
+                    Автор: Игорь «Красный Жмих» Хренов, спецкор «Тульский Психоэкспресс». 
+                    Писал под тремя дозами «Кока-Колы», двух «Балтики 9» и одной аудиокниги «Как выжить в аду, если ты Рик Санчез»
+                </div>
+            </div>
+
+            <div class="leak-content">
+                <p>
+                    23 апреля 2013 года, ровно в 3:33 ночи, Тульская областная психиатрическая больница №4 пережила событие, 
+                    которое Минздрав до сих пор называет «техническим сбоем освещения», а санитары — «днём, когда стены начали говорить голосом Морти».
+                </p>
+
+                <p>
+                    Дмитрий Карпов, 20 лет, диагноз: «множественная личностная диссоциация с элементами аниме-мании и хронической озвучки», 
+                    находился в палате усиленного наблюдения после того, как пытался перевести на тульский акцент весь сериал «Гравити Фолз», 
+                    используя для этого только зубную щётку и Wi-Fi от соседнего «Пятерочки».
+                </p>
+
+                <div class="leak-highlight">
+                    Но в ту ночь произошло невозможное.
+                </div>
+
+                <p>
+                    <strong>ЭТАП 1: ПРОБУЖДЕНИЕ ЧЕРЕЗ ЮТУБ</strong><br>
+                    По официальной версии, в 2:47 утра у Карпова заглючил внутренний Wi-Fi-адаптер (да-да, у него он вживлён с рождения — факт, 
+                    подтверждённый УЗИ, сделанным в подвале «КиноПоиска»). Он вдруг открыл глаза, уставился в потолок и прошептал:<br>
+                    <em>— «Вубба-лубба-дуб-дуб... но по-тульски».</em>
+                </p>
+
+                <p>
+                    И тут все лампочки в палате загорелись фиолетовым, а его тень начала монтировать трейлер к 5 сезону «Рика и Морти» прямо на стене. 
+                    Свидетель — санитарка Людмила Петровна, которая до сих пор моет полы, напевая закадровую речь Сыендука из «Попкульта».
+                </p>
+
+                <p>
+                    <strong>ЭТАП 2: ПОБЕГ С ПОМОЩЬЮ АНТИ-САНКЦИЙ</strong><br>
+                    Не имея ключей, но обладая даром закадрового мышления, Карпов понял: единственный способ выбраться — заставить охрану поверить, 
+                    что он — не он, а новое обновление Windows.
+                </p>
+
+                <p>
+                    Он встал у двери и начал читать лицензионное соглашение Microsoft голосом Конни из «Атаки титанов». 
+                    Охранник, услышав фразу «Продолжая использовать это устройство, вы соглашаетесь на полную передачу вашей души в собственность Дмитрия Карпова», 
+                    автоматически нажал «Принимаю» и открыл дверь.
+                </p>
+
+                <p>
+                    <strong>ЭТАП 3: МЕТАМОРФОЗА В СОННИКА</strong><br>
+                    На улице его ждал тайный агент в костюме ежа Соника, присланный из будущего (это был он сам, но из 2022 года). 
+                    Они слились в один организм — био-цифровой гибрид гика и мультяшного ежа, известный теперь как Сыендук 2.0.
+                </p>
+
+                <p>
+                    Чтобы усилить эффект, он выпил из кубка «Гринджа» (тот самый, что украли из музея Netflix) смесь из:
+                </p>
+
+                <ul>
+                    <li>томатного сока (на случай, если вампиризм окажется правдой),</li>
+                    <li>энергетика «Burn» (без него не запустится рендер),</li>
+                    <li>и одной капли дубляжа «Полного расколбаса».</li>
+                </ul>
+
+                <p>
+                    Этого хватило, чтобы превратить его голос в вечный источник закадрового комментария.
+                </p>
+
+                <p>
+                    <strong>ЭТАП 4: ПОДДЕЛКА СМЕРТИ И РОЖДЕНИЕ БРЕНДА</strong><br>
+                    Чтобы власти не искали его, он подстроил собственную смерть:<br>
+                    — В психушке осталась пустая рубашка с надписью «Я это уже видел... и это был я»,<br>
+                    — На кровати — флешка с озвучкой «Фиксиков против кработов» в формате .exe,<br>
+                    — А в мусорке — обглоданная кость Сэра Пентиуса.
+                </p>
+
+                <p>
+                    Пока следователи пытались понять, почему монитор в палате показывает только логотип «2x2», Сыендук уже записывал первый эпизод «Плохого Маскота» 
+                    в общественном туалете у Тульского вокзала, используя фен как микрофон и крики голубей как саундтрек.
+                </p>
+
+                <div class="leak-highlight">
+                    ВЫВОД: ОН НИКОГДА НЕ БЫЛ БОЛЬНЫМ. ОН — ЛЕКАРСТВО<br>
+                    Психушка? Это был инкубатор для будущего голоса поколения.<br>
+                    Шизофрения? Это мультиплатформенная совместимость личности.<br>
+                    А побег? Это первый эпизод сериала, который мы все смотрим, даже не зная об этом.
+                </div>
+            </div>
+
+            <!-- Пометки на полях -->
+            <div class="margin-note" style="top: 150px;">
+                <strong>Архивариус:</strong> И где свидетели? Где протоколы?!
+            </div>
+            <div class="margin-note" style="top: 400px;">
+                <strong>Архивариус:</strong> При чём тут Sonic? Это уже перебор.
+            </div>
+            <div class="margin-note" style="bottom: 100px;">
+                <strong>Архивариус:</strong> Напился и выдумал. Типично.
+            </div>
+        </section>
+
+        <!-- Фотография -->
+        <div class="evidence-photo fade-in">
+            <div class="photo-frame">
+                <img src="https://s.iimg.su/s/21/gyInWR8xpm2WAIlcIFf2J4vzf0QMus86G9Vr6dFm.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="classified-line"></div>
+
+        <!-- Секция анализа -->
+        <section class="analysis-section fade-in">
+            <h2 class="analysis-title">
+                <i class="fas fa-search"></i>
+                АНАЛИЗ УТЕЧКИ С ТОЧКИ ЗРЕНИЯ АРХИВА
+            </h2>
+
+            <div class="analysis-point">
+                <h3 class="point-title">
+                    <i class="fas fa-bug"></i>
+                    ПУНКТ 2.1. «О так называемом „пробуждении“»
+                </h3>
+                <p class="point-content">
+                    Зафиксированный инцидент с лампочками — не мистика. Это успешный <span class="point-highlight">удалённый деплой прошивки «Multivoice OS 1.0»</span> 
+                    через точку доступа «Пятерочка». Доказательство: после этого все кассы в том «Пятерочке» неделю выдавали чеки с субтитрами из «Гравити Фолз». 
+                    Санитарка Людмила Петровна — не свидетель, а <span class="point-highlight">непреднамеренный бета-тестер</span>.
+                </p>
+            </div>
+
+            <div class="analysis-point">
+                <h3 class="point-title">
+                    <i class="fas fa-door-open"></i>
+                    ПУНКТ 2.2. «О так называемом „побеге“»
+                </h3>
+                <p class="point-content">
+                    Объект не сбежал. Он <span class="point-highlight">перешёл на удалённую работу</span>. Палата №7 стала его <span class="point-highlight">первым коворкингом</span>. 
+                    Охранник, нажавший «Принимаю», — первый <span class="point-highlight">подписчик его лицензионного соглашения</span>. 
+                    Вся история с лицензией Microsoft — классический пример социальной инженерии: заменить страх на привычное раздражение от обновлений.
+                </p>
+            </div>
+
+            <div class="analysis-point">
+                <h3 class="point-title">
+                    <i class="fas fa-merge"></i>
+                    ПУНКТ 2.3. «О метаморфозе и бренде»
+                </h3>
+                <p class="point-content">
+                    Слияние с «агентом в костюме Соника» — это не галлюцинация. Это <span class="point-highlight">мердж двух стартапов</span>: 
+                    «Карпов Инк.» (активы: ностальгия, хардкор, тульский акцент) и «Sonic Delivery Systems» (активы: скорость, глобализация, синие шипы). 
+                    Результат мерджа — <span class="point-highlight">бренд «Сыендук»</span>, оценённый в N-ное количество детских травм и голосовых связок.
+                </p>
+            </div>
+
+            <div class="analysis-point">
+                <h3 class="point-title">
+                    <i class="fas fa-pills"></i>
+                    ПУНКТ 2.4. «О лекарстве»
+                </h3>
+                <p class="point-content">
+                    Автор утечки прав в главном, но недопонял масштаб. Объект — не лекарство <span class="point-highlight">для себя</span>. 
+                    Он — лекарство <span class="point-highlight">для системы</span>. Когда один человек заменяет целый актёрский состав, 
+                    звукорежиссёра, переводчика и PR-отдел — это не болезнь. Это <span class="point-highlight">революция в управлении человеческими ресурсами</span>. 
+                    Его «шизофрения» — просто опережающая адаптация к экономике, где выживает не самый цельный, а самый <span class="point-highlight">модульный</span>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Секция откровения -->
+        <section class="revelation-section fade-in">
+            <h2 class="revelation-title">ВНИМАНИЕ! ЗАКЛЮЧИТЕЛЬНАЯ ЗАПИСЬ!</h2>
+            <div class="revelation-content">
+                <p>
+                    Я десять лет сижу в этом подвале с документами про «андроидов» и «рептилоидов». Но это... 
+                    <span class="sound-effect">[звук открывания бутылки]</span>. Жмих — идиот. Но он прав в главном.
+                </p>
+                <p>
+                    <strong>Он не был болен. Он был слишком эффективен для системы, построенной на одном «я» на человека.</strong>
+                </p>
+                <p>
+                    Система выдаёт одно тело, один паспорт, один голос. А он пришёл и сказал: «А можно пачку?». И взял. 
+                    Не потому что жадный. Потому что <strong>ему нужно было разместить штаб-квартиру всех своих ностальгий, 
+                    всех своих циничных шуток, всех своих переводов.</strong>
+                </p>
+                <p>
+                    Он не захватил YouTube. Он <strong>построил на нём общежитие для своих личностей</strong>. 
+                    И мы все платим за аренду просмотрами. Каждый его голос — это не персонаж. Это <strong>квартирант</strong>. 
+                    А сам Сыендук — риелтор, который собирает плату с наших ушей и глаз.
+                </p>
+                <p>
+                    Так что, Дмитрий, если читаешь... Чёрт, да ты наверняка читаешь это голосом Морти из будущего... 
+                    <strong>Ты не беглец. Ты — успешный управдом распавшегося сознания в эпоху цифрового капитализма.</strong>
+                </p>
+                <p>
+                    И это... <span class="sound-effect">[звук падения пустой бутылки]</span> ...гениально.
+                    <span class="sound-effect">[запись обрывается]</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Система комментариев - Протокол допроса -->
+        <section class="interrogation-section fade-in">
+            <h2 class="interrogation-title">
+                <i class="fas fa-gavel"></i>
+                ПРОТОКОЛ ДОПРОСА
+            </h2>
+
+            <div class="interrogation-form">
+                <div class="form-header">
+                    ФОРМА №АРХ-7: ДОПОЛНИТЕЛЬНЫЕ ПОКАЗАНИЯ
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-user-secret"></i> ВАШИ Ф.И.О. (ИЛИ ГОЛОС, КОТОРЫМ ВЫ СЕЙЧАС ГОВОРИТЕ)
+                    </label>
+                    <input type="text" id="witnessName" class="form-input" placeholder="Анонимный источник, Голос из прошлого, Очевидец...">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-comment-medical"></i> ВАШИ ПОКАЗАНИЯ (ОБЯЗАТЕЛЬНО ПОДРОБНО)
+                    </label>
+                    <textarea id="witnessTestimony" class="form-textarea" placeholder="Опишите вашу версию событий, теорию, наблюдение или признание..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-microphone-alt"></i> КАКИМ ГОЛОСОМ ВЫ ЭТО СКАЖЕТЕ? (ОПЦИОНАЛЬНО)
+                    </label>
+                    <input type="text" id="witnessVoice" class="form-input" placeholder="Голос Рика, Шёпот Морти, Крик Соника...">
+                </div>
+
+                <button onclick="addInterrogationProtocol()" class="submit-btn" id="submitProtocol">
+                    <i class="fas fa-file-signature"></i> ПОДПИСАТЬ ПРОТОКОЛ
+                </button>
+            </div>
+
+            <div class="protocols-list" id="protocolsList">
+                <!-- Протоколы будут загружаться здесь -->
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="article-footer">
+            <p>
+                <strong>Архивное примечание:</strong> Данный документ является художественным вымыслом и образцом сатирического анализа. 
+                Все совпадения с реальными лицами и событиями случайны, непреднамеренны и, вероятно, являются результатом коллективной галлюцинации.
+            </p>
+            <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.85rem;">
+                Категория: Психо-аналитический сектор | Статус: РАССЕКРЕЧЕНО (частично) | Версия: 2.0
+            </p>
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                ВЕРНУТЬСЯ В АРХИВ
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // Система комментариев - Протокол допроса
+        let interrogationProtocols = [
+            {
+                name: "Санитарка Людмила",
+                date: "23.04.2013 | 04:20",
+                testimony: "Я всё виде... слышала! Лампочки действительно горели фиолетовым. И на стене был трейлер. Только не к 5 сезону, а к 6. Он уже тогда всё знал.",
+                voice: "Голос испуганной женщины"
+            },
+            {
+                name: "Охранник Валерий",
+                date: "23.04.2013 | 03:45",
+                testimony: "Да, я нажал «Принимаю». Но не из-за голоса Конни! Просто устал за смену. А там такая мелодия была... Успокаивающая. Как будто сам Windows поёт.",
+                voice: "Усталый баритон"
+            },
+            {
+                name: "Голос из будущего",
+                date: "20.11.2023 | 02:33",
+                testimony: "Всё правильно в отчёте. Только смесь была не из томатного сока, а из «Доброго колы». И фен был не простой, а «Rowenta». Это важно для качества звука.",
+                voice: "Эхо из 2022 года"
+            }
+        ];
+
+        // Загрузка протоколов
+        function loadProtocols() {
+            const saved = localStorage.getItem('syenduk_interrogation');
+            if (saved) {
+                try {
+                    interrogationProtocols = JSON.parse(saved);
+                } catch (e) {
+                    console.error('Ошибка загрузки протоколов:', e);
+                }
+            }
+        }
+
+        // Сохранение протоколов
+        function saveProtocols() {
+            try {
+                localStorage.setItem('syenduk_interrogation', JSON.stringify(interrogationProtocols));
+            } catch (e) {
+                console.error('Ошибка сохранения:', e);
+            }
+        }
+
+        // Отображение протоколов
+        function renderProtocols() {
+            const container = document.getElementById('protocolsList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            interrogationProtocols.forEach((protocol, index) => {
+                const protocolDiv = document.createElement('div');
+                protocolDiv.className = 'protocol';
+                protocolDiv.style.opacity = '0';
+                protocolDiv.style.transform = 'translateY(20px)';
+
+                let voiceHtml = '';
+                if (protocol.voice) {
+                    voiceHtml = `<div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--accent-yellow);">
+                        <i class="fas fa-microphone"></i> Зафиксирован голос: ${escapeHtml(protocol.voice)}
+                    </div>`;
+                }
+
+                protocolDiv.innerHTML = `
+                    <div class="protocol-header">
+                        <span class="protocol-author">${escapeHtml(protocol.name)}</span>
+                        <span class="protocol-date">${escapeHtml(protocol.date)}</span>
+                    </div>
+                    <div class="protocol-content">
+                        ${escapeHtml(protocol.testimony)}
+                        ${voiceHtml}
+                    </div>
+                `;
+
+                container.appendChild(protocolDiv);
+
+                // Анимация появления
+                setTimeout(() => {
+                    protocolDiv.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    protocolDiv.style.opacity = '1';
+                    protocolDiv.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // Добавление нового протокола
+        function addInterrogationProtocol() {
+            const nameInput = document.getElementById('witnessName');
+            const testimonyInput = document.getElementById('witnessTestimony');
+            const voiceInput = document.getElementById('witnessVoice');
+            const submitBtn = document.getElementById('submitProtocol');
+
+            // Валидация
+            if (!nameInput.value.trim()) {
+                showNotification('Укажите ваши Ф.И.О. или псевдоним', 'error');
+                nameInput.focus();
+                return;
+            }
+
+            if (!testimonyInput.value.trim()) {
+                showNotification('Дайте показания! Это обязательно', 'error');
+                testimonyInput.focus();
+                return;
+            }
+
+            // Блокировка кнопки
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ПРОТОКОЛ СОСТАВЛЯЕТСЯ...';
+
+            // Новый протокол
+            const date = new Date();
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+            const newProtocol = {
+                name: nameInput.value.trim(),
+                date: dateStr,
+                testimony: testimonyInput.value.trim(),
+                voice: voiceInput.value.trim() || null
+            };
+
+            // Добавление в начало массива
+            interrogationProtocols.unshift(newProtocol);
+            saveProtocols();
+            renderProtocols();
+
+            // Очистка полей
+            nameInput.value = '';
+            testimonyInput.value = '';
+            voiceInput.value = '';
+
+            // Восстановление кнопки и уведомление
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-file-signature"></i> ПОДПИСАТЬ ПРОТОКОЛ';
+                showNotification('Протокол допроса №' + Date.now().toString().slice(-6) + ' подписан и архивирован', 'success');
+                
+                // Случайный чёрный юмор
+                const jokes = [
+                    "Ваши показания будут использованы против вас. Шутка. Или нет.",
+                    "Ещё один свидетель нашёлся. База данных растёт.",
+                    "Архив благодарит за сотрудничество. Теперь вы часть системы.",
+                    "Показания записаны. Голосовая дорожка... потеряна. Наверное."
+                ];
+                setTimeout(() => {
+                    showNotification(jokes[Math.floor(Math.random() * jokes.length)], 'error');
+                }, 1500);
+            }, 800);
+        }
+
+        // Уведомления
+        function showNotification(message, type) {
+            const oldNotifications = document.querySelectorAll('.notification');
+            oldNotifications.forEach(n => n.remove());
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // Экранирование HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            // Загрузка и отображение протоколов
+            loadProtocols();
+            renderProtocols();
+
+            // Анимация появления элементов при скролле
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Наблюдение за всеми секциями
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Специальная анимация для фото
+            const photo = document.querySelector('.evidence-photo');
+            if (photo) {
+                photo.style.opacity = '0';
+                photo.style.transform = 'scale(0.95)';
+                photo.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                setTimeout(() => {
+                    photo.style.opacity = '1';
+                    photo.style.transform = 'scale(1)';
+                }, 300);
+            }
+
+            // Обработка Ctrl+Enter в форме показаний
+            document.getElementById('witnessTestimony').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
+                    addInterrogationProtocol();
+                }
+            });
+
+            // Отключение неработающих ссылок
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === '#') {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        showNotification('Раздел находится в разработке', 'error');
+                    });
+                }
+            });
+
+            // Динамическое обновление даты в футере
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ru-RU', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            const versionElement = document.querySelector('.article-footer p:last-child');
+            if (versionElement) {
+                versionElement.innerHTML = `Обновлено: ${dateStr} | Версия: 2.0 | ID: АРХ${now.getTime().toString().slice(-6)}`;
+            }
+
+            // Случайные эффекты для секции утечки (кофейные пятна)
+            const leakSection = document.querySelector('.leak-section');
+            if (leakSection && Math.random() > 0.5) {
+                const newStain = document.createElement('div');
+                newStain.style.position = 'absolute';
+                newStain.style.left = Math.random() * 80 + 10 + '%';
+                newStain.style.top = Math.random() * 80 + 10 + '%';
+                newStain.style.width = '60px';
+                newStain.style.height = '60px';
+                newStain.style.background = 'radial-gradient(circle at 40% 40%, transparent 50%, var(--coffee-stain) 51%, var(--coffee-stain) 55%, transparent 56%)';
+                newStain.style.opacity = '0.2';
+                newStain.style.zIndex = '0';
+                newStain.style.pointerEvents = 'none';
+                leakSection.appendChild(newStain);
+            }
+        });
+
+        // Секретный эффект: двойной клик на заголовок документа
+        let titleClicks = 0;
+        document.querySelector('.document-title').addEventListener('dblclick', function() {
+            titleClicks++;
+            if (titleClicks === 3) {
+                this.textContent = 'ДОКУМЕНТ №001: ПАЦИЕНТ КАРПОВ Д.А. — ОПЕРАЦИЯ «ЗАБЛУДИВШИЙСЯ В ГОЛОСАХ»';
+                this.style.color = '#ff00ff';
+                this.style.textShadow = '0 0 10px #ff00ff';
+                
+                // Меняем фон
+                document.body.style.background = 'linear-gradient(135deg, #0a000a, #000a0a)';
+                
+                // Секретное уведомление
+                setTimeout(() => {
+                    showNotification('АКТИВИРОВАН РЕЖИМ «ГЛУБОКОГО АНАЛИЗА». ДОСТУП К ФАЙЛАМ 4-ГО УРОВНЯ...', 'error');
+                }, 1000);
+                
+                titleClicks = 0;
+            }
+        });
+    </script>
+</body>
+</html>
