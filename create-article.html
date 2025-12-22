@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать статью | Чёрный Архив</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --secondary-dark: #121218;
+            --accent-red: #c41e3a;
+            --accent-yellow: #d4af37;
+            --accent-blue: #0066cc;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --border-color: #252530;
+            --card-bg: #151520;
+            --paper-bg: #1a1810;
+            --success-green: #2e7d32;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            color: var(--accent-red);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Основной контейнер */
+        .create-container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 40px 20px;
+        }
+
+        /* Заголовок страницы */
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-yellow);
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Инструкция */
+        .instructions {
+            background: rgba(20, 15, 10, 0.8);
+            border-left: 4px solid var(--accent-red);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .instructions-title {
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .instructions-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .instructions-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .instructions-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+        }
+
+        /* Форма создания */
+        .creation-form {
+            background: rgba(15, 12, 8, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            color: var(--accent-yellow);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--accent-red);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .form-label .required {
+            color: var(--accent-red);
+            margin-left: 0.25rem;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            background: rgba(10, 8, 6, 0.7);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.9rem 1.2rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            line-height: 1.6;
+        }
+
+        .form-textarea.large {
+            min-height: 300px;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.2);
+        }
+
+        /* Индикатор расширения textarea */
+        .expandable {
+            transition: min-height 0.3s ease;
+        }
+
+        /* Загрузка изображений */
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(10, 8, 6, 0.5);
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-red);
+            background: rgba(196, 30, 58, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .image-previews {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .image-preview {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(196, 30, 58, 0.9);
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        /* Настройки тона и стиля */
+        .style-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .style-option {
+            background: rgba(10, 8, 6, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .style-option:hover {
+            border-color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+
+        .style-option.selected {
+            border-color: var(--accent-red);
+            background: rgba(196, 30, 58, 0.1);
+        }
+
+        .style-icon {
+            font-size: 1.5rem;
+            color: var(--accent-yellow);
+            margin-bottom: 0.75rem;
+        }
+
+        .style-name {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .style-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Предпросмотр */
+        .preview-section {
+            background: rgba(20, 15, 10, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .preview-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: rgba(10, 8, 6, 0.5);
+            border-radius: 4px;
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Кнопки */
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-red), #8b0000);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #d62e4a, #a00000);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-yellow);
+        }
+
+        /* Счетчики */
+        .counter {
+            text-align: right;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .counter.good {
+            color: var(--success-green);
+        }
+
+        .counter.warning {
+            color: var(--accent-yellow);
+        }
+
+        .counter.error {
+            color: var(--accent-red);
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .notification.success {
+            background: var(--success-green);
+            color: white;
+        }
+
+        .notification.error {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .notification.info {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        /* Футер */
+        .page-footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .tg-link {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tg-link:hover {
+            color: var(--accent-red);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .create-container {
+                margin-top: 60px;
+                padding: 20px 15px;
+            }
+            
+            .creation-form {
+                padding: 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .style-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Полноэкранный режим для textarea */
+        .fullscreen-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .fullscreen-btn:hover {
+            color: var(--text-primary);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .textarea-wrapper {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-archive logo-icon"></i>
+                <span class="mono">ЧЁРНЫЙ АРХИВ</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="create-article.html" class="nav-link">Создать статью</a>
+                <a href="suggest.html" class="nav-link">Предложить тему</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="create-container">
+        <header class="page-header fade-in">
+            <h1 class="page-title">СОЗДАЙТЕ СТАТЬЮ ДЛЯ ЧЁРНОГО АРХИВА</h1>
+            <p class="page-subtitle">
+                Полная творческая свобода. Пишите сколько угодно. Создавайте статьи в стиле архива или в своём уникальном стиле. 
+                Лучшие работы будут опубликованы с указанием авторства.
+            </p>
+        </header>
+
+        <!-- Инструкция -->
+        <section class="instructions fade-in">
+            <h2 class="instructions-title">
+                <i class="fas fa-graduation-cap"></i>
+                ИНСТРУКЦИЯ ДЛЯ БУДУЩЕГО АРХИВАРИУСА
+            </h2>
+            <p style="color: var(--text-primary); margin-bottom: 1rem;">
+                Заполняйте поля свободно. Все textarea автоматически расширяются. Не ограничивайте себя — пишите столько, сколько нужно.
+            </p>
+            <ul class="instructions-list">
+                <li><strong>Тон:</strong> язвительный, чёрный юмор, абсурд, сарказм</li>
+                <li><strong>Структура:</strong> можете следовать шаблону архива или создать свою</li>
+                <li><strong>Объём:</strong> от 1000 до 10000 символов — сколько потребуется</li>
+                <li><strong>Изображения:</strong> можно загрузить до 5 файлов для атмосферы</li>
+                <li><strong>После отправки:</strong> статья попадёт на проверку разработчику</li>
+            </ul>
+        </section>
+
+        <!-- Форма создания статьи -->
+        <form id="articleForm" class="creation-form fade-in">
+            <!-- Раздел 1: Основная информация -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-file-alt"></i>
+                    1. ОСНОВНАЯ ИНФОРМАЦИЯ
+                </h3>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        НАЗВАНИЕ СТАТЬИ <span class="required">*</span>
+                    </label>
+                    <input type="text" id="articleTitle" class="form-input" 
+                           placeholder="Пример: ДОКУМЕНТ #404: MRBEAST — АВАТАР КАПИТАЛИЗМА" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        ВАШ ПСЕВДОНИМ <span class="required">*</span>
+                    </label>
+                    <input type="text" id="authorName" class="form-input" 
+                           placeholder="Как вас указать в авторах? Например: Агент Х, Конспиролог, Анонимный психиатр" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        ЦЕЛЕВОЙ ЮТУБЕР ИЛИ ТЕМА <span class="required">*</span>
+                    </label>
+                    <input type="text" id="articleTopic" class="form-input" 
+                           placeholder="На кого/что направлена теория? Например: MrBeast, Сыендук, YouTube-алгоритмы" required>
+                </div>
+            </div>
+
+            <!-- Раздел 2: Концепция и содержание -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    2. КОНЦЕПЦИЯ И СОДЕРЖАНИЕ
+                </h3>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        СУТЬ ТЕОРИИ (коротко, 1-2 абзаца) <span class="required">*</span>
+                    </label>
+                    <div class="textarea-wrapper">
+                        <textarea id="articleSummary" class="form-textarea expandable" 
+                                  placeholder="Опишите основную идею вашей теории. Что вы хотите доказать/показать?" 
+                                  rows="4" required></textarea>
+                        <button type="button" class="fullscreen-btn" onclick="toggleFullscreen('articleSummary')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                    <div id="summaryCounter" class="counter">0/1000 символов</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        ОСНОВНЫЕ «УЛИКИ» ИЛИ АРГУМЕНТЫ
+                    </label>
+                    <div class="textarea-wrapper">
+                        <textarea id="articleClues" class="form-textarea expandable" 
+                                  placeholder="Перечислите основные доказательства/наблюдения. Каждый пункт с новой строки.
+Пример:
+• Он всегда улыбается в неловких ситуациях
+• Его видео имеют одинаковую структуру
+• Он никогда не показывает личную жизнь" 
+                                  rows="6"></textarea>
+                        <button type="button" class="fullscreen-btn" onclick="toggleFullscreen('articleClues')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                    <div id="cluesCounter" class="counter">0/2000 символов</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        НЕОЖИДАННАЯ РАЗВЯЗКА (если есть)
+                    </label>
+                    <div class="textarea-wrapper">
+                        <textarea id="articleTwist" class="form-textarea expandable" 
+                                  placeholder="Кульминационный момент теории. Например: 
+«ВНИМАНИЕ! ОН НЕ ЧЕЛОВЕК!»
+«ОКАЗЫВАЕТСЯ, ЭТО ВСЁ БЫЛО...»
+«А ГЛАВНЫЙ СЕКРЕТ В ТОМ, ЧТО...»" 
+                                  rows="4"></textarea>
+                        <button type="button" class="fullscreen-btn" onclick="toggleFullscreen('articleTwist')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 3: Полный текст статьи -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-pen-fancy"></i>
+                    3. ПОЛНЫЙ ТЕКСТ СТАТЬИ (ОПЦИОНАЛЬНО)
+                </h3>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        Если вы хотите написать статью целиком в свободной форме:
+                    </label>
+                    <div class="textarea-wrapper">
+                        <textarea id="articleFull" class="form-textarea expandable large" 
+                                  placeholder="Напишите здесь полный текст вашей статьи. Можно использовать:
+• Заголовки (## Подзаголовок)
+• Списки (- пункт)
+• **Жирный текст**
+• > Цитаты
+• --- разделители
+
+Пишите сколько угодно — поле будет расширяться автоматически." 
+                                  rows="12"></textarea>
+                        <button type="button" class="fullscreen-btn" onclick="toggleFullscreen('articleFull')">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                    <div id="fullCounter" class="counter">0 символов</div>
+                </div>
+            </div>
+
+            <!-- Раздел 4: Изображения -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-images"></i>
+                    4. ИЗОБРАЖЕНИЯ (ОПЦИОНАЛЬНО)
+                </h3>
+                
+                <div class="upload-area" id="uploadArea" onclick="document.getElementById('imageUpload').click()">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">
+                        Нажмите или перетащите файлы для загрузки
+                    </div>
+                    <div class="upload-hint">
+                        Можно загрузить до 5 изображений (JPG, PNG, GIF). Максимальный размер: 5MB каждый.
+                    </div>
+                </div>
+                
+                <input type="file" id="imageUpload" multiple accept="image/*" style="display: none;">
+                
+                <div class="image-previews" id="imagePreviews">
+                    <!-- Препью изображений будет добавляться сюда -->
+                </div>
+            </div>
+
+            <!-- Раздел 5: Стиль и настройки -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-paint-brush"></i>
+                    5. СТИЛЬ И НАСТРОЙКИ
+                </h3>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        ТОН СТАТЬИ (можно выбрать несколько):
+                    </label>
+                    <div class="style-options">
+                        <div class="style-option" onclick="toggleStyle(this)">
+                            <div class="style-icon"><i class="fas fa-grin-squint-tears"></i></div>
+                            <div class="style-name">Саркастичный</div>
+                            <div class="style-desc">Язвительные комментарии, ирония</div>
+                        </div>
+                        <div class="style-option" onclick="toggleStyle(this)">
+                            <div class="style-icon"><i class="fas fa-stethoscope"></i></div>
+                            <div class="style-name">Медицинский</div>
+                            <div class="style-desc">Диагнозы, симптомы, заключения</div>
+                        </div>
+                        <div class="style-option" onclick="toggleStyle(this)">
+                            <div class="style-icon"><i class="fas fa-user-secret"></i></div>
+                            <div class="style-name">Конспирологический</div>
+                            <div class="style-desc">Заговоры, тайны, утечки</div>
+                        </div>
+                        <div class="style-option" onclick="toggleStyle(this)">
+                            <div class="style-icon"><i class="fas fa-laptop-code"></i></div>
+                            <div class="style-name">Технократический</div>
+                            <div class="style-desc">Технический анализ, код, алгоритмы</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        УРОВЕНЬ СЕКРЕТНОСТИ:
+                    </label>
+                    <select id="securityLevel" class="form-select">
+                        <option value="public">Общий доступ (для публикации)</option>
+                        <option value="internal">Для внутреннего архива</option>
+                        <option value="secret">Совершенно секретно</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Раздел 6: Предпросмотр -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="fas fa-eye"></i>
+                    6. ПРЕДПРОСМОТР
+                </h3>
+                
+                <div class="preview-section">
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                        Предпросмотр статьи (обновляется автоматически):
+                    </p>
+                    <div class="preview-container" id="previewContainer">
+                        <div id="articlePreview">
+                            <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+                                Заполните форму выше, чтобы увидеть предпросмотр статьи
+                            </p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="updatePreview()" style="margin-top: 1rem;">
+                        <i class="fas fa-sync-alt"></i> Обновить предпросмотр
+                    </button>
+                </div>
+            </div>
+
+            <!-- Кнопки отправки -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="saveDraft()">
+                    <i class="fas fa-save"></i> Сохранить черновик
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Отправить статью в архив
+                </button>
+            </div>
+        </form>
+
+        <!-- Информация после отправки (скрыта по умолчанию) -->
+        <div id="successMessage" class="instructions" style="display: none;">
+            <h2 class="instructions-title" style="color: var(--success-green);">
+                <i class="fas fa-check-circle"></i>
+                ✅ СТАТЬЯ УСПЕШНО СОЗДАНА
+            </h2>
+            <div id="articleInfo" style="margin: 1.5rem 0;">
+                <!-- Информация о статье будет добавлена сюда -->
+            </div>
+            <p style="color: var(--text-primary); margin-bottom: 1rem;">
+                Ваша работа сохранена в архиве под грифом <strong>"НА РАССМОТРЕНИИ"</strong>.
+            </p>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                Что дальше:<br>
+                1. Статья отправлена разработчику<br>
+                2. Если она соответствует стилю и качеству Чёрного Архива:<br>
+                &nbsp;&nbsp;&nbsp;• Будет опубликована на сайте<br>
+                &nbsp;&nbsp;&nbsp;• Вы получите уведомление<br>
+                &nbsp;&nbsp;&nbsp;• Ваш псевдоним будет в авторах<br>
+                3. Если нужна доработка — с вами свяжутся
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="https://t.me/blackarchiveru" class="tg-link" target="_blank">
+                    <i class="fab fa-telegram"></i> СЛЕДИТЕ ЗА ОБНОВЛЕНИЯМИ В ТЕЛЕГРАМЕ: @blackarchiveru
+                </a>
+            </div>
+        </div>
+
+        <!-- Футер страницы -->
+        <footer class="page-footer">
+            <p>
+                <strong>ЧЁРНЫЙ АРХИВ</strong> | Система создания пользовательских статей
+            </p>
+            <p style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.85rem;">
+                Все статьи проходят проверку. Авторские права принадлежат создателям.
+                Проект создан для сатиры и анализа, не для оскорблений.
+            </p>
+            <a href="../index.html" class="tg-link" style="margin-top: 1.5rem;">
+                <i class="fas fa-arrow-left"></i> Вернуться на главную
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // Глобальные переменные
+        let uploadedImages = [];
+        let selectedStyles = [];
+        let articleDraft = null;
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузка черновика, если есть
+            loadDraft();
+            
+            // Настройка автоматического расширения textarea
+            setupExpandableTextareas();
+            
+            // Настройка счетчиков символов
+            setupCharacterCounters();
+            
+            // Настройка загрузки изображений
+            setupImageUpload();
+            
+            // Настройка предпросмотра
+            setupPreview();
+            
+            // Настройка обработки формы
+            setupFormSubmission();
+            
+            // Обновление предпросмотра каждые 5 секунд
+            setInterval(updatePreview, 5000);
+        });
+
+        // Функции для работы с textarea
+        function setupExpandableTextareas() {
+            const textareas = document.querySelectorAll('.expandable');
+            textareas.forEach(textarea => {
+                // Автоматическое расширение при вводе
+                textarea.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+                
+                // Инициализация высоты
+                textarea.style.height = textarea.scrollHeight + 'px';
+            });
+        }
+
+        function toggleFullscreen(textareaId) {
+            const textarea = document.getElementById(textareaId);
+            const isFullscreen = textarea.classList.contains('fullscreen');
+            
+            if (!isFullscreen) {
+                textarea.classList.add('fullscreen');
+                textarea.style.position = 'fixed';
+                textarea.style.top = '0';
+                textarea.style.left = '0';
+                textarea.style.width = '100%';
+                textarea.style.height = '100vh';
+                textarea.style.zIndex = '10000';
+                textarea.style.fontSize = '16px';
+                textarea.style.padding = '2rem';
+                document.body.style.overflow = 'hidden';
+            } else {
+                textarea.classList.remove('fullscreen');
+                textarea.style.position = '';
+                textarea.style.top = '';
+                textarea.style.left = '';
+                textarea.style.width = '';
+                textarea.style.height = '';
+                textarea.style.zIndex = '';
+                textarea.style.fontSize = '';
+                textarea.style.padding = '';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Счетчики символов
+        function setupCharacterCounters() {
+            const fields = [
+                { id: 'articleSummary', counter: 'summaryCounter', min: 50, max: 1000 },
+                { id: 'articleClues', counter: 'cluesCounter', min: 0, max: 2000 },
+                { id: 'articleFull', counter: 'fullCounter', min: 0, max: 10000 }
+            ];
+            
+            fields.forEach(field => {
+                const element = document.getElementById(field.id);
+                const counter = document.getElementById(field.counter);
+                
+                element.addEventListener('input', function() {
+                    const length = this.value.length;
+                    counter.textContent = `${length}/${field.max} символов`;
+                    
+                    // Изменение цвета счетчика
+                    if (field.min > 0 && length < field.min) {
+                        counter.className = 'counter error';
+                    } else if (length > field.max * 0.9) {
+                        counter.className = 'counter warning';
+                    } else if (length > field.min) {
+                        counter.className = 'counter good';
+                    } else {
+                        counter.className = 'counter';
+                    }
+                });
+                
+                // Инициализация счетчика
+                counter.textContent = `${element.value.length}/${field.max} символов`;
+            });
+        }
+
+        // Загрузка изображений
+        function setupImageUpload() {
+            const uploadInput = document.getElementById('imageUpload');
+            const uploadArea = document.getElementById('uploadArea');
+            const previewsContainer = document.getElementById('imagePreviews');
+            
+            // Обработка клика по области загрузки
+            uploadArea.addEventListener('click', function(e) {
+                if (e.target !== uploadInput) {
+                    uploadInput.click();
+                }
+            });
+            
+            // Обработка выбора файлов
+            uploadInput.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                
+                // Проверка количества файлов
+                if (uploadedImages.length + files.length > 5) {
+                    showNotification('Можно загрузить не более 5 изображений', 'error');
+                    return;
+                }
+                
+                // Обработка каждого файла
+                files.forEach((file, index) => {
+                    // Проверка типа файла
+                    if (!file.type.match('image.*')) {
+                        showNotification(`Файл ${file.name} не является изображением`, 'error');
+                        return;
+                    }
+                    
+                    // Проверка размера (5MB)
+                    if (file.size > 5 * 1024 * 1024) {
+                        showNotification(`Изображение ${file.name} слишком большое (макс. 5MB)`, 'error');
+                        return;
+                    }
+                    
+                    // Чтение файла
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imageData = {
+                            id: Date.now() + index,
+                            name: file.name,
+                            data: e.target.result,
+                            size: file.size,
+                            type: file.type
+                        };
+                        
+                        uploadedImages.push(imageData);
+                        addImagePreview(imageData);
+                    };
+                    reader.readAsDataURL(file);
+                });
+                
+                // Сброс input для возможности повторной загрузки тех же файлов
+                uploadInput.value = '';
+            });
+            
+            // Drag and drop
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--accent-red)';
+                uploadArea.style.backgroundColor = 'rgba(196, 30, 58, 0.1)';
+            });
+            
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '';
+                uploadArea.style.backgroundColor = '';
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '';
+                uploadArea.style.backgroundColor = '';
+                
+                const files = Array.from(e.dataTransfer.files);
+                if (files.length > 0) {
+                    uploadInput.files = e.dataTransfer.files;
+                    uploadInput.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+
+        function addImagePreview(imageData) {
+            const previewsContainer = document.getElementById('imagePreviews');
+            
+            const previewDiv = document.createElement('div');
+            previewDiv.className = 'image-preview';
+            previewDiv.id = `image-preview-${imageData.id}`;
+            
+            previewDiv.innerHTML = `
+                <img src="${imageData.data}" alt="${imageData.name}">
+                <button type="button" class="image-remove" onclick="removeImage(${imageData.id})">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            previewsContainer.appendChild(previewDiv);
+            
+            // Показываем контейнер, если он был скрыт
+            previewsContainer.style.display = 'grid';
+        }
+
+        function removeImage(imageId) {
+            // Удаляем из массива
+            uploadedImages = uploadedImages.filter(img => img.id !== imageId);
+            
+            // Удаляем превью
+            const previewElement = document.getElementById(`image-preview-${imageId}`);
+            if (previewElement) {
+                previewElement.remove();
+            }
+            
+            // Скрываем контейнер, если изображений не осталось
+            const previewsContainer = document.getElementById('imagePreviews');
+            if (uploadedImages.length === 0) {
+                previewsContainer.style.display = 'none';
+            }
+            
+            showNotification('Изображение удалено', 'info');
+        }
+
+        // Стили статьи
+        function toggleStyle(element) {
+            const styleName = element.querySelector('.style-name').textContent;
+            const index = selectedStyles.indexOf(styleName);
+            
+            if (index === -1) {
+                selectedStyles.push(styleName);
+                element.classList.add('selected');
+            } else {
+                selectedStyles.splice(index, 1);
+                element.classList.remove('selected');
+            }
+        }
+
+        // Предпросмотр
+        function setupPreview() {
+            // Обновляем предпросмотр при изменении основных полей
+            const fieldsToWatch = ['articleTitle', 'articleSummary', 'articleClues', 'articleTwist', 'articleFull'];
+            fieldsToWatch.forEach(fieldId => {
+                document.getElementById(fieldId).addEventListener('input', updatePreview);
+            });
+        }
+
+        function updatePreview() {
+            const title = document.getElementById('articleTitle').value;
+            const summary = document.getElementById('articleSummary').value;
+            const clues = document.getElementById('articleClues').value;
+            const twist = document.getElementById('articleTwist').value;
+            const fullText = document.getElementById('articleFull').value;
+            const author = document.getElementById('authorName').value;
+            
+            let previewHTML = '';
+            
+            if (title || summary || fullText) {
+                previewHTML += `
+                    <div style="font-family: 'JetBrains Mono', monospace; color: var(--accent-red); 
+                               font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-red); 
+                               padding-bottom: 0.5rem;">
+                        ${title || 'Без названия'}
+                    </div>
+                    
+                    <div style="color: var(--text-secondary); font-style: italic; margin-bottom: 2rem;">
+                        Автор: ${author || 'Аноним'} | Стиль: ${selectedStyles.join(', ') || 'не указан'}
+                    </div>`;
+                
+                if (summary) {
+                    previewHTML += `
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: var(--accent-yellow); margin-bottom: 0.75rem;">СУТЬ ТЕОРИИ</h3>
+                            <p style="line-height: 1.7;">${summary.replace(/\n/g, '<br>')}</p>
+                        </div>`;
+                }
+                
+                if (clues) {
+                    const cluesList = clues.split('\n').filter(line => line.trim());
+                    if (cluesList.length > 0) {
+                        previewHTML += `
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="color: var(--accent-yellow); margin-bottom: 0.75rem;">УЛИКИ</h3>
+                                <ul style="padding-left: 1.5rem;">
+                                    ${cluesList.map(clue => `<li style="margin-bottom: 0.5rem;">${clue}</li>`).join('')}
+                                </ul>
+                            </div>`;
+                    }
+                }
+                
+                if (twist) {
+                    previewHTML += `
+                        <div style="background: rgba(196, 30, 58, 0.1); border-left: 3px solid var(--accent-red); 
+                                   padding: 1.5rem; margin: 2rem 0; border-radius: 0 4px 4px 0;">
+                            <h3 style="color: var(--accent-red); margin-bottom: 0.75rem;">НЕОЖИДАННАЯ РАЗВЯЗКА</h3>
+                            <p style="font-style: italic;">${twist.replace(/\n/g, '<br>')}</p>
+                        </div>`;
+                }
+                
+                if (fullText) {
+                    // Простая обработка разметки
+                    let processedText = fullText
+                        .replace(/^## (.+)$/gm, '<h3 style="color: var(--accent-yellow); margin: 1.5rem 0 0.75rem;">$1</h3>')
+                        .replace(/^# (.+)$/gm, '<h2 style="color: var(--accent-red); margin: 2rem 0 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">$1</h2>')
+                        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/^> (.+)$/gm, '<blockquote style="border-left: 3px solid var(--accent-yellow); padding-left: 1rem; margin: 1rem 0; color: var(--text-secondary);">$1</blockquote>')
+                        .replace(/^---$/gm, '<hr style="border: none; height: 1px; background: var(--border-color); margin: 2rem 0;">')
+                        .replace(/^- (.+)$/gm, '<li>$1</li>')
+                        .replace(/(<li>.*<\/li>)/gs, '<ul style="padding-left: 1.5rem; margin: 1rem 0;">$1</ul>')
+                        .replace(/\n\n/g, '</p><p>')
+                        .replace(/\n/g, '<br>');
+                    
+                    previewHTML += `
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent-yellow); margin-bottom: 0.75rem;">ПОЛНЫЙ ТЕКСТ</h3>
+                            <div style="line-height: 1.7;">
+                                ${processedText}
+                            </div>
+                        </div>`;
+                }
+                
+                if (uploadedImages.length > 0) {
+                    previewHTML += `
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--accent-yellow); margin-bottom: 0.75rem;">ИЗОБРАЖЕНИЯ</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                                Загружено изображений: ${uploadedImages.length}
+                            </p>
+                        </div>`;
+                }
+            } else {
+                previewHTML = `
+                    <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+                        Заполните форму выше, чтобы увидеть предпросмотр статьи
+                    </p>`;
+            }
+            
+            document.getElementById('articlePreview').innerHTML = previewHTML;
+        }
+
+        // Черновики
+        function saveDraft() {
+            const draft = {
+                title: document.getElementById('articleTitle').value,
+                author: document.getElementById('authorName').value,
+                topic: document.getElementById('articleTopic').value,
+                summary: document.getElementById('articleSummary').value,
+                clues: document.getElementById('articleClues').value,
+                twist: document.getElementById('articleTwist').value,
+                fullText: document.getElementById('articleFull').value,
+                styles: selectedStyles,
+                securityLevel: document.getElementById('securityLevel').value,
+                images: uploadedImages,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('black_archive_draft', JSON.stringify(draft));
+            showNotification('Черновик сохранён', 'success');
+        }
+
+        function loadDraft() {
+            const savedDraft = localStorage.getItem('black_archive_draft');
+            if (savedDraft) {
+                try {
+                    const draft = JSON.parse(savedDraft);
+                    
+                    // Заполняем поля формы
+                    document.getElementById('articleTitle').value = draft.title || '';
+                    document.getElementById('authorName').value = draft.author || '';
+                    document.getElementById('articleTopic').value = draft.topic || '';
+                    document.getElementById('articleSummary').value = draft.summary || '';
+                    document.getElementById('articleClues').value = draft.clues || '';
+                    document.getElementById('articleTwist').value = draft.twist || '';
+                    document.getElementById('articleFull').value = draft.fullText || '';
+                    document.getElementById('securityLevel').value = draft.securityLevel || 'public';
+                    
+                    // Восстанавливаем стили
+                    selectedStyles = draft.styles || [];
+                    document.querySelectorAll('.style-option').forEach(option => {
+                        const styleName = option.querySelector('.style-name').textContent;
+                        if (selectedStyles.includes(styleName)) {
+                            option.classList.add('selected');
+                        }
+                    });
+                    
+                    // Восстанавливаем изображения
+                    uploadedImages = draft.images || [];
+                    uploadedImages.forEach(image => addImagePreview(image));
+                    
+                    // Обновляем счетчики
+                    document.querySelectorAll('textarea').forEach(textarea => {
+                        textarea.dispatchEvent(new Event('input'));
+                    });
+                    
+                    // Обновляем предпросмотр
+                    updatePreview();
+                    
+                    showNotification('Черновик загружен', 'info');
+                } catch (e) {
+                    console.error('Ошибка загрузки черновика:', e);
+                }
+            }
+        }
+
+        // Отправка формы
+        function setupFormSubmission() {
+            const form = document.getElementById('articleForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Валидация
+                if (!validateForm()) {
+                    return;
+                }
+                
+                // Сбор данных
+                const articleData = collectArticleData();
+                
+                // Сохранение в localStorage
+                saveArticleToStorage(articleData);
+                
+                // Показать сообщение об успехе
+                showSuccessMessage(articleData);
+                
+                // Очистить форму
+                clearForm();
+                
+                // Очистить черновик
+                localStorage.removeItem('black_archive_draft');
+                
+                // Прокрутить к сообщению об успехе
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        function validateForm() {
+            const title = document.getElementById('articleTitle').value.trim();
+            const author = document.getElementById('authorName').value.trim();
+            const topic = document.getElementById('articleTopic').value.trim();
+            const summary = document.getElementById('articleSummary').value.trim();
+            
+            if (!title) {
+                showNotification('Введите название статьи', 'error');
+                document.getElementById('articleTitle').focus();
+                return false;
+            }
+            
+            if (!author) {
+                showNotification('Введите ваш псевдоним', 'error');
+                document.getElementById('authorName').focus();
+                return false;
+            }
+            
+            if (!topic) {
+                showNotification('Укажите ютубера или тему', 'error');
+                document.getElementById('articleTopic').focus();
+                return false;
+            }
+            
+            if (!summary || summary.length < 50) {
+                showNotification('Опишите суть теории (минимум 50 символов)', 'error');
+                document.getElementById('articleSummary').focus();
+                return false;
+            }
+            
+            return true;
+        }
+
+        function collectArticleData() {
+            const articleId = 'USER-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            
+            return {
+                id: articleId,
+                metadata: {
+                    title: document.getElementById('articleTitle').value.trim(),
+                    author: document.getElementById('authorName').value.trim(),
+                    topic: document.getElementById('articleTopic').value.trim(),
+                    styles: selectedStyles,
+                    securityLevel: document.getElementById('securityLevel').value,
+                    createdAt: new Date().toISOString(),
+                    status: 'pending'
+                },
+                content: {
+                    summary: document.getElementById('articleSummary').value.trim(),
+                    clues: document.getElementById('articleClues').value.trim(),
+                    twist: document.getElementById('articleTwist').value.trim(),
+                    fullText: document.getElementById('articleFull').value.trim()
+                },
+                images: uploadedImages,
+                wordCount: countWords(),
+                characterCount: countCharacters()
+            };
+        }
+
+        function countWords() {
+            const fullText = document.getElementById('articleFull').value;
+            if (!fullText.trim()) return 0;
+            return fullText.trim().split(/\s+/).length;
+        }
+
+        function countCharacters() {
+            let total = 0;
+            const fields = ['articleSummary', 'articleClues', 'articleTwist', 'articleFull'];
+            fields.forEach(fieldId => {
+                total += document.getElementById(fieldId).value.length;
+            });
+            return total;
+        }
+
+        function saveArticleToStorage(articleData) {
+            // Получаем существующие статьи
+            let articles = JSON.parse(localStorage.getItem('black_archive_user_articles') || '[]');
+            
+            // Добавляем новую статью
+            articles.push(articleData);
+            
+            // Сохраняем обратно
+            localStorage.setItem('black_archive_user_articles', JSON.stringify(articles));
+            
+            // Также сохраняем отдельно для разработчика (админ-панель)
+            localStorage.setItem(`black_archive_article_${articleData.id}`, JSON.stringify(articleData));
+            
+            showNotification(`Статья сохранена под ID: ${articleData.id}`, 'success');
+        }
+
+        function showSuccessMessage(articleData) {
+            const form = document.getElementById('articleForm');
+            const successDiv = document.getElementById('successMessage');
+            const articleInfo = document.getElementById('articleInfo');
+            
+            // Заполняем информацию о статье
+            articleInfo.innerHTML = `
+                <div style="background: rgba(20, 15, 10, 0.5); padding: 1.5rem; border-radius: 4px; border-left: 3px solid var(--success-green);">
+                    <p><strong>ID статьи:</strong> ${articleData.id}</p>
+                    <p><strong>Название:</strong> ${articleData.metadata.title}</p>
+                    <p><strong>Автор:</strong> ${articleData.metadata.author}</p>
+                    <p><strong>Объём:</strong> ${articleData.wordCount} слов, ${articleData.characterCount} символов</p>
+                    <p><strong>Статус:</strong> На проверке у разработчика</p>
+                    <p><strong>Дата создания:</strong> ${new Date(articleData.metadata.createdAt).toLocaleString('ru-RU')}</p>
+                </div>
+            `;
+            
+            // Скрываем форму, показываем сообщение
+            form.style.display = 'none';
+            successDiv.style.display = 'block';
+        }
+
+        function clearForm() {
+            // Очищаем все поля
+            document.getElementById('articleForm').reset();
+            
+            // Очищаем стили
+            selectedStyles = [];
+            document.querySelectorAll('.style-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Очищаем изображения
+            uploadedImages = [];
+            document.getElementById('imagePreviews').innerHTML = '';
+            document.getElementById('imagePreviews').style.display = 'none';
+            
+            // Сбрасываем счетчики
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.dispatchEvent(new Event('input'));
+                textarea.style.height = 'auto';
+            });
+            
+            // Обновляем предпросмотр
+            updatePreview();
+        }
+
+        // Уведомления
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
