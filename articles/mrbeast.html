@@ -166,22 +166,36 @@
             overflow: hidden;
             position: relative;
             border: 2px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+        }
+
+        .money-photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border-color: var(--accent-red);
         }
 
         .money-photo img {
             width: 100%;
             height: auto;
             display: block;
-            filter: grayscale(0.3) contrast(1.1);
+            filter: grayscale(0.2) contrast(1.05);
+            transition: filter 0.5s ease;
+        }
+
+        .money-photo:hover img {
+            filter: grayscale(0) contrast(1.1);
         }
 
         .photo-caption {
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(10, 10, 15, 0.95);
             padding: 1rem;
             font-size: 0.9rem;
             color: var(--text-secondary);
             text-align: center;
             border-top: 1px solid var(--border-color);
+            font-style: italic;
         }
 
         /* ОСНОВНОЙ КОНТЕНТ */
@@ -233,6 +247,12 @@
             align-items: center;
             padding: 1rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .price-item:hover {
+            background: rgba(196, 30, 58, 0.05);
+            transform: translateX(5px);
         }
 
         .price-item:last-child {
@@ -253,7 +273,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* РУЛЕТКА MRBEAST */
+        /* РУЛЕТКА MRBEAST - ИСПРАВЛЕННАЯ ВЕРСИЯ */
         .roulette-section {
             background: linear-gradient(135deg, #1a0a0a, #0a0a1a);
             padding: 3rem;
@@ -261,41 +281,79 @@
             border-radius: 10px;
             border: 2px solid var(--accent-red);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roulette-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
         }
 
         .roulette-title {
             font-size: 1.8rem;
             color: var(--accent-red);
             margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(196, 30, 58, 0.3);
         }
 
-        .roulette-wheel {
+        .roulette-container {
+            position: relative;
             width: 300px;
             height: 300px;
             margin: 0 auto 2rem;
-            position: relative;
+        }
+
+        .roulette-wheel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             background: conic-gradient(
-                #ff0000 0deg 60deg,
-                #ff9900 60deg 120deg,
-                #ffff00 120deg 180deg,
-                #00ff00 180deg 240deg,
-                #0099ff 240deg 300deg,
-                #6600ff 300deg 360deg
+                #ff0000 0deg 45deg,
+                #ff9900 45deg 90deg,
+                #ffff00 90deg 135deg,
+                #00ff00 135deg 180deg,
+                #0099ff 180deg 225deg,
+                #6600ff 225deg 270deg,
+                #ff00ff 270deg 315deg,
+                #ff6600 315deg 360deg
             );
             border-radius: 50%;
-            border: 10px solid gold;
+            border: 8px solid gold;
             transition: transform 3s cubic-bezier(0.2, 0.8, 0.3, 1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .roulette-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #222;
+            border-radius: 50%;
+            border: 4px solid gold;
+            z-index: 2;
         }
 
         .roulette-pointer {
             position: absolute;
-            top: -20px;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: white;
             text-shadow: 0 0 10px black;
-            z-index: 2;
+            z-index: 3;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
         }
 
         .spin-btn {
@@ -310,16 +368,18 @@
             transition: var(--transition);
             font-family: 'JetBrains Mono', monospace;
             margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
         }
 
         .spin-btn:hover:not(:disabled) {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(196, 30, 58, 0.5);
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.5);
         }
 
         .spin-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
 
         .result-display {
@@ -329,6 +389,12 @@
             margin-top: 2rem;
             border: 1px solid var(--accent-red);
             display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .result-amount {
@@ -337,6 +403,7 @@
             font-weight: 700;
             margin-bottom: 1rem;
             font-family: 'JetBrains Mono', monospace;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         .result-task {
@@ -351,7 +418,7 @@
             font-style: italic;
         }
 
-        /* СИСТЕМА КОММЕНТАРИЕВ */
+        /* СИСТЕМА КОММЕНТАРИЕВ С ВАЛИДАЦИЕЙ */
         .comments-section {
             margin-top: 60px;
             border-top: 2px solid var(--border-color);
@@ -373,10 +440,12 @@
             border-radius: 8px;
             margin-bottom: 40px;
             border: 1px solid var(--border-color);
+            position: relative;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
+            position: relative;
         }
 
         .form-label {
@@ -400,11 +469,31 @@
         .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.1);
         }
 
         .form-textarea {
             min-height: 120px;
             resize: vertical;
+        }
+
+        .char-counter {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .validation-error {
+            color: var(--accent-red);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .validation-error.show {
+            display: block;
         }
 
         .submit-btn {
@@ -419,9 +508,14 @@
             transition: var(--transition);
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             background: #d12e46;
             transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .comments-list {
@@ -434,6 +528,13 @@
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             border-radius: 0 5px 5px 0;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .comment:hover {
+            background: rgba(25, 20, 25, 0.7);
+            border-left-color: #d62e4a;
         }
 
         .comment-header {
@@ -459,6 +560,15 @@
             line-height: 1.6;
         }
 
+        .moderation-note {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-style: italic;
+        }
+
         /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
             .article-title {
@@ -470,7 +580,7 @@
                 padding: 20px 15px;
             }
             
-            .roulette-wheel {
+            .roulette-container {
                 width: 250px;
                 height: 250px;
             }
@@ -482,6 +592,53 @@
             .roulette-section {
                 padding: 2rem 1rem;
             }
+            
+            .money-photo {
+                margin: 1.5rem auto 2rem;
+            }
+        }
+
+        /* УВЕДОМЛЕНИЯ */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            z-index: 10000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification.success {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .notification.error {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .notification.info {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        /* СЕКРЕТНЫЕ ЭФФЕКТЫ */
+        .secret-money {
+            position: fixed;
+            bottom: -100px;
+            font-size: 2rem;
+            color: gold;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 1s ease;
         }
     </style>
 </head>
@@ -531,14 +688,9 @@
             </div>
         </header>
 
-        <!-- Картинка MrBeast в деньгах -->
+        <!-- Картинка MrBeast -->
         <div class="money-photo">
-            <!-- Замените ссылку на реальное изображение -->
-            <img src="https://images.unsplash.com/photo-1618044612226-4d3f4e5d13c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="MrBeast в куче денег">
-            <div class="photo-caption">
-                Кадр из видео "Я закопал себя в деньгах". Примерная стоимость показанного: 
-                2 человеческих достоинства и 1 моральный принцип.
-            </div>
+            <img src="https://s5.iimage.su/s/24/gHucRkQxnWgED7efEJXDeE8a96485N8fNp0DNS6S.jpg" alt="">
         </div>
 
         <!-- Часть 1: Введение -->
@@ -625,7 +777,7 @@
             </p>
         </section>
 
-        <!-- РУЛЕТКА MRBEAST -->
+        <!-- РУЛЕТКА MRBEAST - ИСПРАВЛЕННАЯ -->
         <section id="roulette" class="roulette-section">
             <h2 class="roulette-title">РУЛЕТКА MRBEAST</h2>
             <p class="content-text" style="color: var(--text-secondary); margin-bottom: 2rem;">
@@ -633,9 +785,12 @@
                 Шанс выиграть больше, чем потерять самоуважение? Почти.
             </p>
             
-            <div class="roulette-wheel" id="rouletteWheel">
+            <div class="roulette-container">
                 <div class="roulette-pointer">
-                    <i class="fas fa-arrow-down"></i>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="roulette-wheel" id="rouletteWheel">
+                    <div class="roulette-center"></div>
                 </div>
             </div>
             
@@ -650,7 +805,7 @@
                     Таракан будет живой. Вас вырвет. Это попадет в видео. 
                     Вы получите деньги. Все счастливы.
                 </div>
-                <button class="submit-btn" onclick="acceptDeal()" style="margin-top: 1rem;">
+                <button class="submit-btn" onclick="acceptDeal()" style="margin-top: 1rem; background: linear-gradient(135deg, #00aa00, #007700);">
                     <i class="fas fa-handshake"></i> ПРИНЯТЬ СДЕЛКУ
                 </button>
             </div>
@@ -687,7 +842,7 @@
             </p>
         </section>
 
-        <!-- СИСТЕМА КОММЕНТАРИЕВ -->
+        <!-- СИСТЕМА КОММЕНТАРИЕЙ С ВАЛИДАЦИЕЙ -->
         <section id="comments" class="comments-section">
             <h2 class="comments-title">
                 <i class="fas fa-comments"></i>
@@ -697,67 +852,41 @@
             <div class="comment-form">
                 <div class="form-group">
                     <label class="form-label">ВАШЕ ИМЯ (или псевдоним, если стыдно):</label>
-                    <input type="text" class="form-input" id="commentName" placeholder="Анонимный продавец души">
+                    <input type="text" class="form-input" id="commentName" placeholder="Анонимный продавец души" maxlength="50">
+                    <div class="validation-error" id="nameError">Имя должно быть от 2 до 50 символов и не содержать нецензурных слов</div>
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label">ВАШ ГРЕХ (что бы вы сделали за деньги MrBeast?):</label>
-                    <textarea class="form-textarea" id="commentText" placeholder="Я бы... Нет, лучше не буду писать. Ладно, я бы съел свой тапок за $1000."></textarea>
+                    <textarea class="form-textarea" id="commentText" placeholder="Я бы... Нет, лучше не буду писать. Ладно, я бы съел свой тапок за $1000." maxlength="500"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/500</div>
+                    <div class="validation-error" id="textError">Текст должен быть от 10 до 500 символов. Нецензурщина, оскорбления и спам запрещены</div>
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label">СКОЛЬКО НУЖНО, ЧТОБЫ ВЫ ПРОДАЛИ ДУШУ?</label>
-                    <input type="text" class="form-input" id="soulPrice" placeholder="$... или бутылка пива">
+                    <input type="text" class="form-input" id="soulPrice" placeholder="$... или бутылка пива" maxlength="30">
+                    <div class="validation-error" id="priceError">Введите сумму или описание (до 30 символов)</div>
                 </div>
                 
-                <button class="submit-btn" onclick="addComment()">
+                <button class="submit-btn" id="submitCommentBtn" onclick="validateAndAddComment()">
                     <i class="fas fa-paper-plane"></i> ПРОДАТЬ СВОЮ ЧЕСТЬ
                 </button>
+                
+                <div class="moderation-note">
+                    <i class="fas fa-shield-alt"></i> Все комментарии проходят автоматическую модерацию. 
+                    Оскорбления, спам и нецензурная брань будут удалены автоматически.
+                </div>
             </div>
             
             <div class="comments-list" id="commentsList">
-                <!-- Примеры комментариев -->
-                <div class="comment">
-                    <div class="comment-header">
-                        <span class="comment-author">Бывший друг #347</span>
-                        <span class="comment-date">19.11.2023 | 23:47</span>
-                    </div>
-                    <div class="comment-content">
-                        За $25,000 я сказал камере, что мой лучший друг изменяет жене. 
-                        Он не изменял. У них всё хорошо. Я получил деньги. Он получил депрессию. 
-                        MrBeast получил 50 миллионов просмотров. Все в выигрыше.
-                    </div>
-                </div>
-                
-                <div class="comment">
-                    <div class="comment-header">
-                        <span class="comment-author">Мама ради оплаты ипотеки</span>
-                        <span class="comment-date">18.11.2023 | 14:22</span>
-                    </div>
-                    <div class="comment-content">
-                        За $10,000 я рассказала, как мой сын в 5 лет обосался в детском саду. 
-                        Он теперь в колледже. Его дразнят. Зато у нас новая плита. 
-                        Спасибо, MrBeast. Нет, серьёзно, спасибо. Ипотека дорогая.
-                    </div>
-                </div>
-                
-                <div class="comment">
-                    <div class="comment-header">
-                        <span class="comment-author">Парень с острым перцем</span>
-                        <span class="comment-date">17.11.2023 | 08:15</span>
-                    </div>
-                    <div class="comment-content">
-                        Я съел перец Каролина Рипер. Думал, умру. Не умер. Получил $5,000. 
-                        Теперь у меня геморрой, 15 минут славы и деньги на операцию. 
-                        Круг замкнулся.
-                    </div>
-                </div>
+                <!-- Комментарии будут загружаться здесь -->
             </div>
         </section>
     </div>
 
     <script>
-        // РУЛЕТКА MRBEAST
+        // РУЛЕТКА MRBEAST - ИСПРАВЛЕННАЯ ЛОГИКА
         const rouletteOptions = [
             { amount: "$500", task: "Просидеть час в коробке с пауками", desc: "Пауки не ядовитые. Но больно кусаются. Вы заплачете. Это будет в тизере." },
             { amount: "$1,000", task: "Съесть свой тапок", desc: "Тапок должен быть ваш. Не новый. Со всеми потными воспоминаниями." },
@@ -770,25 +899,31 @@
         ];
 
         let isSpinning = false;
+        let currentSpin = 0;
 
         function spinRoulette() {
             if (isSpinning) return;
             
             isSpinning = true;
-            document.getElementById('spinBtn').disabled = true;
+            const spinBtn = document.getElementById('spinBtn');
+            spinBtn.disabled = true;
+            spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> РУЛЕТКА КРУТИТСЯ...';
+            
             document.getElementById('resultDisplay').style.display = 'none';
             
             const wheel = document.getElementById('rouletteWheel');
             const spins = 5 + Math.random() * 3; // 5-8 полных оборотов
-            const randomOption = Math.floor(Math.random() * rouletteOptions.length);
-            const finalDegree = spins * 360 + (randomOption * 45); // 8 вариантов = 45° каждый
+            currentSpin = Math.floor(Math.random() * rouletteOptions.length);
+            const segmentAngle = 360 / rouletteOptions.length;
+            const finalDegree = spins * 360 + (currentSpin * segmentAngle) + (segmentAngle / 2) - 2; // Корректировка для указателя
             
             wheel.style.transform = `rotate(${finalDegree}deg)`;
             
             setTimeout(() => {
-                showResult(randomOption);
+                showResult(currentSpin);
                 isSpinning = false;
-                document.getElementById('spinBtn').disabled = false;
+                spinBtn.disabled = false;
+                spinBtn.innerHTML = '<i class="fas fa-redo"></i> КРУТИТЬ РУЛЕТКУ';
             }, 3000);
         }
 
@@ -797,10 +932,9 @@
             document.getElementById('resultAmount').textContent = option.amount;
             document.getElementById('resultTask').textContent = option.task;
             document.getElementById('resultDesc').textContent = option.desc;
-            document.getElementById('resultDisplay').style.display = 'block';
             
-            // Анимация появления
             const resultDisplay = document.getElementById('resultDisplay');
+            resultDisplay.style.display = 'block';
             resultDisplay.style.opacity = '0';
             resultDisplay.style.transform = 'translateY(20px)';
             
@@ -812,94 +946,277 @@
         }
 
         function acceptDeal() {
+            const option = rouletteOptions[currentSpin];
             const responses = [
-                "СДЕЛКА ПРИНЯТА! Наш юрист свяжется с вами для подписания договора о продаже души.",
+                `СДЕЛКА ПРИНЯТА! Вы получите ${option.amount} за "${option.task}". Наш юрист свяжется с вами.`,
                 "ВЫ ПРОДАЛИСЬ! Поздравляем, вы теперь часть контент-машины MrBeast.",
-                "ДЕНЬГИ ВАШИ, ЧЕСТЬ — НАША. Ждите звонка от продюсера.",
+                `ДЕНЬГИ ВАШИ, ЧЕСТЬ — НАША. ${option.amount} будут перечислены после выполнения условия.`,
                 "КОНТРАКТ ПОДПИСАН. Вы обязаны выполнить условие в течение 30 дней. Удачи."
             ];
             
             const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-            alert(`[СИСТЕМА MRBEAST]\n\n${randomResponse}\n\nНомер сделки: MB-${Date.now().toString(36)}`);
+            
+            // Секретный эффект с деньгами
+            if (Math.random() > 0.7) {
+                createMoneyRain();
+            }
+            
+            showNotification(`[СИСТЕМА MRBEAST]\n\n${randomResponse}\n\nНомер сделки: MB-${Date.now().toString(36).toUpperCase()}`, 'success');
         }
 
-        // СИСТЕМА КОММЕНТАРИЕВ
+        // СИСТЕМА КОММЕНТАРИЕЙ С ВАЛИДАЦИЕЙ И МОДЕРАЦИЕЙ
+        let comments = [
+            {
+                author: "Бывший друг #347",
+                date: "19.11.2023 | 23:47",
+                text: "За $25,000 я сказал камере, что мой лучший друг изменяет жене. Он не изменял. У них всё хорошо. Я получил деньги. Он получил депрессию. MrBeast получил 50 миллионов просмотров. Все в вынигрыше.",
+                price: "$25,000"
+            },
+            {
+                author: "Мама ради оплаты ипотеки",
+                date: "18.11.2023 | 14:22",
+                text: "За $10,000 я рассказала, как мой сын в 5 лет обосался в детском саду. Он теперь в колледже. Его дразнят. Зато у нас новая плита. Спасибо, MrBeast. Нет, серьёзно, спасибо. Ипотека дорогая.",
+                price: "$10,000"
+            },
+            {
+                author: "Парень с острым перцем",
+                date: "17.11.2023 | 08:15",
+                text: "Я съел перец Каролина Рипер. Думал, умру. Не умер. Получил $5,000. Теперь у меня геморрой, 15 минут славы и деньги на операцию. Круг замкнулся.",
+                price: "$5,000"
+            }
+        ];
+
+        // Список запрещённых слов для модерации
+        const bannedWords = [
+            /ху[йеёя]/gi, /п[иеё]зд/gi, /бля/gi, /еба/gi, /гондон/gi, /мудак/gi, /урод/gi,
+            /дебил/gi, /идиот/gi, /дурак/gi, /лох/gi, /чмо/gi, /сука/gi, /сволоч/gi,
+            /редиск/gi, /пидор/gi, /гомик/gi, /педик/gi
+        ];
+
+        // Список спам-фраз
+        const spamPatterns = [
+            /http[s]?:\/\//gi, /www\./gi, /\.(com|ru|net|org)/gi,
+            /купить/gi, /продать/gi, /заказать/gi, /скидк/gi, /акци/gi,
+            /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi, // email
+            /\d{10,}/g, // длинные числа (телефоны)
+            /[A-Z]{5,}/g // CAPS LOCK
+        ];
+
+        // Функция модерации текста
+        function moderateText(text) {
+            // Проверка на запрещённые слова
+            for (const pattern of bannedWords) {
+                if (pattern.test(text)) {
+                    return { valid: false, reason: "Обнаружена нецензурная лексика" };
+                }
+            }
+            
+            // Проверка на спам
+            for (const pattern of spamPatterns) {
+                if (pattern.test(text)) {
+                    return { valid: false, reason: "Обнаружены спам-ссылки или контакты" };
+                }
+            }
+            
+            // Проверка на оскорбления (простые)
+            const insults = [/туп[ойой]/gi, /дебил/gi, /идиот/gi, /дурак/gi];
+            for (const insult of insults) {
+                if (insult.test(text)) {
+                    return { valid: false, reason: "Текст содержит оскорбления" };
+                }
+            }
+            
+            // Проверка на минимальную длину
+            if (text.trim().length < 10) {
+                return { valid: false, reason: "Текст слишком короткий (минимум 10 символов)" };
+            }
+            
+            // Проверка на максимальную длину
+            if (text.length > 500) {
+                return { valid: false, reason: "Текст слишком длинный (максимум 500 символов)" };
+            }
+            
+            // Проверка на повторяющиеся символы (спам)
+            if (/(.)\1{5,}/.test(text)) {
+                return { valid: false, reason: "Обнаружен спам (много повторяющихся символов)" };
+            }
+            
+            return { valid: true };
+        }
+
+        // Функция модерации имени
+        function moderateName(name) {
+            if (name.trim().length < 2) {
+                return { valid: false, reason: "Имя слишком короткое (минимум 2 символа)" };
+            }
+            
+            if (name.length > 50) {
+                return { valid: false, reason: "Имя слишком длинное (максимум 50 символов)" };
+            }
+            
+            for (const pattern of bannedWords) {
+                if (pattern.test(name)) {
+                    return { valid: false, reason: "Имя содержит недопустимые слова" };
+                }
+            }
+            
+            return { valid: true };
+        }
+
+        // Валидация формы
+        function validateForm() {
+            const name = document.getElementById('commentName').value.trim();
+            const text = document.getElementById('commentText').value.trim();
+            const price = document.getElementById('soulPrice').value.trim();
+            
+            let isValid = true;
+            
+            // Валидация имени
+            const nameValidation = moderateName(name);
+            const nameError = document.getElementById('nameError');
+            if (!nameValidation.valid) {
+                nameError.textContent = nameValidation.reason;
+                nameError.classList.add('show');
+                isValid = false;
+            } else {
+                nameError.classList.remove('show');
+            }
+            
+            // Валидация текста
+            const textValidation = moderateText(text);
+            const textError = document.getElementById('textError');
+            if (!textValidation.valid) {
+                textError.textContent = textValidation.reason;
+                textError.classList.add('show');
+                isValid = false;
+            } else {
+                textError.classList.remove('show');
+            }
+            
+            // Валидация цены (необязательное поле)
+            const priceError = document.getElementById('priceError');
+            if (price.length > 30) {
+                priceError.textContent = "Слишком длинное значение (максимум 30 символов)";
+                priceError.classList.add('show');
+                isValid = false;
+            } else {
+                priceError.classList.remove('show');
+            }
+            
+            return isValid;
+        }
+
+        // Счётчик символов
+        document.getElementById('commentText').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('charCount').textContent = count;
+            
+            // Динамическая проверка
+            if (count < 10) {
+                document.getElementById('textError').textContent = `Ещё ${10 - count} символов до минимума`;
+                document.getElementById('textError').classList.add('show');
+            } else if (count > 500) {
+                document.getElementById('textError').textContent = `Превышено на ${count - 500} символов`;
+                document.getElementById('textError').classList.add('show');
+            } else {
+                document.getElementById('textError').classList.remove('show');
+            }
+        });
+
+        // Основная функция добавления комментария
+        function validateAndAddComment() {
+            if (!validateForm()) {
+                showNotification('Исправьте ошибки в форме', 'error');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitCommentBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> МОДЕРАЦИЯ...';
+            
+            // Имитация проверки модератором
+            setTimeout(() => {
+                addComment();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ПРОДАТЬ СВОЮ ЧЕСТЬ';
+            }, 1500);
+        }
+
         function addComment() {
             const nameInput = document.getElementById('commentName');
             const textInput = document.getElementById('commentText');
             const priceInput = document.getElementById('soulPrice');
             
-            if (!nameInput.value.trim() || !textInput.value.trim()) {
-                alert('[АРХИВ] Заполните хотя бы имя и грех. Мы же не звери какие.');
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+            const price = priceInput.value.trim();
+            
+            // Финальная проверка (на всякий случай)
+            if (!moderateName(name).valid || !moderateText(text).valid) {
+                showNotification('Комментарий не прошёл модерацию', 'error');
                 return;
             }
             
-            // Создаем новый комментарий
-            const commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            
+            // Создаём новый комментарий
             const date = new Date();
-            const dateStr = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()} | ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
             
             let priceText = '';
-            if (priceInput.value.trim()) {
-                priceText = ` Цена души: ${priceInput.value.trim()}`;
+            if (price) {
+                priceText = ` Цена души: ${price}`;
             }
             
-            commentDiv.innerHTML = `
-                <div class="comment-header">
-                    <span class="comment-author">${escapeHtml(nameInput.value)}</span>
-                    <span class="comment-date">${dateStr}</span>
-                </div>
-                <div class="comment-content">
-                    ${escapeHtml(textInput.value)}${priceText}
-                </div>
-            `;
+            const newComment = {
+                author: name,
+                date: dateStr,
+                text: text + priceText,
+                price: price
+            };
             
-            // Добавляем в начало списка
-            document.getElementById('commentsList').prepend(commentDiv);
+            // Добавляем в начало массива
+            comments.unshift(newComment);
+            
+            // Сохраняем в localStorage
+            saveComments();
             
             // Очищаем поля
             nameInput.value = '';
             textInput.value = '';
             priceInput.value = '';
+            document.getElementById('charCount').textContent = '0';
             
-            // Эффект
-            commentDiv.style.opacity = '0';
-            setTimeout(() => {
-                commentDiv.style.transition = 'opacity 0.5s';
-                commentDiv.style.opacity = '1';
-            }, 10);
+            // Скрываем ошибки
+            document.querySelectorAll('.validation-error').forEach(el => {
+                el.classList.remove('show');
+            });
             
-            // Сохраняем в localStorage
-            saveComments();
+            // Перерисовываем комментарии
+            renderComments();
             
-            // Чёрный юмор каждые 3 комментария
-            const count = document.querySelectorAll('.comment').length;
+            // Показываем уведомление
+            showNotification('Ваш грех принят и архивирован. MrBeast гордится вами.', 'success');
+            
+            // Чёрный юмер каждые 3 комментария
+            const count = comments.length;
             if (count % 3 === 0) {
                 setTimeout(() => {
                     const jokes = [
                         "Ещё один продался. Экономика растёт!",
                         "Ваш грех добавлен в базу данных. Спасибо за участие.",
-                        "Чем больше комментариев, тем дешевле ваша душа. Продолжайте."
+                        "Чем больше комментариев, тем дешевле ваша душа. Продолжайте.",
+                        "MrBeast одобряет ваше решение продать достоинство."
                     ];
-                    alert(`[АРХИВ] ${jokes[Math.floor(Math.random() * jokes.length)]}`);
+                    showNotification(jokes[Math.floor(Math.random() * jokes.length)], 'info');
                 }, 500);
             }
         }
         
         // Сохранение комментариев
         function saveComments() {
-            const comments = [];
-            document.querySelectorAll('.comment').forEach(comment => {
-                const author = comment.querySelector('.comment-author').textContent;
-                const date = comment.querySelector('.comment-date').textContent;
-                const content = comment.querySelector('.comment-content').textContent;
-                comments.push({author, date, content});
-            });
-            
-            if (comments.length > 0) {
+            try {
                 localStorage.setItem('mrbeast_comments', JSON.stringify(comments));
+            } catch (e) {
+                console.error('Ошибка сохранения комментариев:', e);
             }
         }
         
@@ -907,40 +1224,106 @@
         function loadComments() {
             const saved = localStorage.getItem('mrbeast_comments');
             if (saved) {
-                const comments = JSON.parse(saved);
-                const container = document.getElementById('commentsList');
-                
-                comments.forEach(comment => {
-                    const div = document.createElement('div');
-                    div.className = 'comment';
-                    div.innerHTML = `
-                        <div class="comment-header">
-                            <span class="comment-author">${escapeHtml(comment.author)}</span>
-                            <span class="comment-date">${escapeHtml(comment.date)}</span>
-                        </div>
-                        <div class="comment-content">
-                            ${escapeHtml(comment.content)}
-                        </div>
-                    `;
-                    container.appendChild(div);
-                });
+                try {
+                    const parsed = JSON.parse(saved);
+                    // Проверяем загруженные комментарии на модерацию
+                    comments = parsed.filter(comment => {
+                        return moderateName(comment.author).valid && moderateText(comment.text).valid;
+                    });
+                } catch (e) {
+                    console.error('Ошибка загрузки комментариев:', e);
+                }
             }
         }
         
-        // Защита от XSS
+        // Отображение комментариев
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            comments.forEach((comment, index) => {
+                const div = document.createElement('div');
+                div.className = 'comment';
+                div.style.animationDelay = `${index * 0.1}s`;
+
+                div.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(comment.author)}</span>
+                        <span class="comment-date">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-content">
+                        ${escapeHtml(comment.text)}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        // Экранирование HTML
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
         
+        // Уведомления
+        function showNotification(message, type) {
+            const oldNotifications = document.querySelectorAll('.notification');
+            oldNotifications.forEach(n => n.remove());
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // Секретный эффект: дождь из денег
+        function createMoneyRain() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const money = document.createElement('div');
+                    money.className = 'secret-money';
+                    money.innerHTML = '$';
+                    money.style.left = Math.random() * 90 + 5 + '%';
+                    money.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+                    
+                    document.body.appendChild(money);
+                    
+                    setTimeout(() => {
+                        money.style.opacity = '1';
+                        money.style.bottom = '0';
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        money.style.opacity = '0';
+                        money.style.bottom = '100px';
+                        setTimeout(() => money.remove(), 1000);
+                    }, 2000);
+                }, i * 100);
+            }
+        }
+        
         // Загрузка при старте
         window.addEventListener('DOMContentLoaded', () => {
             loadComments();
+            renderComments();
             
             // Случайный эффект для прайс-листа
             setInterval(() => {
-                if (Math.random() > 0.7) {
+                if (Math.random() > 0.7 && !isSpinning) {
                     const items = document.querySelectorAll('.price-item');
                     const randomItem = items[Math.floor(Math.random() * items.length)];
                     
@@ -950,22 +1333,18 @@
                     }, 1000);
                 }
             }, 3000);
-        });
-        
-        // Секрет: двойной клик на заголовок
-        let titleClicks = 0;
-        document.querySelector('.article-title').addEventListener('dblclick', function() {
-            titleClicks++;
-            if (titleClicks === 2) {
-                this.innerHTML = 'MRBEAST: ВАША ДУША СТОИТ ДЕШЕВЛЕ, ЧЕМ ВЫ ДУМАЛИ';
-                titleClicks = 0;
-                
-                // Меняем фон
-                document.body.style.background = 'linear-gradient(135deg, #1a0000, #00001a)';
+            
+            // Секрет: клик на фото
+            document.querySelector('.money-photo img').addEventListener('click', function() {
+                this.style.filter = 'grayscale(0) contrast(1.2) brightness(1.1)';
                 setTimeout(() => {
-                    document.body.style.background = '';
-                }, 5000);
-            }
+                    this.style.filter = 'grayscale(0.2) contrast(1.05)';
+                }, 1000);
+                
+                if (Math.random() > 0.5) {
+                    showNotification('MrBeast одобряет ваш клик. +100 к харизме.', 'info');
+                }
+            });
         });
     </script>
 </body>
