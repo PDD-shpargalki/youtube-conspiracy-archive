@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фонд развития | Чёрный Архив</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --accent-red: #c41e3a;
+            --accent-yellow: #d4af37;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --border-color: #252530;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .archive-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--accent-red);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Секция с виджетом */
+        .donation-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        @media (max-width: 768px) {
+            .donation-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Левая колонка - описание */
+        .donation-info {
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .donation-info::before {
+            content: 'РАСШИФРОВКА ФОНДА';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--accent-red);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            border-radius: 4px;
+        }
+
+        .fund-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .fund-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid var(--accent-yellow);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .fund-item i {
+            color: var(--accent-yellow);
+        }
+
+        .archive-warning {
+            background: rgba(196, 30, 58, 0.1);
+            border: 1px solid var(--accent-red);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        /* Правая колонка - виджет */
+        .widget-container {
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .widget-header {
+            margin-bottom: 20px;
+        }
+
+        .widget-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-red);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .widget-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .yoomoney-widget {
+            width: 100%;
+            height: 480px;
+            border: none;
+            border-radius: 4px;
+            background: transparent;
+        }
+
+        /* Цели сбора */
+        .goals-section {
+            margin: 60px 0;
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .goals-title {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .goal-card {
+            background: rgba(30, 30, 40, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+        }
+
+        .goal-amount {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin: 15px 0;
+        }
+
+        .goal-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Футер */
+        .donation-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-red);
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 1px solid var(--accent-red);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(196, 30, 58, 0.1);
+        }
+
+        /* Абсурдные стикеры */
+        .archive-sticker {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transform: rotate(5deg);
+            z-index: 1;
+        }
+
+        .sticker-red {
+            background: var(--accent-red);
+            color: white;
+            top: 20px;
+            right: 20px;
+        }
+
+        .sticker-yellow {
+            background: var(--accent-yellow);
+            color: black;
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="archive-header">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-archive"></i>
+                ЧЁРНЫЙ АРХИВ
+            </a>
+            <h1>ФОНД РАЗВИТИЯ</h1>
+            <p class="subtitle">
+                Официальная страница приёма финансовых контрибуций для поддержания 
+                санитарно-бредового состояния архива
+            </p>
+        </header>
+
+        <!-- Основной контент -->
+        <div class="donation-section">
+            <!-- Левая колонка - описание -->
+            <div class="donation-info">
+                <div class="archive-sticker sticker-red">
+                    ДОКУМЕНТ АРХ-007
+                </div>
+                
+                <h2 style="color: var(--accent-yellow); margin-bottom: 20px;">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    РАСШИФРОВКА БЮДЖЕТА
+                </h2>
+                
+                <p style="margin-bottom: 20px;">
+                    Каждая единица валюты, поступающая в фонд, автоматически конвертируется 
+                    в следующие архивные активы:
+                </p>
+                
+                <ul class="fund-list">
+                    <li class="fund-item">
+                        <i class="fas fa-vial"></i>
+                        <span><strong>Чернила для теорий:</strong> 100₽ = 1 мл специальных чернил, устойчивых к правде</span>
+                    </li>
+                    <li class="fund-item">
+                        <i class="fas fa-brain"></i>
+                        <span><strong>Сыворотка абсурда:</strong> 500₽ = доза для одного архивариуса на сутки</span>
+                    </li>
+                    <li class="fund-item">
+                        <i class="fas fa-server"></i>
+                        <span><strong>Серверные галлюцинации:</strong> 1000₽ = 24 часа работы "воображаемых" серверов</span>
+                    </li>
+                    <li class="fund-item">
+                        <i class="fas fa-pizza-slice"></i>
+                        <span><strong>Пицца-подпитка:</strong> 1500₽ = 1 большая пицца для ночной смены архивариусов</span>
+                    </li>
+                </ul>
+                
+                <div class="archive-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>ВАЖНО:</strong> При недостаточном финансировании архив вынужден будет 
+                    перейти на документальную точность, что является прямым нарушением Устава 
+                    и может привести к распаду реальности в радиусе 5 км от серверов.
+                </div>
+                
+                <div class="archive-sticker sticker-yellow">
+                    НЕ ПОДЛЕЖИТ ОБСУЖДЕНИЮ
+                </div>
+            </div>
+
+            <!-- Правая колонка - виджет -->
+            <div class="widget-container">
+                <div class="widget-header">
+                    <h3 class="widget-title">ОПЕРАЦИЯ "ФИНАНСОВОЕ ВМЕШАТЕЛЬСТВО"</h3>
+                    <p class="widget-subtitle">Выберите сумму и способ вторжения в бюджет архива</p>
+                </div>
+                
+                <!-- Виджет ЮMoney -->
+                <iframe 
+                    src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=1ET6NCVR19T.251226&" 
+                    class="yoomoney-widget"
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    scrolling="no">
+                </iframe>
+                
+                <p style="margin-top: 15px; font-size: 0.8rem; color: var(--text-secondary);">
+                    <i class="fas fa-shield-alt"></i>
+                    Транзакции защищены ЮMoney. Ваши данные не попадут в архивы.
+                </p>
+            </div>
+        </div>
+
+        <!-- Цели сбора -->
+        <section class="goals-section">
+            <h2 class="goals-title">СТРАТЕГИЧЕСКИЕ ЦЕЛИ ФОНДА</h2>
+            
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <i class="fas fa-biohazard" style="font-size: 2rem; color: var(--accent-red);"></i>
+                    <div class="goal-amount">25,000₽</div>
+                    <h3>ФАЗА 1: ВЫЖИВАНИЕ</h3>
+                    <p class="goal-description">Архивариусы перестают есть собственные теории</p>
+                </div>
+                
+                <div class="goal-card">
+                    <i class="fas fa-expand-arrows-alt" style="font-size: 2rem; color: var(--accent-yellow);"></i>
+                    <div class="goal-amount">50,000₽</div>
+                    <h3>ФАЗА 2: ЭКСПАНСИЯ</h3>
+                    <p class="goal-description">Новые полки для бредовых гипотез</p>
+                </div>
+                
+                <div class="goal-card">
+                    <i class="fas fa-rocket" style="font-size: 2rem; color: var(--accent-red);"></i>
+                    <div class="goal-amount">100,000₽</div>
+                    <h3>ФАЗА 3: ДОМИНИРОВАНИЕ</h3>
+                    <p class="goal-description">Покупка YouTube для "полного разоблачения"</p>
+                </div>
+                
+                <div class="goal-card">
+                    <i class="fas fa-infinity" style="font-size: 2rem; color: var(--accent-yellow);"></i>
+                    <div class="goal-amount">∞</div>
+                    <h3>ФАЗА 4: АБСОЛЮТ</h3>
+                    <p class="goal-description">Вечный запас абсурда для будущих поколений</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="donation-footer">
+            <p>
+                <i class="fas fa-lock"></i>
+                Все транзакции засекречены. Отчёты уничтожаются сразу после прочтения.
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                Фонд "Чёрный Архив" является сатирическим проектом. 
+                Средства идут на хостинг, домен и кофе для архивариусов.
+            </p>
+            
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Вернуться в архив
+            </a>
+        </footer>
+    </div>
+</body>
+</html>
