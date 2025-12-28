@@ -887,6 +887,19 @@
             });
         });
     </script>
+ card.addEventListener('mouseenter', () => {
+                if (link) {
+                    link.style.transform = 'translateX(5px)';
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                if (link) {
+                    link.style.transform = 'translateX(0)';
+                }
+            });
+        });
+    </script>
 </body>
 <script>
 // Система аналитики Чёрного Архива
@@ -981,5 +994,8 @@
     // Запускаем трекинг
     setTimeout(trackVisit, 100);
 })();
+</script>
+</html>
+</body>
 </script>
 </html>
