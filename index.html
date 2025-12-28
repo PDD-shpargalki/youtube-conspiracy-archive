@@ -888,4 +888,98 @@
         });
     </script>
 </body>
+<script>
+// Система аналитики Чёрного Архива
+(function() {
+    // Генерация уникального ID посетителя
+    const getVisitorId = () => {
+        let visitorId = localStorage.getItem('black_archive_visitor_id');
+        if (!visitorId) {
+            visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('black_archive_visitor_id', visitorId);
+        }
+        return visitorId;
+    };
+
+    // Получение данных о посещении
+    const trackVisit = () => {
+        const visitorId = getVisitorId();
+        const now = new Date();
+        
+        const visitData = {
+            id: visitorId,
+            timestamp: now.toISOString(),
+            date: now.toLocaleDateString('ru-RU'),
+            time: now.toLocaleTimeString('ru-RU'),
+            page: window.location.pathname,
+            referrer: document.referrer || 'direct',
+            userAgent: navigator.userAgent,
+            screen: `${window.screen.width}x${window.screen.height}`,
+            language: navigator.language
+        };
+
+        // Сохраняем посещение
+        let visits = JSON.parse(localStorage.getItem('black_archive_visits') || '[]');
+        visits.push(visitData);
+        
+        // Храним только последние 1000 посещений
+        if (visits.length > 1000) {
+            visits = visits.slice(-1000);
+        }
+        
+        localStorage.setItem('black_archive_visits', JSON.stringify(visits));
+        
+        // Обновляем уникальных посетителей за сегодня
+        updateDailyVisitors(visitorId, now.toLocaleDateString('ru-RU'));
+    };
+
+    // Подсчёт уникальных посетителей за день
+    const updateDailyVisitors = (visitorId, today) => {
+        let dailyStats = JSON.parse(localStorage.getItem('black_archive_daily_stats') || '{}');
+        
+        if (!dailyStats[today]) {
+            dailyStats[today] = {
+                date: today,
+                uniqueVisitors: new Set(),
+                pageViews: 0,
+                pages: {}
+            };
+        }
+        
+        // Добавляем уникального посетителя
+        dailyStats[today].uniqueVisitors = Array.from(
+            new Set([...(dailyStats[today].uniqueVisitors || []), visitorId])
+        );
+        
+        // Считаем просмотры страниц
+        dailyStats[today].pageViews = (dailyStats[today].pageViews || 0) + 1;
+        
+        // Считаем просмотры по страницам
+        const page = window.location.pathname;
+        dailyStats[today].pages[page] = (dailyStats[today].pages[page] || 0) + 1;
+        
+        localStorage.setItem('black_archive_daily_stats', JSON.stringify(dailyStats));
+    };
+
+    // Трекинг времени на странице
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', () => {
+        const timeSpent = Math.round((Date.now() - startTime) / 1000);
+        if (timeSpent > 2) { // Игнорируем быстрые отскоки
+            let timeStats = JSON.parse(localStorage.getItem('black_archive_time_stats') || '[]');
+            timeStats.push({
+                page: window.location.pathname,
+                timeSpent: timeSpent,
+                timestamp: new Date().toISOString()
+            });
+            
+            if (timeStats.length > 500) timeStats = timeStats.slice(-500);
+            localStorage.setItem('black_archive_time_stats', JSON.stringify(timeStats));
+        }
+    });
+
+    // Запускаем трекинг
+    setTimeout(trackVisit, 100);
+})();
+</script>
 </html>
