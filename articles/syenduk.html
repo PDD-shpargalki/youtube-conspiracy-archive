@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРХИВ: СЫЕНДУК - ЛЕКАРСТВО ИЛИ ДИАГНОЗ?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --accent-red: #c41e3a;
+            --accent-blue: #0066cc;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --border-color: #252530;
+            --card-bg: #151520;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            color: var(--accent-red);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Контейнер статьи */
+        .article-container {
+            max-width: 800px;
+            margin: 80px auto 0;
+            padding: 40px 20px;
+        }
+
+        /* Заголовок */
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .classification {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-red), #8b0000);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .article-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Фото */
+        .article-photo {
+            width: 100%;
+            max-width: 700px;
+            margin: 3rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .article-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(0.2) contrast(1.05);
+        }
+
+        /* Основной контент */
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--accent-red);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(196, 30, 58, 0.2);
+        }
+
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            background: rgba(196, 30, 58, 0.05);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Улики */
+        .evidence-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .evidence-item {
+            background: rgba(20, 15, 20, 0.5);
+            border: 1px solid rgba(196, 30, 58, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .evidence-item:hover {
+            border-color: rgba(196, 30, 58, 0.3);
+            transform: translateX(5px);
+        }
+
+        /* Система комментариев */
+        .comments-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .comments-title {
+            font-size: 1.8rem;
+            color: var(--accent-red);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .comment-form {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        .validation-error {
+            color: var(--accent-red);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .submit-btn {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #d12e46;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comments-list {
+            margin-top: 2rem;
+        }
+
+        .comment {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .comment:hover {
+            background: rgba(25, 20, 25, 0.7);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comment-author {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .comment-date {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .comment-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .comment-actions {
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+
+        .delete-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .delete-btn:hover {
+            color: var(--accent-red);
+            background: rgba(196, 30, 58, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-container {
+                margin-top: 60px;
+                padding: 20px 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-archive logo-icon"></i>
+                <span class="mono">Чёрный Архив</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="#comments" class="nav-link">Комментарии</a>
+                <a href="../donate.html" class="nav-link">Фонд</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="article-container">
+        <header class="article-header">
+            <div class="classification">
+                <i class="fas fa-file-medical-alt"></i>
+                ДОКУМЕНТ #002
+            </div>
+            <h1 class="article-title">СЫЕНДУК: ЛЕКАРСТВО ИЛИ ДИАГНОЗ?</h1>
+            <p class="article-subtitle">
+                Расследование случая пациента, который сбежал из психиатрии с 50+ голосами в голове 
+                и заставил миллионы слушать, как он ссорится сам с собой.
+            </p>
+            
+            <div class="article-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Дата публикации: 21.11.2023</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user-md"></i>
+                    <span>Куратор: Д-р Голосовой</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Фото -->
+        <div class="article-photo">
+            <img src="https://s4.iimage.su/s/28/gvqtDDBx07JFPL4wwYMFT9Zehnw7vZCizYibV3qw.png" alt="">
+        </div>
+
+        <!-- Часть 1: Введение -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-hospital"></i>
+                ЧАСТЬ 1: ПАЦИЕНТ НЕ В ПАЛАТЕ
+            </h2>
+            
+            <p class="content-text">
+                Обычный человек озвучивает мультик и говорит: "Нужны актёры". Дмитрий "Сыендук" Карпов 
+                говорит: "Актёры? Я и есть актёры. Все. Даже ёжик на заднем плане — это я в особенно колючем настроении".
+            </p>
+            
+            <p class="content-text">
+                Его главный талант — не диапазон голоса. Его талант — убедить YouTube, что у него в квартире 
+                не живёт 50 разных людей, которые почему-то все говорят в один микрофон.
+            </p>
+        </section>
+
+        <!-- Часть 2: Теория -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-brain"></i>
+                ЧАСТЬ 2: ТЕОРИЯ "ОБЛАЧНОГО ДИКТОРА"
+            </h2>
+            
+            <p class="content-text">
+                Мы провели расследование. Вот что на самом деле произошло:
+            </p>
+            
+            <div class="highlight">
+                <strong>Факт:</strong> Нормальный человек за день записывает один голос. Сыендук записывает целый сериал 
+                с полным составом. Если он молчит больше 10 минут — это не отдых. Это забастовка внутреннего профсоюза актёров.
+            </div>
+            
+            <p class="content-text">
+                Ситуация: один парень, 50+ голосов. Психиатрия называет это диссоциативным расстройством. 
+                YouTube называет это гениальностью. Разница лишь в том, куда направлен выхлоп: в палату №6 или в студию звукозаписи.
+            </p>
+        </section>
+
+        <!-- Часть 3: Улики -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-search"></i>
+                ЧАСТЬ 3: УЛИКИ (ИХ МНОГО)
+            </h2>
+            
+            <ul class="evidence-list">
+                <li class="evidence-item">
+                    <strong>Улика 1:</strong> Он говорит с собой разными голосами.<br>
+                    <em>Вывод:</em> Нормальные люди ведут внутренний диалог. Он ведёт внешний. <strong>Подозрительно.</strong>
+                </li>
+                
+                <li class="evidence-item">
+                    <strong>Улика 2:</strong> В титрах его роликов одно имя повторяется 20 раз.<br>
+                    <em>Вывод:</em> Это не команда. Это <strong>один человек, который считает себя командой.</strong>
+                </li>
+                
+                <li class="evidence-item">
+                    <strong>Улика 3:</strong> Его женские голоса звучат убедительнее мужских.<br>
+                    <em>Вывод:</em> Комплекс? Трансвестизм? <strong>Гениальность?</strong> Отправляем на дополнительное обследование.
+                </li>
+                
+                <li class="evidence-item">
+                    <strong>Улика 4:</strong> Он улыбается, когда озвучивает драматические сцены.<br>
+                    <em>Вывод:</strong> Либо он психопат, либо знает, что всё это — шутка. <strong>Оба варианта страшные.</strong>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Часть 4: Вывод -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <i class="fas fa-gavel"></i>
+                ЧАСТЬ 4: ВЕРДИКТ
+            </h2>
+            
+            <p class="content-text">
+                <strong>ВНИМАНИЕ! СЫЕНДУК НЕ БОЛЬНОЙ!</strong>
+            </p>
+            
+            <p class="content-text">
+                Он — <strong>успешный эксперимент по оптимизации сознания.</strong> В мире, где "быть собой" — скучный мейнстрим, 
+                он выбрал стратегию "быть всеми сразу".
+            </p>
+            
+            <div class="highlight">
+                Психушка? Это был инкубатор. Шизофрения? Это мультиплатформенная совместимость. 
+                Побег? Это первый эпизод сериала, который мы все смотрим, даже не зная об этом.
+            </div>
+            
+            <p class="content-text">
+                Он не захватил YouTube. Он построил на нём общежитие для своих личностей. 
+                И мы все платим за аренду просмотрами.
+            </p>
+            
+            <p class="content-text">
+                <strong>Заключение:</strong> Дмитрий, если читаешь (одной из своих 50 субличностей) — 
+                ты не беглец. Ты — риелтор распавшегося сознания. И это гениально.
+            </p>
+        </section>
+
+        <!-- Система комментариев -->
+        <section id="comments" class="comments-section">
+            <h2 class="comments-title">
+                <i class="fas fa-comment-medical"></i>
+                МЕДИЦИНСКИЕ ЗАКЛЮЧЕНИЯ
+            </h2>
+            
+            <div class="comment-form">
+                <div class="form-group">
+                    <label class="form-label">ВАШЕ ИМЯ (или диагноз):</label>
+                    <input type="text" class="form-input" id="commentName" placeholder="Д-р Шизофоник, Пациент №..." maxlength="50">
+                    <div class="validation-error" id="nameError">Имя должно быть от 2 до 50 символов</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">ВАШЕ ЗАКЛЮЧЕНИЕ:</label>
+                    <textarea class="form-textarea" id="commentText" placeholder="Ваш анализ случая пациента Карпова..." maxlength="500"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/500</div>
+                    <div class="validation-error" id="textError">Текст должен быть от 10 до 500 символов</div>
+                </div>
+                
+                <button class="submit-btn" id="submitBtn" onclick="validateAndAddComment()">
+                    <i class="fas fa-file-medical"></i> ДОБАВИТЬ ЗАКЛЮЧЕНИЕ
+                </button>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <!-- Комментарии загружаются здесь -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Система комментариев с модерацией
+        let comments = [
+            {
+                id: 'comment_' + Date.now(),
+                author: "Д-р Мультифония",
+                date: "21.11.2023 | 14:30",
+                text: "Классический случай поливокального расстройства с коммерческой ремиссией. Пациент сублимировал симптоматику в карьеру. Рекомендация: продолжать в том же духе.",
+                canDelete: false
+            },
+            {
+                id: 'comment_' + (Date.now() + 1),
+                author: "Санитарка Людмила",
+                date: "21.11.2023 | 15:45",
+                text: "Я всё слышала! Лампочки действительно горели фиолетовым. И стены говорили голосом Морти. До сих пор мою полы под его закадровую речь.",
+                canDelete: false
+            }
+        ];
+
+        // Запрещённые слова
+        const bannedWords = [
+            /ху[йеёя]/gi, /п[иеё]зд/gi, /бля/gi, /еба/gi, /гондон/gi, /мудак/gi,
+            /дебил/gi, /идиот/gi, /дурак/gi, /лох/gi, /сука/gi, /сволоч/gi
+        ];
+
+        // Загрузка комментариев
+        function loadComments() {
+            const saved = localStorage.getItem('syenduk_comments');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    // Проверяем на модерацию
+                    comments = parsed.filter(comment => moderateText(comment.text).valid);
+                } catch (e) {
+                    console.error('Ошибка загрузки:', e);
+                }
+            }
+        }
+
+        // Сохранение комментариев
+        function saveComments() {
+            try {
+                localStorage.setItem('syenduk_comments', JSON.stringify(comments));
+            } catch (e) {
+                console.error('Ошибка сохранения:', e);
+            }
+        }
+
+        // Модерация текста
+        function moderateText(text) {
+            // Запрещённые слова
+            for (const pattern of bannedWords) {
+                if (pattern.test(text)) {
+                    return { valid: false, reason: "Обнаружена нецензурная лексика" };
+                }
+            }
+            
+            // Длина
+            if (text.trim().length < 10) {
+                return { valid: false, reason: "Текст слишком короткий (минимум 10 символов)" };
+            }
+            
+            if (text.length > 500) {
+                return { valid: false, reason: "Текст слишком длинный (максимум 500 символов)" };
+            }
+            
+            return { valid: true };
+        }
+
+        // Отображение комментариев
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            comments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                commentDiv.dataset.id = comment.id;
+                
+                let deleteBtn = '';
+                if (comment.canDelete) {
+                    deleteBtn = `
+                        <div class="comment-actions">
+                            <button class="delete-btn" onclick="deleteComment('${comment.id}')">
+                                <i class="fas fa-trash"></i> Удалить
+                            </button>
+                        </div>
+                    `;
+                }
+
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(comment.author)}</span>
+                        <span class="comment-date">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-content">
+                        ${escapeHtml(comment.text)}
+                    </div>
+                    ${deleteBtn}
+                `;
+                
+                container.appendChild(commentDiv);
+            });
+        }
+
+        // Валидация формы
+        function validateForm() {
+            const name = document.getElementById('commentName').value.trim();
+            const text = document.getElementById('commentText').value.trim();
+            
+            let isValid = true;
+            
+            // Имя
+            if (name.length < 2 || name.length > 50) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+            }
+            
+            // Текст
+            const textValidation = moderateText(text);
+            const textError = document.getElementById('textError');
+            if (!textValidation.valid) {
+                textError.textContent = textValidation.reason;
+                textError.style.display = 'block';
+                isValid = false;
+            } else {
+                textError.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+
+        // Добавление комментария
+        function validateAndAddComment() {
+            if (!validateForm()) {
+                showNotification('Исправьте ошибки в форме', 'error');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> МОДЕРАЦИЯ...';
+            
+            setTimeout(() => {
+                addComment();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-file-medical"></i> ДОБАВИТЬ ЗАКЛЮЧЕНИЕ';
+            }, 1500);
+        }
+
+        function addComment() {
+            const name = document.getElementById('commentName').value.trim();
+            const text = document.getElementById('commentText').value.trim();
+            
+            const date = new Date();
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+            
+            const newComment = {
+                id: 'comment_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                author: name || 'Анонимный диагност',
+                date: dateStr,
+                text: text,
+                canDelete: true // Новые комментарии можно удалять
+            };
+            
+            comments.unshift(newComment);
+            saveComments();
+            renderComments();
+            
+            // Очистка формы
+            document.getElementById('commentName').value = '';
+            document.getElementById('commentText').value = '';
+            document.getElementById('charCount').textContent = '0';
+            
+            showNotification('Заключение добавлено в архив', 'success');
+        }
+
+        // Удаление комментария
+        function deleteComment(commentId) {
+            if (confirm('Удалить это заключение?')) {
+                const index = comments.findIndex(c => c.id === commentId);
+                if (index !== -1 && comments[index].canDelete) {
+                    comments.splice(index, 1);
+                    saveComments();
+                    renderComments();
+                    showNotification('Заключение удалено', 'success');
+                }
+            }
+        }
+
+        // Счётчик символов
+        document.getElementById('commentText').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('charCount').textContent = count;
+        });
+
+        // Уведомления
+        function showNotification(message, type) {
+            // Создаём уведомление
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '4px';
+            notification.style.background = type === 'error' ? 'var(--accent-red)' : '#2e7d32';
+            notification.style.color = 'white';
+            notification.style.fontFamily = 'JetBrains Mono, monospace';
+            notification.style.zIndex = '10000';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.3s';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Экранирование HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Система отслеживания посетителей
+        (function() {
+            const trackVisit = () => {
+                const visitorId = localStorage.getItem('black_archive_visitor_id') || 
+                                 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('black_archive_visitor_id', visitorId);
+                
+                const visit = {
+                    id: visitorId,
+                    page: '/articles/syenduk.html',
+                    timestamp: new Date().toISOString(),
+                    date: new Date().toLocaleDateString('ru-RU')
+                };
+                
+                let visits = JSON.parse(localStorage.getItem('black_archive_visits') || '[]');
+                visits.push(visit);
+                if (visits.length > 1000) visits = visits.slice(-1000);
+                localStorage.setItem('black_archive_visits', JSON.stringify(visits));
+            };
+            
+            setTimeout(trackVisit, 100);
+        })();
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComments();
+            renderComments();
+            
+            // Автосохранение черновика
+            const textarea = document.getElementById('commentText');
+            textarea.addEventListener('input', function() {
+                localStorage.setItem('syenduk_draft', this.value);
+            });
+            
+            // Восстановление черновика
+            const draft = localStorage.getItem('syenduk_draft');
+            if (draft) {
+                textarea.value = draft;
+                document.getElementById('charCount').textContent = draft.length;
+            }
+        });
+    </script>
+</body>
+</html>
