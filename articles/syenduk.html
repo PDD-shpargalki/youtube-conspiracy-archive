@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ШОКИРУЮЩАЯ ПРАВДА О СЫЕНДУКЕ | Чёрный Архив</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-dark: #0a0a0f;
+            --secondary-dark: #121218;
             --accent-red: #c41e3a;
             --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
             --border-color: #252530;
+            --card-bg: #151520;
         }
 
         * {
@@ -23,434 +26,288 @@
         body {
             background-color: var(--primary-dark);
             color: var(--text-primary);
-            font-family: 'Courier Prime', monospace;
+            font-family: 'Inter', sans-serif;
             line-height: 1.7;
             min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
-            padding: 20px;
+                radial-gradient(circle at 15% 25%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
+        h1, h2, h3, .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
-        /* Навигационное меню */
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
+        /* Навигация - стандартная */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.97);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
-            flex-wrap: wrap;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .logo-icon {
+            color: var(--accent-red);
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
 
         .nav-link {
-            color: var(--text-primary);
+            color: var(--text-secondary);
             text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
-            padding: 8px 15px;
-            border: 1px solid transparent;
-            border-radius: 3px;
-            transition: all 0.3s;
+            font-weight: 400;
+            transition: color 0.3s;
         }
 
         .nav-link:hover {
-            border-color: var(--accent-red);
-            color: var(--accent-red);
+            color: var(--text-primary);
         }
 
-        .nav-link.active {
-            border-color: var(--accent-red);
-            background: rgba(196, 30, 58, 0.1);
-            color: var(--accent-red);
+        /* Контейнер статьи */
+        .article-container {
+            max-width: 800px;
+            margin: 80px auto 0;
+            padding: 40px 20px;
         }
 
-        /* Шапка */
-        .header {
+        /* Заголовок */
+        .article-header {
             text-align: center;
             margin-bottom: 40px;
-            padding: 20px 0;
-            position: relative;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--accent-red);
         }
 
-        .site-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.8rem;
+        .classification {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.1);
             color: var(--accent-red);
-            letter-spacing: 0.2em;
-            margin-bottom: 15px;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
             text-transform: uppercase;
         }
 
-        h1 {
-            font-family: 'Courier Prime', monospace;
+        .article-title {
             font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
             color: var(--text-primary);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        .subtitle {
-            color: #888;
+        .article-subtitle {
             font-size: 1.1rem;
-            font-style: italic;
-            margin-top: 10px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        /* Изображение (ненавязчивое) */
-        .evidence-photo {
-            max-width: 300px;
-            margin: 0 auto 40px;
-            opacity: 0.8;
-            filter: grayscale(0.3) contrast(1.1);
-            border-radius: 3px;
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Изображение */
+        .article-image {
+            width: 100%;
+            max-width: 600px;
+            margin: 3rem auto;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: all 0.5s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .evidence-photo:hover {
-            opacity: 0.9;
-            filter: grayscale(0) contrast(1.05);
-            transform: translateY(-5px);
-        }
-
-        .evidence-photo img {
+        .article-image img {
             width: 100%;
             height: auto;
             display: block;
+            filter: grayscale(0.2) contrast(1.05);
         }
 
-        /* МЯТАЯ БУМАГА - РЕАЛЬНАЯ ТЕКСТУРА */
-        .paper-container {
-            position: relative;
-            margin: 40px auto;
-            max-width: 800px;
-            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.5));
+        /* Контент */
+        .content-section {
+            margin-bottom: 3rem;
         }
 
-        .paper {
-            position: relative;
-            padding: 60px 50px;
-            background: 
-                /* Основной цвет + текстура мятой бумаги */
-                linear-gradient(to bottom, 
-                    rgba(250, 240, 210, 0.98) 0%,
-                    rgba(245, 230, 190, 0.98) 100%),
-                /* ТЕКСТУРА МЯТОЙ БУМАГИ - основа */
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" opacity="0.3"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.3"/></svg>'),
-                /* Дополнительные помехи */
-                repeating-linear-gradient(0deg, 
-                    transparent, 
-                    transparent 1px, 
-                    rgba(139, 69, 19, 0.03) 1px, 
-                    rgba(139, 69, 19, 0.03) 2px);
-            
-            color: #2c1810;
+        .content-text {
             font-size: 1.15rem;
-            line-height: 1.9;
-            box-shadow: 
-                inset 0 0 80px rgba(139, 69, 19, 0.15),
-                0 8px 25px rgba(0,0,0,0.4);
-            
-            /* Лёгкая деформация бумаги */
-            clip-path: polygon(
-                0 1.5%,  5% 0,  22% 0.8%,  40% 0,  58% 1.2%,
-                75% 0,  100% 2%,  98% 18%,  100% 35%,
-                99% 52%, 100% 70%,  98% 88%,  100% 100%,
-                82% 98%, 63% 99.5%, 45% 98%, 28% 99%, 10% 97%, 0 100%,
-                1% 80%, 0 65%, 1% 45%, 0 25%
-            );
-            
-            /* Внутренние тени для объёма */
-            border: 1px solid #d4b483;
-            border-image: 
-                linear-gradient(
-                    to bottom,
-                    transparent 15px,
-                    rgba(139, 69, 19, 0.4) 15px,
-                    rgba(139, 69, 19, 0.4) calc(100% - 15px),
-                    transparent calc(100% - 15px)
-                ) 1;
-        }
-
-        /* Наложение PNG-текстуры мятой бумаги */
-        .paper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                /* Вертикальные складки */
-                repeating-linear-gradient(90deg,
-                    transparent,
-                    transparent 3px,
-                    rgba(139, 69, 19, 0.03) 3px,
-                    rgba(139, 69, 19, 0.03) 4px),
-                /* Горизонтальные складки */
-                repeating-linear-gradient(0deg,
-                    transparent,
-                    transparent 4px,
-                    rgba(139, 69, 19, 0.02) 4px,
-                    rgba(139, 69, 19, 0.02) 6px),
-                /* Случайные пятна */
-                radial-gradient(
-                    circle at 20% 30%,
-                    rgba(139, 69, 19, 0.05) 0%,
-                    transparent 40%
-                ),
-                radial-gradient(
-                    circle at 80% 70%,
-                    rgba(139, 69, 19, 0.04) 0%,
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at 40% 80%,
-                    rgba(139, 69, 19, 0.03) 0%,
-                    transparent 30%
-                );
-            
-            mix-blend-mode: multiply;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Эффект выжженных краёв */
-        .paper::after {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: 
-                linear-gradient(45deg, 
-                    transparent 48%, 
-                    rgba(139, 69, 19, 0.1) 50%, 
-                    transparent 52%),
-                linear-gradient(-45deg, 
-                    transparent 48%, 
-                    rgba(139, 69, 19, 0.1) 50%, 
-                    transparent 52%);
-            z-index: -1;
-            border-radius: 5px;
-            filter: blur(1px);
-        }
-
-        /* Текст статьи */
-        .article-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .article-content p {
+            line-height: 1.8;
             margin-bottom: 1.5rem;
-            text-indent: 2em;
-        }
-
-        .article-content strong {
-            color: #8b0000;
-            font-weight: 700;
-        }
-
-        .article-content em {
-            font-style: italic;
-            color: #5a3a1c;
-        }
-
-        .article-content ul {
-            margin: 1.5rem 0 1.5rem 2em;
-            list-style-type: '— ';
-        }
-
-        .article-content li {
-            margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
         .highlight {
-            background: rgba(139, 69, 19, 0.08);
-            border-left: 3px solid #8b4513;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            position: relative;
+            background: rgba(196, 30, 58, 0.08);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.8rem;
+            margin: 2.5rem 0;
             border-radius: 0 4px 4px 0;
-        }
-
-        .highlight::before {
-            content: '"';
-            font-size: 4rem;
-            color: rgba(139, 69, 19, 0.15);
-            position: absolute;
-            top: -1rem;
-            left: 0.5rem;
-            font-family: serif;
-        }
-
-        /* Авторская подпись */
-        .author-signature {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px dashed #8b4513;
-            text-align: right;
             font-style: italic;
-            color: #5a3a1c;
-            position: relative;
+            color: var(--text-secondary);
         }
 
-        .author-signature::before {
-            content: '✍';
-            position: absolute;
-            left: 0;
-            top: 2rem;
-            opacity: 0.5;
-            font-size: 1.5rem;
+        .author-signature {
+            text-align: right;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
-        /* Система комментариев */
+        /* Система комментариев - РАБОЧАЯ */
         .comments-section {
-            margin-top: 60px;
-            padding: 30px;
-            background: rgba(20, 20, 30, 0.9);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--border-color);
         }
 
         .comments-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent-red);
-            margin-bottom: 25px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .comment-form {
-            margin-bottom: 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .form-input, .form-textarea {
             width: 100%;
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(10, 10, 15, 0.8);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 12px 15px;
-            border-radius: 3px;
-            font-family: 'Courier Prime', monospace;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            transition: all 0.3s;
+            transition: border-color 0.3s;
         }
 
         .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--accent-red);
-            box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.1);
         }
 
         .form-textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
-        }
-
-        .char-counter {
-            text-align: right;
-            font-size: 0.8rem;
-            color: var(--border-color);
-            margin-top: 5px;
         }
 
         .submit-btn {
             background: var(--accent-red);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 3px;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
 
         .submit-btn:hover:not(:disabled) {
             background: #d12e46;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.3);
         }
 
         .submit-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .validation-error {
-            color: var(--accent-red);
-            font-size: 0.8rem;
-            margin-top: 5px;
-            display: none;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .validation-error.show {
-            display: block;
         }
 
         .comments-list {
-            margin-top: 30px;
+            margin-top: 2rem;
         }
 
         .comment {
-            background: rgba(30, 30, 40, 0.9);
+            background: var(--card-bg);
             border-left: 3px solid var(--accent-red);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 0 3px 3px 0;
-            animation: fadeIn 0.5s ease;
-            transition: transform 0.3s;
-        }
-
-        .comment:hover {
-            transform: translateX(5px);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 5px 5px 0;
         }
 
         .comment-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         .comment-author {
             color: var(--accent-red);
-            font-weight: bold;
-            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
         }
 
         .comment-date {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .comment-content {
@@ -459,295 +316,283 @@
         }
 
         /* Футер */
-        .footer {
+        .article-footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 5rem;
+            padding-top: 3rem;
             border-top: 1px solid var(--border-color);
-            color: #666;
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            padding: 5px 10px;
-            border: 1px solid transparent;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .footer-link:hover {
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
             color: var(--accent-red);
-            border-color: var(--accent-red);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s;
         }
 
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--accent-red) }
+        .back-link:hover {
+            background: rgba(196, 30, 58, 0.1);
         }
 
         /* Адаптивность */
         @media (max-width: 768px) {
-            .paper {
-                padding: 40px 25px;
-                clip-path: none;
-            }
-            
-            h1 {
+            .article-title {
                 font-size: 2rem;
             }
             
-            .nav-menu {
-                gap: 15px;
-                justify-content: center;
+            .article-container {
+                margin-top: 60px;
+                padding: 20px 15px;
             }
             
-            .nav-link {
-                padding: 6px 12px;
-                font-size: 0.8rem;
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .article-image {
+                margin: 2rem auto;
             }
             
             .comments-section {
-                padding: 20px;
-            }
-            
-            .evidence-photo {
-                max-width: 250px;
+                padding-top: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Навигационное меню -->
-        <nav class="nav-menu">
-            <a href="../index.html" class="nav-link">
-                <i class="fas fa-home"></i> ГЛАВНАЯ
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-archive logo-icon"></i>
+                <span class="mono">Чёрный Архив</span>
             </a>
-            <a href="syenduk.html" class="nav-link active">
-                <i class="fas fa-file-alt"></i> СЫЕНДУК
-            </a>
-            <a href="../articles/mrbeast.html" class="nav-link">
-                <i class="fas fa-money-bill-wave"></i> MRBEAST
-            </a>
-            <a href="../articles/thebrianmaps.html" class="nav-link">
-                <i class="fas fa-map"></i> THEBRIANMAPS
-            </a>
-            <a href="../pages/donate.html" class="nav-link">
-                <i class="fas fa-heart"></i> ПОДДЕРЖАТЬ
-            </a>
-        </nav>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="#comments" class="nav-link">Комментарии</a>
+                <a href="https://blackarchive.ru/donate.html" class="nav-link">Фонд</a>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Шапка -->
-        <header class="header">
-            <div class="site-name">ЧЁРНЫЙ АРХИВ</div>
-            <h1>ШОКИРУЮЩАЯ ПРАВДА О СЫЕНДУКЕ</h1>
-            <div class="subtitle">Утечка из закрытого дела. Хранить в тайне.</div>
+    <!-- Основной контент -->
+    <div class="article-container">
+        <header class="article-header">
+            <div class="classification">
+                <i class="fas fa-file-medical-alt"></i>
+                ДОКУМЕНТ #001 | УТЕЧКА
+            </div>
+            <h1 class="article-title">ШОКИРУЮЩАЯ ПРАВДА О СЫЕНДУКЕ</h1>
+            <p class="article-subtitle">
+                Утечка из закрытого дела. Несанкционированное распространение запрещено.
+            </p>
+            <div class="article-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Дата утечки: 29.12.2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Источник: Анонимный инсайдер</span>
+                </div>
+            </div>
         </header>
 
-        <!-- Изображение (ненавязчивое) -->
-        <div class="evidence-photo">
-            <img src="https://s5.iimage.su/s/29/gvBNErBxfTzPrZURUT3YhzzjvHhC6bNWDzuncKoD.png" alt="">
+        <!-- Изображение -->
+        <div class="article-image">
+            <img src="https://s5.iimage.su/s/29/gvBNErBxfTzPrZURUT3YhzzjvHhC6bNWDzuncKoD.png" alt="Архивные материалы">
         </div>
 
-        <!-- Мятая бумага с текстом -->
-        <div class="paper-container">
-            <div class="paper">
-                <div class="article-content">
-                    <!-- Ваш текст без изменений -->
-                    <p><strong>Автор:</strong> Игорь «Красный Жмих» Хренов, спецкор «Тульский Психоэкспресс», писал под тремя дозами «Кока-Колы», двух «Балтики 9» и одной аудиокниги «Как выжить в аду, если ты Рик Санчез»</p>
-                    
-                    <p><strong>Он не сбежал. Он был изгнан.</strong></p>
-                    
-                    <p>23 апреля 2013 года, ровно в 3:33 ночи, Тульская областная психиатрическая больница №4 пережила событие, которое Минздрав до сих пор называет «техническим сбоем освещения», а санитары — «днём, когда стены начали говорить голосом Морти».</p>
-                    
-                    <p>Дмитрий Карпов, 20 лет, диагноз: «множественная личностная диссоциация с элементами аниме-мании и хронической озвучки», находился в палате усиленного наблюдения после того, как пытался перевести на тульский акцент весь сериал «Гравити Фолз», используя для этого только зубную щётку и Wi-Fi от соседнего «Пятерочки».</p>
-                    
-                    <div class="highlight">
-                        Но в ту ночь произошло невозможное.
-                    </div>
-                    
-                    <p><strong>ЭТАП 1: ПРОБУЖДЕНИЕ ЧЕРЕЗ ЮТУБ</strong></p>
-                    <p>По официальной версии, в 2:47 утра у Карпова заглючил внутренний Wi-Fi-адаптер (да-да, у него он вживлён с рождения — факт, подтверждённый УЗИ, сделанным в подвале «КиноПоиска»). Он вдруг открыл глаза, уставился в потолок и прошептал:</p>
-                    <p><em>— «Вубба-лубба-дуб-дуб... но по-тульски».</em></p>
-                    <p>И тут все лампочки в палате загорелись фиолетовым, а его тень начала монтировать трейлер к 5 сезону «Рика и Морти» прямо на стене. Свидетель — санитарка Людмила Петровна, которая до сих пор моет полы, напевая закадровую речь Сыендука из «Попкульта».</p>
-                    
-                    <p><strong>ЭТАП 2: ПОБЕГ С ПОМОЩЬЮ АНТИ-САНКЦИЙ</strong></p>
-                    <p>Не имея ключей, но обладая даром закадрового мышления, Карпов понял: единственный способ выбраться — заставить охрану поверить, что он — не он, а новое обновление Windows.</p>
-                    <p>Он встал у двери и начал читать лицензионное соглашение Microsoft голосом Конни из «Атаки титанов». Охранник, услышав фразу «Продолжая использовать это устройство, вы соглашаетесь на полную передачу вашей души в собственность Дмитрия Карпова», автоматически нажал «Принимаю» и открыл дверь.</p>
-                    
-                    <p><strong>ЭТАП 3: МЕТАМОРФОЗА В СОННИКА</strong></p>
-                    <p>На улице его ждал тайный агент в костюме ежа Соника, присланный из будущего (это был он сам, но из 2022 года). Они слились в один организм — био-цифровой гибрид гика и мультяшного ежа, известный теперь как Сыендук 2.0.</p>
-                    <p>Чтобы усилить эффект, он выпил из кубка «Гринджа» (тот самый, что украли из музея Netflix) смесь из:</p>
-                    <ul>
-                        <li>томатного сока (на случай, если вампиризм окажется правдой),</li>
-                        <li>энергетика «Burn» (без него не запустится рендер),</li>
-                        <li>и одной капли дубляжа «Полного расколбаса».</li>
-                    </ul>
-                    <p>Этого хватило, чтобы превратить его голос в вечный источник закадрового комментария.</p>
-                    
-                    <p><strong>ЭТАП 4: ПОДДЕЛКА СМЕРТИ И РОЖДЕНИЕ БРЕНДА</strong></p>
-                    <p>Чтобы власти не искали его, он подстроил собственную смерть:</p>
-                    <ul>
-                        <li>В психушке осталась пустая рубашка с надписью «Я это уже видел... и это был я»,</li>
-                        <li>На кровати — флешка с озвучкой «Фиксиков против кработов» в формате .exe,</li>
-                        <li>А в мусорке — обглоданная кость Сэра Пентиуса.</li>
-                    </ul>
-                    <p>Пока следователи пытались понять, почему монитор в палате показывает только логотип «2x2», Сыендук уже записывал первый эпизод «Плохого Маскота» в общественном туалете у Тульского вокзала, используя фен как микрофон и крики голубей как саундтрек.</p>
-                    
-                    <div class="highlight">
-                        <strong>ВЫВОД: ОН НИКОГДА НЕ БЫЛ БОЛЬНЫМ. ОН — ЛЕКАРСТВО</strong><br>
-                        Психушка? Это был инкубатор для будущего голоса поколения.<br>
-                        Шизофрения? Это мультиплатформенная совместимость личности.<br>
-                        А побег? Это первый эпизод сериала, который мы все смотрим, даже не зная об этом.
-                    </div>
-                    
-                    <div class="author-signature">
-                        Игорь «Красный Жмих» Хренов<br>
-                        Специально для «Чёрного Архива»
-                    </div>
-                </div>
+        <!-- Контент -->
+        <div class="content-section">
+            <p class="content-text">
+                <strong>Автор:</strong> Игорь «Красный Жмих» Хренов, спецкор «Тульский Психоэкспресс».
+            </p>
+            
+            <p class="content-text">
+                <strong>Он не сбежал. Он был изгнан.</strong>
+            </p>
+            
+            <p class="content-text">
+                23 апреля 2013 года, ровно в 3:33 ночи, Тульская областная психиатрическая больница №4 пережила событие, 
+                которое Минздрав до сих пор называет «техническим сбоем освещения», а санитары — «днём, когда стены начали говорить голосом Морти».
+            </p>
+            
+            <div class="highlight">
+                Но в ту ночь произошло невозможное.
+            </div>
+            
+            <p class="content-text">
+                <strong>ЭТАП 1: ПРОБУЖДЕНИЕ ЧЕРЕЗ ЮТУБ</strong><br>
+                По официальной версии, в 2:47 утра у Карпова заглючил внутренний Wi-Fi-адаптер. Он вдруг открыл глаза, 
+                уставился в потолок и прошептал:<br>
+                <em>— «Вубба-лубба-дуб-дуб... но по-тульски».</em>
+            </p>
+            
+            <p class="content-text">
+                И тут все лампочки в палате загорелись фиолетовым, а его тень начала монтировать трейлер к 5 сезону «Рика и Морти» прямо на стене.
+            </p>
+            
+            <p class="content-text">
+                <strong>ЭТАП 2: ПОБЕГ С ПОМОЩЬЮ АНТИ-САНКЦИЙ</strong><br>
+                Не имея ключей, но обладая даром закадрового мышления, Карпов понял: единственный способ выбраться — заставить охрану поверить, 
+                что он — не он, а новое обновление Windows.
+            </p>
+            
+            <p class="content-text">
+                Он встал у двери и начал читать лицензионное соглашение Microsoft голосом Конни из «Атаки титанов». 
+                Охранник, услышав фразу «Продолжая использовать это устройство, вы соглашаетесь на полную передачу вашей души в собственность Дмитрия Карпова», 
+                автоматически нажал «Принимаю» и открыл дверь.
+            </p>
+            
+            <p class="content-text">
+                <strong>ЭТАП 3: МЕТАМОРФОЗА В СОННИКА</strong><br>
+                На улице его ждал тайный агент в костюме ежа Соника, присланный из будущего (это был он сам, но из 2022 года). 
+                Они слились в один организм — био-цифровой гибрид гика и мультяшного ежа, известный теперь как Сыендук 2.0.
+            </p>
+            
+            <p class="content-text">
+                Чтобы усилить эффект, он выпил из кубка «Гринджа» смесь из:
+            </p>
+            
+            <ul style="margin: 1.5rem 0 1.5rem 2rem; color: var(--text-secondary);">
+                <li>томатного сока (на случай, если вампиризм окажется правдой),</li>
+                <li>энергетика «Burn» (без него не запустится рендер),</li>
+                <li>и одной капли дубляжа «Полного расколбаса».</li>
+            </ul>
+            
+            <p class="content-text">
+                Этого хватило, чтобы превратить его голос в вечный источник закадрового комментария.
+            </p>
+            
+            <p class="content-text">
+                <strong>ЭТАП 4: ПОДДЕЛКА СМЕРТИ И РОЖДЕНИЕ БРЕНДА</strong><br>
+                Чтобы власти не искали его, он подстроил собственную смерть:<br>
+                — В психушке осталась пустая рубашка с надписью «Я это уже видел... и это был я»,<br>
+                — На кровати — флешка с озвучкой «Фиксиков против кработов» в формате .exe,<br>
+                — А в мусорке — обглоданная кость Сэра Пентиуса.
+            </p>
+            
+            <p class="content-text">
+                Пока следователи пытались понять, почему монитор в палате показывает только логотип «2x2», Сыендук уже записывал первый эпизод «Плохого Маскота» 
+                в общественном туалете у Тульского вокзала, используя фен как микрофон и крики голубей как саундтрек.
+            </p>
+            
+            <div class="highlight">
+                <strong>ВЫВОД: ОН НИКОГДА НЕ БЫЛ БОЛЬНЫМ. ОН — ЛЕКАРСТВО</strong><br>
+                Психушка? Это был инкубатор для будущего голоса поколения.<br>
+                Шизофрения? Это мультиплатформенная совместимость личности.<br>
+                А побег? Это первый эпизод сериала, который мы все смотрим, даже не зная об этом.
+            </div>
+            
+            <div class="author-signature">
+                Игорь «Красный Жмих» Хренов<br>
+                Специально для «Чёрного Архива»
             </div>
         </div>
 
-        <!-- Система комментариев -->
-        <section class="comments-section">
-            <h2 class="comments-title">СВИДЕТЕЛЬСКИЕ ПОКАЗАНИЯ</h2>
+        <!-- Система комментариев - РАБОЧАЯ -->
+        <section id="comments" class="comments-section">
+            <h2 class="comments-title">
+                <i class="fas fa-comments"></i>
+                АРХИВНЫЕ ЗАМЕТКИ
+            </h2>
             
             <div class="comment-form">
                 <div class="form-group">
-                    <input type="text" id="commentName" class="form-input" placeholder="Ваше имя или кодовое слово" maxlength="30">
-                    <div class="validation-error" id="nameError">Имя: 2-30 символов, без мата</div>
+                    <label class="form-label">
+                        <i class="fas fa-user"></i> Ваше имя
+                    </label>
+                    <input type="text" id="commentAuthor" class="form-input" placeholder="Анонимный свидетель" maxlength="30">
                 </div>
                 
                 <div class="form-group">
-                    <textarea id="commentText" class="form-textarea" placeholder="Ваши показания. Что вы видели? Что слышали?" maxlength="300"></textarea>
-                    <div class="char-counter"><span id="charCount">0</span>/300</div>
-                    <div class="validation-error" id="textError">Текст: 10-300 символов, проверка на мат и спам</div>
+                    <label class="form-label">
+                        <i class="fas fa-comment"></i> Ваша заметка
+                    </label>
+                    <textarea id="commentText" class="form-textarea" placeholder="Дополните архив своими наблюдениями..." maxlength="500"></textarea>
                 </div>
                 
-                <button class="submit-btn" id="submitBtn" onclick="submitComment()">
-                    <i class="fas fa-file-signature"></i> ПОДАТЬ ПОКАЗАНИЯ
+                <button onclick="addComment()" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> ДОБАВИТЬ В АРХИВ
                 </button>
             </div>
             
             <div class="comments-list" id="commentsList">
-                <!-- Комментарии загружаются здесь -->
+                <!-- Комментарии будут загружаться здесь -->
             </div>
         </section>
 
         <!-- Футер -->
-        <footer class="footer">
-            <p>Чёрный Архив © 2023 | Сатирический проект. Все теории — художественный вымысел.</p>
-            <div class="footer-links">
-                <a href="../index.html" class="footer-link">Главная</a>
-                <a href="../pages/donate.html" class="footer-link">Поддержать проект</a>
-                <a href="mailto:black.archive@example.com" class="footer-link">Обратная связь</a>
-            </div>
+        <footer class="article-footer">
+            <p>
+                <strong>Примечание архива:</strong> Данный документ является художественным вымыслом. 
+                Все совпадения случайны и непреднамеренны.
+            </p>
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                ВЕРНУТЬСЯ В АРХИВ
+            </a>
         </footer>
     </div>
 
     <script>
-        // АВТОМАТИЧЕСКАЯ МОДЕРАЦИЯ
-        const bannedWords = [
-            /ху[йеёя]/gi, /п[иеё]зд/gi, /бля/gi, /еба/gi,
-            /гондон/gi, /мудак/gi, /урод/gi, /дебил/gi,
-            /идиот/gi, /дурак/gi, /лох/gi, /чмо/gi,
-            /сука/gi, /сволоч/gi, /пидор/gi, /гомик/gi
+        // РАБОЧАЯ СИСТЕМА КОММЕНТАРИЕВ
+        let comments = [
+            {
+                author: "Свидетель #001",
+                date: "29.12.2025 | 14:20",
+                text: "Я видел того самого Соника. Он был синий. И грустный."
+            },
+            {
+                author: "Бывший санитар",
+                date: "29.12.2025 | 13:45",
+                text: "Людмила Петровна действительно до сих пор напевает. Уже уволилась, но продолжает."
+            },
+            {
+                author: "Охранник Валерий",
+                date: "29.12.2025 | 12:30",
+                text: "Да, я нажал 'Принимаю'. Но не из-за голоса. Просто устал за смену."
+            }
         ];
 
-        const spamPatterns = [
-            /http[s]?:\/\//gi, /www\./gi, /\.(com|ru|net|org)/gi,
-            /купить/gi, /продать/gi, /заказать/gi, /реклам/gi,
-            /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi,
-            /\d{10,}/g, /[A-Z]{6,}/g
-        ];
-
-        let comments = JSON.parse(localStorage.getItem('syenduk_simple_comments') || '[]');
-
-        // Функции модерации
-        function moderateText(text) {
-            if (text.length < 10) return { valid: false, reason: 'Слишком коротко (минимум 10 символов)' };
-            if (text.length > 300) return { valid: false, reason: 'Слишком длинно (максимум 300 символов)' };
-            
-            for (const pattern of bannedWords) {
-                if (pattern.test(text)) return { valid: false, reason: 'Обнаружена нецензурная лексика' };
+        // Загрузка комментариев
+        function loadComments() {
+            const saved = localStorage.getItem('syenduk_comments_fixed');
+            if (saved) {
+                try {
+                    comments = JSON.parse(saved);
+                } catch (e) {
+                    console.log('Используем стандартные комментарии');
+                }
             }
-            
-            for (const pattern of spamPatterns) {
-                if (pattern.test(text)) return { valid: false, reason: 'Обнаружены ссылки или реклама' };
-            }
-            
-            if (/(.)\1{5,}/.test(text)) return { valid: false, reason: 'Обнаружен спам' };
-            
-            return { valid: true };
         }
 
-        function moderateName(name) {
-            if (name.length < 2) return { valid: false, reason: 'Имя слишком короткое' };
-            if (name.length > 30) return { valid: false, reason: 'Имя слишком длинное' };
-            
-            for (const pattern of bannedWords) {
-                if (pattern.test(name)) return { valid: false, reason: 'Недопустимое имя' };
-            }
-            
-            return { valid: true };
+        // Сохранение комментариев
+        function saveComments() {
+            localStorage.setItem('syenduk_comments_fixed', JSON.stringify(comments));
         }
-
-        // Счётчик символов
-        document.getElementById('commentText').addEventListener('input', function() {
-            const count = this.value.length;
-            const counter = document.getElementById('charCount');
-            const error = document.getElementById('textError');
-            
-            counter.textContent = count;
-            counter.style.color = count > 270 ? 'var(--accent-red)' : 'var(--border-color)';
-            
-            if (count < 10) {
-                error.textContent = `Ещё ${10 - count} символов`;
-                error.classList.add('show');
-            } else if (count > 300) {
-                error.textContent = `Превышение: ${count - 300}`;
-                error.classList.add('show');
-            } else {
-                error.classList.remove('show');
-            }
-        });
 
         // Отображение комментариев
         function renderComments() {
             const container = document.getElementById('commentsList');
             container.innerHTML = '';
-            
+
             comments.forEach(comment => {
-                const div = document.createElement('div');
-                div.className = 'comment';
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
                 
-                div.innerHTML = `
+                commentDiv.innerHTML = `
                     <div class="comment-header">
-                        <span class="comment-author">${escapeHtml(comment.name)}</span>
+                        <span class="comment-author">${escapeHtml(comment.author)}</span>
                         <span class="comment-date">${escapeHtml(comment.date)}</span>
                     </div>
                     <div class="comment-content">
@@ -755,91 +600,63 @@
                     </div>
                 `;
                 
-                container.appendChild(div);
+                container.appendChild(commentDiv);
             });
         }
 
-        // Отправка комментария
-        function submitComment() {
-            const nameInput = document.getElementById('commentName');
+        // Добавление комментария
+        function addComment() {
+            const authorInput = document.getElementById('commentAuthor');
             const textInput = document.getElementById('commentText');
             const submitBtn = document.getElementById('submitBtn');
-            
-            const name = nameInput.value.trim();
-            const text = textInput.value.trim();
-            
-            // Валидация
-            const nameValid = moderateName(name);
-            const textValid = moderateText(text);
-            
-            let hasError = false;
-            
-            if (!nameValid.valid) {
-                document.getElementById('nameError').textContent = nameValid.reason;
-                document.getElementById('nameError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('nameError').classList.remove('show');
+
+            // Проверка
+            if (!authorInput.value.trim()) {
+                alert('Введите имя');
+                authorInput.focus();
+                return;
             }
-            
-            if (!textValid.valid) {
-                document.getElementById('textError').textContent = textValid.reason;
-                document.getElementById('textError').classList.add('show');
-                hasError = true;
-            } else {
-                document.getElementById('textError').classList.remove('show');
+
+            if (!textInput.value.trim()) {
+                alert('Введите текст заметки');
+                textInput.focus();
+                return;
             }
-            
-            if (hasError) return;
-            
+
             // Блокировка кнопки
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> МОДЕРАЦИЯ...';
-            
-            // Имитация проверки
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> СОХРАНЕНИЕ...';
+
+            // Создание комментария
+            const date = new Date();
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+            const newComment = {
+                author: authorInput.value.trim(),
+                date: dateStr,
+                text: textInput.value.trim()
+            };
+
+            // Добавление
+            comments.unshift(newComment);
+            saveComments();
+            renderComments();
+
+            // Очистка
+            authorInput.value = '';
+            textInput.value = '';
+
+            // Восстановление кнопки
             setTimeout(() => {
-                const date = new Date();
-                const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
-                
-                const newComment = {
-                    name: name,
-                    text: text,
-                    date: dateStr
-                };
-                
-                comments.unshift(newComment);
-                localStorage.setItem('syenduk_simple_comments', JSON.stringify(comments));
-                
-                // Очистка
-                nameInput.value = '';
-                textInput.value = '';
-                document.getElementById('charCount').textContent = '0';
-                
-                // Обновление
-                renderComments();
-                
-                // Возврат кнопки
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-file-signature"></i> ПОДАТЬ ПОКАЗАНИЯ';
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ДОБАВИТЬ В АРХИВ';
                 
                 // Уведомление
-                showNotification('Показания приняты. Свидетель добавлен в архив.');
-                
-                // Шутка
-                if (Math.random() > 0.7) {
-                    setTimeout(() => {
-                        const jokes = [
-                            'Архив пополнен.',
-                            'Бумага не порвалась.',
-                            'Свидетель записан.'
-                        ];
-                        showNotification(jokes[Math.floor(Math.random() * jokes.length)]);
-                    }, 500);
-                }
-            }, 1000);
+                showNotification('Заметка добавлена в архив');
+            }, 500);
         }
 
-        // Уведомления
+        // Уведомление
         function showNotification(message) {
             const notification = document.createElement('div');
             notification.style.cssText = `
@@ -848,4 +665,45 @@
                 right: 20px;
                 background: var(--accent-red);
                 color: white;
-                padding:
+                padding: 10px 15px;
+                border-radius: 4px;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.9rem;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Экранирование HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComments();
+            renderComments();
+
+            // Проверка системы
+            console.log('Система комментариев загружена. Комментариев:', comments.length);
+
+            // Обработка Ctrl+Enter
+            document.getElementById('commentText').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
+                    addComment();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
