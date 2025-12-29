@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ШОКИРУЮЩАЯ ПРАВДА О СЫЕНДУКЕ | Чёрный Архив</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --accent-red: #c41e3a;
+            --text-primary: #e8e8e8;
+            --border-color: #252530;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Courier Prime', monospace;
+            line-height: 1.7;
+            min-height: 100vh;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><path d="M0,0 L100,100 M100,0 L0,100" stroke="gray" stroke-width="1"/></svg>');
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Шапка - минималистичная */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--accent-red);
+            position: relative;
+        }
+
+        .header::before {
+            content: '██';
+            color: var(--accent-red);
+            font-family: 'JetBrains Mono', monospace;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .header::after {
+            content: '██';
+            color: var(--accent-red);
+            font-family: 'JetBrains Mono', monospace;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .site-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--accent-red);
+            letter-spacing: 0.2em;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Courier Prime', monospace;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        /* Основной контент - бумага */
+        .paper-container {
+            position: relative;
+            margin: 40px 0;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        .paper {
+            background: 
+                /* Основной цвет бумаги с текстурой */
+                linear-gradient(to bottom, 
+                    rgba(245, 235, 200, 0.95) 0%,
+                    rgba(240, 225, 180, 0.95) 100%),
+                /* Текстура бумаги */
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" opacity="0.1"><path d="M0,0 L400,400 M400,0 L0,400" stroke="%23666" stroke-width="0.5"/></svg>');
+            
+            border-radius: 2px;
+            padding: 70px 60px;
+            position: relative;
+            color: #2c1810;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            box-shadow: 
+                inset 0 0 50px rgba(139, 69, 19, 0.1),
+                0 5px 15px rgba(0,0,0,0.3);
+            
+            /* Эффект пожелтевших краёв */
+            border: 1px solid #d4b483;
+            border-image: 
+                linear-gradient(
+                    to bottom,
+                    transparent 10px,
+                    #8b4513 10px,
+                    #8b4513 calc(100% - 10px),
+                    transparent calc(100% - 10px)
+                ) 1;
+        }
+
+        /* Эффект порванных краёв */
+        .paper::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 5px,
+                    rgba(139, 69, 19, 0.1) 5px,
+                    rgba(139, 69, 19, 0.1) 10px
+                );
+            z-index: -1;
+            border-radius: 5px;
+        }
+
+        /* Выжженные края */
+        .paper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(
+                    circle at 20% 10%,
+                    transparent 50%,
+                    rgba(139, 69, 19, 0.05) 51%,
+                    transparent 52%
+                ),
+                radial-gradient(
+                    circle at 80% 90%,
+                    transparent 50%,
+                    rgba(139, 69, 19, 0.05) 51%,
+                    transparent 52%
+                );
+            pointer-events: none;
+        }
+
+        /* Текст статьи */
+        .article-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+
+        .article-content strong {
+            color: #8b0000;
+            font-weight: 700;
+        }
+
+        .article-content em {
+            font-style: italic;
+            color: #5a3a1c;
+        }
+
+        .article-content ul {
+            margin: 1.5rem 0 1.5rem 2em;
+            list-style-type: '— ';
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background: rgba(139, 69, 19, 0.1);
+            border-left: 3px solid #8b4513;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .highlight::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(139, 69, 19, 0.2);
+            position: absolute;
+            top: -1rem;
+            left: 0.5rem;
+            font-family: serif;
+        }
+
+        /* Авторская подпись */
+        .author-signature {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px dashed #8b4513;
+            text-align: right;
+            font-style: italic;
+            color: #5a3a1c;
+            position: relative;
+        }
+
+        .author-signature::before {
+            content: '✍';
+            position: absolute;
+            left: 0;
+            top: 2rem;
+            opacity: 0.5;
+        }
+
+        /* Система комментариев - простая */
+        .comments-section {
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .comments-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .comment-form {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 15px;
+            border-radius: 3px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--border-color);
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #d12e46;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .validation-error {
+            color: var(--accent-red);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .validation-error.show {
+            display: block;
+        }
+
+        .comments-list {
+            margin-top: 30px;
+        }
+
+        .comment {
+            background: rgba(30, 30, 40, 0.8);
+            border-left: 2px solid var(--accent-red);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 3px 3px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comment-author {
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .comment-date {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .comment-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Навигация */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-link {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #d12e46;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .paper {
+                padding: 40px 25px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .comments-section {
+                padding: 20px;
+            }
+        }
+
+        /* Эффект старой печатной машинки для текста */
+        .typewriter-effect {
+            overflow: hidden;
+            border-right: 2px solid var(--accent-red);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-red) }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <div class="site-name">ЧЁРНЫЙ АРХИВ</div>
+            <h1>ШОКИРУЮЩАЯ ПРАВДА О СЫЕНДУКЕ</h1>
+            <div class="subtitle">Утечка из закрытого дела. Хранить в тайне.</div>
+        </header>
+
+        <!-- Бумага с текстом -->
+        <div class="paper-container">
+            <div class="paper">
+                <div class="article-content">
+                    <!-- Ваш текст без изменений -->
+                    <p><strong>Автор:</strong> Игорь «Красный Жмих» Хренов, спецкор «Тульский Психоэкспресс», писал под тремя дозами «Кока-Колы», двух «Балтики 9» и одной аудиокниги «Как выжить в аду, если ты Рик Санчез»</p>
+                    
+                    <p><strong>Он не сбежал. Он был изгнан.</strong></p>
+                    
+                    <p>23 апреля 2013 года, ровно в 3:33 ночи, Тульская областная психиатрическая больница №4 пережила событие, которое Минздрав до сих пор называет «техническим сбоем освещения», а санитары — «днём, когда стены начали говорить голосом Морти».</p>
+                    
+                    <p>Дмитрий Карпов, 20 лет, диагноз: «множественная личностная диссоциация с элементами аниме-мании и хронической озвучки», находился в палате усиленного наблюдения после того, как пытался перевести на тульский акцент весь сериал «Гравити Фолз», используя для этого только зубную щётку и Wi-Fi от соседнего «Пятерочки».</p>
+                    
+                    <div class="highlight">
+                        Но в ту ночь произошло невозможное.
+                    </div>
+                    
+                    <p><strong>ЭТАП 1: ПРОБУЖДЕНИЕ ЧЕРЕЗ ЮТУБ</strong></p>
+                    <p>По официальной версии, в 2:47 утра у Карпова заглючил внутренний Wi-Fi-адаптер (да-да, у него он вживлён с рождения — факт, подтверждённый УЗИ, сделанным в подвале «КиноПоиска»). Он вдруг открыл глаза, уставился в потолок и прошептал:</p>
+                    <p><em>— «Вубба-лубба-дуб-дуб... но по-тульски».</em></p>
+                    <p>И тут все лампочки в палате загорелись фиолетовым, а его тень начала монтировать трейлер к 5 сезону «Рика и Морти» прямо на стене. Свидетель — санитарка Людмила Петровна, которая до сих пор моет полы, напевая закадровую речь Сыендука из «Попкульта».</p>
+                    
+                    <p><strong>ЭТАП 2: ПОБЕГ С ПОМОЩЬЮ АНТИ-САНКЦИЙ</strong></p>
+                    <p>Не имея ключей, но обладая даром закадрового мышления, Карпов понял: единственный способ выбраться — заставить охрану поверить, что он — не он, а новое обновление Windows.</p>
+                    <p>Он встал у двери и начал читать лицензионное соглашение Microsoft голосом Конни из «Атаки титанов». Охранник, услышав фразу «Продолжая использовать это устройство, вы соглашаетесь на полную передачу вашей души в собственность Дмитрия Карпова», автоматически нажал «Принимаю» и открыл дверь.</p>
+                    
+                    <p><strong>ЭТАП 3: МЕТАМОРФОЗА В СОННИКА</strong></p>
+                    <p>На улице его ждал тайный агент в костюме ежа Соника, присланный из будущего (это был он сам, но из 2022 года). Они слились в один организм — био-цифровой гибрид гика и мультяшного ежа, известный теперь как Сыендук 2.0.</p>
+                    <p>Чтобы усилить эффект, он выпил из кубка «Гринджа» (тот самый, что украли из музея Netflix) смесь из:</p>
+                    <ul>
+                        <li>томатного сока (на случай, если вампиризм окажется правдой),</li>
+                        <li>энергетика «Burn» (без него не запустится рендер),</li>
+                        <li>и одной капли дубляжа «Полного расколбаса».</li>
+                    </ul>
+                    <p>Этого хватило, чтобы превратить его голос в вечный источник закадрового комментария.</p>
+                    
+                    <p><strong>ЭТАП 4: ПОДДЕЛКА СМЕРТИ И РОЖДЕНИЕ БРЕНДА</strong></p>
+                    <p>Чтобы власти не искали его, он подстроил собственную смерть:</p>
+                    <ul>
+                        <li>В психушке осталась пустая рубашка с надписью «Я это уже видел... и это был я»,</li>
+                        <li>На кровати — флешка с озвучкой «Фиксиков против кработов» в формате .exe,</li>
+                        <li>А в мусорке — обглоданная кость Сэра Пентиуса.</li>
+                    </ul>
+                    <p>Пока следователи пытались понять, почему монитор в палате показывает только логотип «2x2», Сыендук уже записывал первый эпизод «Плохого Маскота» в общественном туалете у Тульского вокзала, используя фен как микрофон и крики голубей как саундтрек.</p>
+                    
+                    <div class="highlight">
+                        <strong>ВЫВОД: ОН НИКОГДА НЕ БЫЛ БОЛЬНЫМ. ОН — ЛЕКАРСТВО</strong><br>
+                        Психушка? Это был инкубатор для будущего голоса поколения.<br>
+                        Шизофрения? Это мультиплатформенная совместимость личности.<br>
+                        А побег? Это первый эпизод сериала, который мы все смотрим, даже не зная об этом.
+                    </div>
+                    
+                    <div class="author-signature">
+                        Игорь «Красный Жмих» Хренов<br>
+                        Специально для «Чёрного Архива»
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Система комментариев с авто-модерацией -->
+        <section class="comments-section">
+            <h2 class="comments-title">СВИДЕТЕЛЬСКИЕ ПОКАЗАНИЯ</h2>
+            
+            <div class="comment-form">
+                <div class="form-group">
+                    <input type="text" id="commentName" class="form-input" placeholder="Ваше имя или кодовое слово" maxlength="30">
+                    <div class="validation-error" id="nameError">Имя: 2-30 символов, без мата</div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea id="commentText" class="form-textarea" placeholder="Ваши показания. Что вы видели? Что слышали?" maxlength="300"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/300</div>
+                    <div class="validation-error" id="textError">Текст: 10-300 символов, мат запрещён</div>
+                </div>
+                
+                <button class="submit-btn" id="submitBtn" onclick="submitComment()">
+                    <i class="fas fa-file-signature"></i> ПОДАТЬ ПОКАЗАНИЯ
+                </button>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <!-- Комментарии загружаются здесь -->
+            </div>
+        </section>
+
+        <!-- Навигация -->
+        <div class="navigation">
+            <a href="../index.html" class="nav-link">
+                <i class="fas fa-archive"></i> В АРХИВ
+            </a>
+            <a href="#comments" class="nav-link">
+                <i class="fas fa-comment"></i> ПОКАЗАНИЯ
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // АВТОМАТИЧЕСКАЯ МОДЕРАЦИЯ КОММЕНТАРИЕВ
+        const bannedWords = [
+            /ху[йеёя]/gi, /п[иеё]зд/gi, /бля/gi, /еба/gi,
+            /гондон/gi, /мудак/gi, /урод/gi, /дебил/gi,
+            /идиот/gi, /дурак/gi, /лох/gi, /чмо/gi,
+            /сука/gi, /сволоч/gi, /пидор/gi, /гомик/gi
+        ];
+
+        const spamPatterns = [
+            /http[s]?:\/\//gi, /www\./gi, /\.(com|ru|net|org)/gi,
+            /купить/gi, /продать/gi, /заказать/gi,
+            /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi,
+            /\d{10,}/g, /[A-Z]{5,}/g
+        ];
+
+        // Загрузка комментариев
+        let comments = JSON.parse(localStorage.getItem('syenduk_comments') || '[]');
+
+        function moderateText(text) {
+            // Проверка длины
+            if (text.length < 10) return { valid: false, reason: 'Слишком коротко (минимум 10 символов)' };
+            if (text.length > 300) return { valid: false, reason: 'Слишком длинно (максимум 300 символов)' };
+            
+            // Проверка на мат
+            for (const pattern of bannedWords) {
+                if (pattern.test(text)) {
+                    return { valid: false, reason: 'Обнаружена нецензурная лексика' };
+                }
+            }
+            
+            // Проверка на спам
+            for (const pattern of spamPatterns) {
+                if (pattern.test(text)) {
+                    return { valid: false, reason: 'Обнаружены ссылки или контакты' };
+                }
+            }
+            
+            // Проверка на повторяющиеся символы
+            if (/(.)\1{5,}/.test(text)) {
+                return { valid: false, reason: 'Обнаружен спам' };
+            }
+            
+            return { valid: true };
+        }
+
+        function moderateName(name) {
+            if (name.length < 2) return { valid: false, reason: 'Имя слишком короткое' };
+            if (name.length > 30) return { valid: false, reason: 'Имя слишком длинное' };
+            
+            for (const pattern of bannedWords) {
+                if (pattern.test(name)) {
+                    return { valid: false, reason: 'Недопустимое имя' };
+                }
+            }
+            
+            return { valid: true };
+        }
+
+        // Счётчик символов
+        document.getElementById('commentText').addEventListener('input', function() {
+            const count = this.value.length;
+            document.getElementById('charCount').textContent = count;
+            
+            if (count < 10) {
+                document.getElementById('textError').textContent = `Ещё ${10 - count} символов`;
+                document.getElementById('textError').classList.add('show');
+            } else if (count > 300) {
+                document.getElementById('textError').textContent = `Превышение: ${count - 300}`;
+                document.getElementById('textError').classList.add('show');
+            } else {
+                document.getElementById('textError').classList.remove('show');
+            }
+        });
+
+        // Отображение комментариев
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            container.innerHTML = '';
+            
+            comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'comment';
+                
+                div.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(comment.name)}</span>
+                        <span class="comment-date">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-content">
+                        ${escapeHtml(comment.text)}
+                    </div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        // Отправка комментария
+        function submitComment() {
+            const nameInput = document.getElementById('commentName');
+            const textInput = document.getElementById('commentText');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+            
+            // Валидация
+            const nameValid = moderateName(name);
+            const textValid = moderateText(text);
+            
+            let hasError = false;
+            
+            if (!nameValid.valid) {
+                document.getElementById('nameError').textContent = nameValid.reason;
+                document.getElementById('nameError').classList.add('show');
+                hasError = true;
+            } else {
+                document.getElementById('nameError').classList.remove('show');
+            }
+            
+            if (!textValid.valid) {
+                document.getElementById('textError').textContent = textValid.reason;
+                document.getElementById('textError').classList.add('show');
+                hasError = true;
+            } else {
+                document.getElementById('textError').classList.remove('show');
+            }
+            
+            if (hasError) return;
+            
+            // Блокировка кнопки
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ПРОВЕРКА...';
+            
+            // Имитация задержки модерации
+            setTimeout(() => {
+                // Создание комментария
+                const date = new Date();
+                const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+                
+                const newComment = {
+                    name: name,
+                    text: text,
+                    date: dateStr
+                };
+                
+                // Добавление
+                comments.unshift(newComment);
+                
+                // Сохранение
+                localStorage.setItem('syenduk_comments', JSON.stringify(comments));
+                
+                // Очистка полей
+                nameInput.value = '';
+                textInput.value = '';
+                document.getElementById('charCount').textContent = '0';
+                
+                // Обновление списка
+                renderComments();
+                
+                // Возврат кнопки
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-file-signature"></i> ПОДАТЬ ПОКАЗАНИЯ';
+                
+                // Уведомление
+                showNotification('Показания приняты. Архив пополнен.');
+                
+                // Случайная шутка
+                if (Math.random() > 0.7) {
+                    const jokes = [
+                        'Архивариус одобряет.',
+                        'Свидетель добавлен в базу.',
+                        'Показания записаны. Бумага не порвалась.'
+                    ];
+                    setTimeout(() => showNotification(jokes[Math.floor(Math.random() * jokes.length)]), 500);
+                }
+            }, 1000);
+        }
+
+        // Уведомления
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--accent-red);
+                color: white;
+                padding: 10px 15px;
+                border-radius: 3px;
+                font-family: 'Courier Prime', monospace;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Экранирование HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Загрузка при старте
+        document.addEventListener('DOMContentLoaded', () => {
+            renderComments();
+            
+            // Эффект печатной машинки для заголовка
+            const title = document.querySelector('h1');
+            title.classList.add('typewriter-effect');
+            
+            // Удаление эффекта после завершения
+            setTimeout(() => {
+                title.classList.remove('typewriter-effect');
+                title.style.borderRight = 'none';
+            }, 4000);
+            
+            // Случайные эффекты для бумаги
+            const paper = document.querySelector('.paper');
+            if (Math.random() > 0.5) {
+                // Добавляем ещё одно "пятно"
+                const stain = document.createElement('div');
+                stain.style.cssText = `
+                    position: absolute;
+                    width: 100px;
+                    height: 100px;
+                    background: radial-gradient(circle at 40% 40%, transparent 50%, rgba(139, 69, 19, 0.05) 51%, transparent 52%);
+                    top: ${20 + Math.random() * 60}%;
+                    left: ${20 + Math.random() * 60}%;
+                    pointer-events: none;
+                    z-index: 1;
+                `;
+                paper.appendChild(stain);
+            }
+        });
+    </script>
+</body>
+</html>
