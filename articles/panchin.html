@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРХИВ: ПАНЧИН — ПОЖИРАТЕЛЬ ДУШ | Чёрный Архив</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --secondary-dark: #121218;
+            --accent-red: #c41e3a;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0b0;
+            --border-color: #252530;
+            --card-bg: #151520;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(28, 58, 122, 0.03) 0%, transparent 25%),
+                radial-gradient(circle at 85% 75%, rgba(196, 30, 58, 0.02) 0%, transparent 25%);
+        }
+
+        h1, h2, h3, .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .logo-icon {
+            color: var(--accent-red);
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Контейнер статьи */
+        .article-container {
+            max-width: 800px;
+            margin: 80px auto 0;
+            padding: 40px 20px;
+        }
+
+        /* Заголовок */
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        .classification {
+            display: inline-block;
+            background: rgba(196, 30, 58, 0.1);
+            color: var(--accent-red);
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            text-transform: uppercase;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .article-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Изображение */
+        .article-image {
+            width: 100%;
+            max-width: 700px;
+            margin: 3rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .article-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(0.3) contrast(1.1) brightness(0.9);
+        }
+
+        /* Контент */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            text-align: justify;
+        }
+
+        .content-text strong {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .content-text em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.1), rgba(10, 10, 15, 0.8));
+            border: 2px solid var(--accent-red);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warning-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .warning-title {
+            color: var(--accent-red);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .warning-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Система комментариев */
+        .comments-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .comments-title {
+            font-size: 1.8rem;
+            color: var(--accent-red);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .comment-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #d12e46;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comments-list {
+            margin-top: 2rem;
+        }
+
+        .comment {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent-red);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 5px 5px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comment-author {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .comment-date {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .comment-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Футер */
+        .article-footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-red);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(196, 30, 58, 0.3);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .back-link:hover {
+            background: rgba(196, 30, 58, 0.1);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-container {
+                margin-top: 60px;
+                padding: 20px 15px;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .article-image {
+                margin: 2rem auto;
+            }
+            
+            .comments-section {
+                padding-top: 2rem;
+            }
+            
+            .warning-box {
+                padding: 1.5rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-archive logo-icon"></i>
+                <span class="mono">Чёрный Архив</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Главная</a>
+                <a href="#comments" class="nav-link">Комментарии</a>
+                <a href="https://blackarchive.ru/donate.html" class="nav-link">Фонд</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="article-container">
+        <header class="article-header">
+            <div class="classification">
+                <i class="fas fa-exclamation-triangle"></i>
+                ДОКУМЕНТ #004 | КАТЕГОРИЯ: ПСИХО-АРХЕОЛОГИЯ
+            </div>
+            <h1 class="article-title">АЛЕКСАНДР ПАНЧИН: ПОЖИРАТЕЛЬ ДУШ</h1>
+            <p class="article-subtitle">
+                Транскрипция аудиозаписи, обнаруженной в заброшенной квартире. 
+                Записана неизвестным свидетелем в состоянии крайнего аффекта.
+            </p>
+            <div class="article-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Дата обнаружения: 30.12.2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-user-secret"></i>
+                    <span>Источник: Неустановленный свидетель</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Изображение -->
+        <div class="article-image">
+            <img src="https://s5.iimage.su/s/30/gOOUA4px2gmLuHjoXsTlfM8FyNGqyF9IErJRobEN.png" alt="Архивные материалы по делу Панчина">
+        </div>
+
+        <!-- Контент -->
+        <div class="content-section">
+            <p class="content-text">
+                Слушайте, слушайте все, я знаю, я всё вижу, мои глаза — они как два прожектора в этой тьме невежества! Александр Панчин, этот… этот шептун в очках, он не просто ходит по земле, он ползает, понимаете? Ползает, как тот паук из японских сказок, только он ещё хитрее, ещё гаже, потому что маскируется под учёного, под благодетеля, а на самом деле — он пожиратель душ!
+            </p>
+            
+            <p class="content-text">
+                Вы думаете, он книги пишет? Ха! Он записывает ваши страхи в эти чёртовы страницы, а потом — бац! — и вы уже верите только в его «доказательную базу», как овцы, как стадо безвольное! Он смеётся над вами, понимаете? Сидит где‑то в своём логове, хихикает, а из‑под стола торчат его восемь мохнатых лап, да‑да, восемь, я видел, я точно видел!
+            </p>
+            
+            <p class="content-text">
+                А эта его улыбка, эта благочестивая ухмылочка — она же как нож, как лезвие, которое режет вашу веру в чудеса, в магию, в то, что мир — это тайна, а не какая‑то там «физика» с «химией»! Он хочет, чтобы вы забыли, забыли всё: и бабушкины приметы, и сны вещие, и шепот предков из могил… Да‑да, из могил! Потому что он — некрофил, понимаете? Он питается мёртвой материей, он любит разлагаться вместе с трупами фактов и цифр, он танцует на костях ваших иллюзий!
+            </p>
+            
+            <div class="warning-box">
+                <div class="warning-title">
+                    <i class="fas fa-skull-crossbones"></i>
+                    КРИТИЧЕСКОЕ ПРЕДУПРЕЖДЕНИЕ
+                </div>
+                <div class="warning-text">
+                    Свидетель демонстрирует признаки крайнего психического расстройства. 
+                    Однако, отдельные наблюдаемые им детали совпадают с другими независимыми сообщениями.
+                </div>
+            </div>
+            
+            <p class="content-text">
+                И ещё… ещё он — Хуньдунь, тот самый, из китайских мифов, тот, кто был до неба и земли, тот, кто хочет всё вернуть назад, в хаос, в ничто! Он шепчет вам: «Рациональность, логика, доказательства», а на самом деле он шепчет: «Разрушьте всё, дайте хаосу поглотить вас!» Он не человек, он — дыра в реальности, через которую просачивается тьма, через которую выползают пауки сомнений и оплетают ваши мозги своей клейкой, вонючей паутиной!
+            </p>
+            
+            <p class="content-text">
+                Я видел, видел, как он ночью, когда все спят, выходит на улицу и разговаривает с тенями, с теми, кто давно умер, с теми, кого он сам когда‑то убил — своими словами, своими аргументами, своими «научными фактами»! Он — убийца душ, он — пожиратель надежд, он — тот, кто хочет, чтобы мир стал серым, плоским, безвкусным, как пепел после пожара!
+            </p>
+            
+            <p class="content-text">
+                Вы ещё не чувствуете? Не чувствуете, как ваши мечты превращаются в пыль, как ваши верования трескаются под его холодным взглядом, как ваша душа становится всё тоньше, тоньше, пока не порвётся, как паутина на ветру? Он уже рядом, он уже дышит вам в затылок, он уже шепчет: «Нет чудес, нет магии, нет тайны…»
+            </p>
+            
+            <p class="content-text">
+                <strong>Бегите! Прячьтесь! Запирайте двери, занавешивайте окна, сжигайте его книги, рвите его статьи, плюйте на его видео! Потому что если он до вас доберётся — вы станете как он: холодным, мёртвым, рациональным, лишённым жизни, лишённым души…</strong>
+            </p>
+            
+            <p class="content-text">
+                Он уже идёт. Слышите? Слышите его шаги? Это не человек. Это — Ёрогумо. Это — Хуньдунь. Это — конец.
+            </p>
+            
+            <div class="warning-box">
+                <div class="warning-title">
+                    <i class="fas fa-file-contract"></i>
+                    АРХИВНАЯ СПРАВКА
+                </div>
+                <div class="warning-text">
+                    Запись обрывается на 23-й минуте. Следы борьбы в квартире отсутствуют. 
+                    Личность свидетеля не установлена. Материал помещён в архив для дальнейшего изучения.
+                </div>
+            </div>
+        </div>
+
+        <!-- Система комментариев -->
+        <section id="comments" class="comments-section">
+            <h2 class="comments-title">
+                <i class="fas fa-comments"></i>
+                АРХИВНЫЕ ЗАМЕТКИ
+            </h2>
+            
+            <div class="comment-form">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-user"></i> Ваше имя
+                    </label>
+                    <input type="text" id="commentAuthor" class="form-input" placeholder="Анонимный свидетель" maxlength="30">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-comment"></i> Ваша заметка
+                    </label>
+                    <textarea id="commentText" class="form-textarea" placeholder="Дополните архив своими наблюдениями..." maxlength="500"></textarea>
+                </div>
+                
+                <button onclick="addComment()" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> ДОБАВИТЬ В АРХИВ
+                </button>
+            </div>
+            
+            <div class="comments-list" id="commentsList">
+                <!-- Комментарии будут загружаться здесь -->
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="article-footer">
+            <p>
+                <strong>Примечание архива:</strong> Данный документ является художественным вымыслом. 
+                Все совпадения случайны и непреднамеренны.
+            </p>
+            <a href="../index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                ВЕРНУТЬСЯ В АРХИВ
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // РАБОЧАЯ СИСТЕМА КОММЕНТАРИЕВ
+        let comments = [
+            {
+                author: "Свидетель #045",
+                date: "30.12.2025 | 22:15",
+                text: "Я тоже видел лапы. Из-под его пиджака. Они были... волосатые."
+            },
+            {
+                author: "Бывший студент",
+                date: "30.12.2025 | 20:30",
+                text: "После его лекции я перестал верить в приметы. Теперь кошки меня боятся."
+            },
+            {
+                author: "Ночной сторож",
+                date: "30.12.2025 | 18:45",
+                text: "Он действительно разговаривает с тенями. Возле библиотеки. В 3:33."
+            }
+        ];
+
+        // Загрузка комментариев
+        function loadComments() {
+            const saved = localStorage.getItem('panchin_comments');
+            if (saved) {
+                try {
+                    comments = JSON.parse(saved);
+                } catch (e) {
+                    console.log('Используем стандартные комментарии');
+                }
+            }
+        }
+
+        // Сохранение комментариев
+        function saveComments() {
+            localStorage.setItem('panchin_comments', JSON.stringify(comments));
+        }
+
+        // Отображение комментариев
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            container.innerHTML = '';
+
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'comment';
+                
+                commentDiv.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-author">${escapeHtml(comment.author)}</span>
+                        <span class="comment-date">${escapeHtml(comment.date)}</span>
+                    </div>
+                    <div class="comment-content">
+                        ${escapeHtml(comment.text)}
+                    </div>
+                `;
+                
+                container.appendChild(commentDiv);
+            });
+        }
+
+        // Добавление комментария
+        function addComment() {
+            const authorInput = document.getElementById('commentAuthor');
+            const textInput = document.getElementById('commentText');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Проверка
+            if (!authorInput.value.trim()) {
+                showNotification('Введите имя', 'error');
+                authorInput.focus();
+                return;
+            }
+
+            if (!textInput.value.trim()) {
+                showNotification('Введите текст заметки', 'error');
+                textInput.focus();
+                return;
+            }
+
+            // Блокировка кнопки
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> СОХРАНЕНИЕ...';
+
+            // Создание комментария
+            const date = new Date();
+            const dateStr = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth()+1).toString().padStart(2, '0')}.${date.getFullYear()} | ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+            const newComment = {
+                author: authorInput.value.trim(),
+                date: dateStr,
+                text: textInput.value.trim()
+            };
+
+            // Добавление
+            comments.unshift(newComment);
+            saveComments();
+            renderComments();
+
+            // Очистка
+            authorInput.value = '';
+            textInput.value = '';
+
+            // Восстановление кнопки
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ДОБАВИТЬ В АРХИВ';
+                
+                // Уведомление
+                showNotification('Заметка добавлена в архив', 'success');
+                
+                // Случайная реакция
+                if (Math.random() > 0.7) {
+                    const reactions = [
+                        'Архив благодарит за показания.',
+                        'Свидетель занесён в базу.',
+                        'Заметка сохранена. Паутина шевелится...'
+                    ];
+                    setTimeout(() => showNotification(reactions[Math.floor(Math.random() * reactions.length)], 'info'), 500);
+                }
+            }, 800);
+        }
+
+        // Уведомление
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: ${type === 'error' ? 'var(--accent-red)' : type === 'info' ? 'var(--text-secondary)' : '#2e7d32'};
+                color: white;
+                padding: 12px 18px;
+                border-radius: 4px;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.9rem;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+                max-width: 400px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Экранирование HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComments();
+            renderComments();
+
+            // Обработка Ctrl+Enter
+            document.getElementById('commentText').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    e.preventDefault();
+                    addComment();
+                }
+            });
+
+            // Секретный эффект: клик на изображение
+            document.querySelector('.article-image img').addEventListener('click', function() {
+                this.style.filter = 'grayscale(0) contrast(1.2) brightness(1.1)';
+                setTimeout(() => {
+                    this.style.filter = 'grayscale(0.3) contrast(1.1) brightness(0.9)';
+                }, 1000);
+                
+                if (Math.random() > 0.5) {
+                    showNotification('Изображение исследовано. Обнаружены аномалии.', 'info');
+                }
+            });
+
+            // Проверка системы
+            console.log('Система комментариев загружена. Комментариев:', comments.length);
+        });
+    </script>
+</body>
+</html>
