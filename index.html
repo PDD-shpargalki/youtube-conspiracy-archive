@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чёрный Архив | Исследование медиафеноменов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --accent-red: #ff2e4a;
+            --accent-yellow: #ffd700;
+            --accent-blue: #00a8ff;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0c0;
+            --border-color: #333344;
+            --card-bg: #1a1a2e;
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background-image: radial-gradient(circle at 15% 30%, rgba(255, 46, 74, 0.05) 0%, transparent 25%),
+                              radial-gradient(circle at 85% 70%, rgba(0, 168, 255, 0.05) 0%, transparent 25%);
+            min-height: 100vh;
+        }
+        h1, h2, h3, h4, .mono { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+        /* НАВИГАЦИЯ */
+        .navbar {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--accent-red);
+            z-index: 1000; padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(255, 46, 74, 0.2);
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); font-size: 1.5rem; }
+        .logo-icon { color: var(--accent-red); font-size: 1.8rem; }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: var(--transition); }
+        .nav-link:hover, .nav-link.active { color: var(--accent-red); }
+
+        /* ГЛАВНЫЙ ЗАГОЛОВОК */
+        .hero {
+            min-height: 90vh; display: flex; align-items: center; justify-content: center;
+            padding: 8rem 2rem 4rem; text-align: center; position: relative;
+        }
+        .hero-title {
+            font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-yellow));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        @media (max-width: 768px) { .hero-title { font-size: 2.5rem; } }
+        .hero-subtitle {
+            font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 3rem;
+            max-width: 700px; margin-left: auto; margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-red), #cc0029);
+            color: white; padding: 1rem 3rem; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 1.1rem;
+            transition: var(--transition); border: none; cursor: pointer;
+            font-family: 'JetBrains Mono', monospace; box-shadow: 0 8px 20px rgba(255, 46, 74, 0.4);
+        }
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(255, 46, 74, 0.6); }
+
+        /* СЕТКА СТАТЕЙ */
+        .articles-section { padding: 4rem 2rem; max-width: 1300px; margin: 0 auto; }
+        .section-header { margin-bottom: 3rem; text-align: center; }
+        .section-label {
+            color: var(--accent-yellow); font-size: 0.9rem; font-weight: 600;
+            letter-spacing: 0.2em; margin-bottom: 1rem; text-transform: uppercase;
+        }
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .articles-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem; margin-top: 2rem;
+        }
+        @media (max-width: 768px) { .articles-grid { grid-template-columns: 1fr; } }
+
+        /* КАРТОЧКИ */
+        .article-card {
+            background: var(--card-bg); border: 2px solid var(--border-color);
+            border-radius: 12px; overflow: hidden; transition: var(--transition);
+            height: 100%; display: flex; flex-direction: column;
+            box-shadow: var(--card-shadow);
+        }
+        .article-card:hover {
+            transform: translateY(-10px); border-color: var(--accent-red);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--accent-red);
+        }
+        .article-header { padding: 1.8rem 1.8rem 0; }
+        .article-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.2rem; font-size: 0.85rem;
+        }
+        .article-level {
+            background: rgba(255, 46, 74, 0.2); color: var(--accent-red);
+            padding: 0.35rem 1rem; border-radius: 20px; font-weight: 700;
+        }
+        .article-date { color: var(--accent-yellow); opacity: 0.9; }
+        .article-title {
+            font-size: 1.6rem; margin-bottom: 0.75rem; line-height: 1.3;
+            color: var(--text-primary);
+        }
+        .article-youtuber { color: var(--accent-red); font-weight: 700; }
+        .article-content { padding: 0 1.8rem 1.8rem; flex-grow: 1; }
+        .article-excerpt {
+            color: var(--text-secondary); font-size: 1rem; line-height: 1.6;
+        }
+        .article-footer {
+            padding: 1.5rem; border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .article-link {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            color: var(--accent-blue); text-decoration: none; font-weight: 600;
+            font-size: 1rem; transition: var(--transition);
+        }
+        .article-link:hover { color: var(--accent-red); gap: 1rem; }
+
+        /* СЕКЦИЯ "КАК ЭТО РАБОТАЕТ" (заменяет "О проекте") */
+        .process-section {
+            padding: 5rem 2rem; background: rgba(26, 26, 46, 0.7);
+            border-top: 2px solid var(--accent-blue); border-bottom: 2px solid var(--accent-blue);
+            margin: 4rem 0;
+        }
+        .process-content { max-width: 900px; margin: 0 auto; text-align: center; }
+        .process-title { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 3rem; }
+        .process-steps {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem; margin-top: 3rem;
+        }
+        .step { text-align: center; padding: 2rem; }
+        .step-icon {
+            font-size: 3rem; color: var(--accent-yellow); margin-bottom: 1.5rem;
+            background: rgba(255, 215, 0, 0.1); width: 80px; height: 80px;
+            line-height: 80px; border-radius: 50%; margin-left: auto; margin-right: auto;
+        }
+        .step-title { font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .step-desc { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; }
+
+        /* ФУТЕР И ДИСКЛЕЙМЕР */
+        .footer { padding: 4rem 2rem 3rem; background: var(--primary-dark); text-align: center; }
+        .footer-content { max-width: 1000px; margin: 0 auto; }
+        .footer-links {
+            display: flex; justify-content: center; gap: 3rem; margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 1rem;
+            transition: var(--transition);
+        }
+        .footer-links a:hover { color: var(--accent-red); }
+
+        .disclaimer {
+            background: rgba(255, 46, 74, 0.08); border: 1px solid rgba(255, 46, 74, 0.3);
+            border-radius: 10px; padding: 2rem; margin-top: 3rem; text-align: left;
+        }
+        .disclaimer-title {
+            color: var(--accent-yellow); font-size: 1rem; margin-bottom: 1rem;
+            font-weight: 700; text-transform: uppercase;
+        }
+        .disclaimer-text {
+            color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7;
+        }
+        .copyright {
+            margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);
+            color: var(--text-secondary); font-size: 0.9rem;
+        }
+
+        /* ДОПОЛНИТЕЛЬНЫЕ СТИЛИ */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-archive logo-icon"></i>
+                <span class="mono">Чёрный Архив</span>
+            </a>
+            <div class="nav-links">
+                <a href="#articles" class="nav-link active">Исследования</a>
+                <a href="#process" class="nav-link">Как это работает</a>
+                <a href="pages/create-article.html" class="nav-link">Предложить теорию</a>
+                <a href="donate.html" class="nav-link"><i class="fas fa-coins"></i> Фонд</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">САТИРИЧЕСКОЕ ИССЛЕДОВАНИЕ<br>YOUTUBE-ФЕНОМЕНОВ</h1>
+            <p class="hero-subtitle">
+                Мы не пишем обзоры — мы составляем протоколы. Аналитический проект, который смотрит на YouTube как на поле битвы идентичностей, экономик абсурда и цифровых культов.
+            </p>
+            <a href="#articles" class="cta-button">ИЗУЧИТЬ МАТЕРИАЛЫ</a>
+        </div>
+    </section>
+
+    <!-- Статьи -->
+    <section id="articles" class="articles-section">
+        <div class="section-header">
+            <div class="section-label">Архивные материалы</div>
+            <h2 class="section-title">СВЕЖИЕ РАССЛЕДОВАНИЯ</h2>
+            <p class="hero-subtitle" style="font-size:1.1rem; margin-top:1rem;">
+                Каждая статья — это конспирологический детектив, где улики ведут в тупик абсурда.
+            </p>
+        </div>
+
+        <div class="articles-grid">
+            <!-- Статья 1: MrBeast -->
+            <article class="article-card fade-in">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level">ЭКОНОМИКА</span>
+                        <span class="article-date">15.11.2023</span>
+                    </div>
+                    <h3 class="article-title">MRBEAST: <span class="article-youtuber">ЭКОНОМИКА УНИЖЕНИЯ</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Полный разбор того, как один парень превратил человеческое достоинство в развлекательный контент с рентабельностью 300%. Прайс-лист унижений, математика цинизма и интерактивная рулетка.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="articles/mrbeast.html" class="article-link">
+                        Читать расследование <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Статья 2: Сыендук -->
+            <article class="article-card fade-in">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level">ПСИХОАНАЛИЗ</span>
+                        <span class="article-date">16.11.2023</span>
+                    </div>
+                    <h3 class="article-title">СЫЕНДУК: <span class="article-youtuber">ПРОТОКОЛ ОБЛАЧНОЙ МИГРАЦИИ</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Расследование побега из тульской психушки, слияния с Соником и создания био-цифрового гибрида. Утечки, анализ архивариусов и выводы. Версия 2.0.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="articles/syenduk_v2.html" class="article-link">
+                        Читать протокол <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Статья 3: TheBrianMaps -->
+            <article class="article-card fade-in">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level">ИДЕНТИФИКАЦИЯ</span>
+                        <span class="article-date">17.11.2023</span>
+                    </div>
+                    <h3 class="article-title">THEBRIANMAPS: <span class="article-youtuber">ПСИХОПАТ ПОД ПРИКРЫТИЕМ</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Сначала — улики психопатии. Потом — неожиданный поворот. Систематический сбор улик, который приводит к... неожиданному выводу.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="articles/thebrianmaps.html" class="article-link">
+                        Изучить дело <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Статья 4: Kuplinov -->
+            <article class="article-card fade-in">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level">ЖЁСТКИЙ РЕП</span>
+                        <span class="article-date">Скоро</span>
+                    </div>
+                    <h3 class="article-title">KUPLINOV: <span class="article-youtuber">РАЗОБЛАЧЕНИЕ</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Документ содержит жёсткий реп. Подробности засекречены до завершения расшифровки аудиоплёнок и анализа видеоряда. Материал готовится к публикации.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="articles/Kuplinov.html" class="article-link">
+                        Ожидать публикацию <i class="fas fa-user-secret"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Статья 5: Panchin -->
+            <article class="article-card fade-in">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level">БИОЛОГИЯ</span>
+                        <span class="article-date">Скоро</span>
+                    </div>
+                    <h3 class="article-title">ПАНЧИН: <span class="article-youtuber">ВОСЕМЬ НОГ ПРАВДЫ</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Научно-доказательная база, подтверждающая внеземное паукообразное происхождение объекта. Все улики сходятся в одной точке: он — гигантский паук.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="articles/Panchin.html" class="article-link">
+                        Изучить доказательства <i class="fas fa-microscope"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Статья 6: Ивангай -->
+            <article class="article-card fade-in">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level">ЭВОЛЮЦИЯ</span>
+                        <span class="article-date">Скоро</span>
+                    </div>
+                    <h3 class="article-title">ИВАНГАЙ: <span class="article-youtuber">ВЕРХОВНЫЙ ЖРЕЦ</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Исследование кринжевого апокалипсиса и трансформации в верховного жреца новой цифровой религии. Материал находится в стадии активного расследования.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="articles/Ivangay.html" class="article-link">
+                        Следить за расследованием <i class="fas fa-eye"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Карточка "Создать статью" -->
+            <article class="article-card fade-in" style="border-color: var(--accent-yellow);">
+                <div class="article-header">
+                    <div class="article-meta">
+                        <span class="article-level" style="background:rgba(255,215,0,0.2); color:var(--accent-yellow);">ВАША ОЧЕРЕДЬ</span>
+                        <span class="article-date">Всегда открыто</span>
+                    </div>
+                    <h3 class="article-title">СТАНЬ <span class="article-youtuber">СОАВТОРОМ АРХИВА</span></h3>
+                </div>
+                <div class="article-content">
+                    <p class="article-excerpt">
+                        Есть бредовая теория про ютубера? Знаете, что скрывают? Создайте свою статью в стиле Чёрного Архива. Лучшие работы будут опубликованы с указанием авторства.
+                    </p>
+                </div>
+                <div class="article-footer">
+                    <a href="pages/create-article.html" class="article-link" style="color: var(--accent-yellow); font-weight:700;">
+                        Предложить свою теорию <i class="fas fa-pen-fancy"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Секция "Как это работает" -->
+    <section id="process" class="process-section">
+        <div class="process-content">
+            <h2 class="process-title">КАК ЭТО РАБОТАЕТ</h2>
+            <p class="hero-subtitle" style="font-size:1.2rem; margin-bottom:2rem;">
+                Секретная методология Чёрного Архива. Мы не анализируем — мы генерируем абсурд по строгому протоколу.
+            </p>
+            <div class="process-steps">
+                <div class="step fade-in">
+                    <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="step-title">1. ИДЕЯ / БРЕД</h3>
+                    <p class="step-desc">Находим ютубера. Выявляем в его поведении мельчайшую странность. Раздуваем её до масштабов вселенского заговора. Это основа.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3 class="step-title">2. "УЛИКИ"</h3>
+                    <p class="step-desc">Собираем «неопровержимые доказательства»: скриншоты, отрывки, цвет носков. Любая деталь — улика. Любая случайность — закономерность.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="step-title">3. ДОКУМЕНТ</h3>
+                    <p class="step-desc">Оформляем теорию в стиле рассекреченного архива, пьяного репортажа или протокола допроса. Стиль — это всё.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon"><i class="fas fa-paper-plane"></i></div>
+                    <h3 class="step-title">4. ПУБЛИКАЦИЯ</h3>
+                    <p class="step-desc">Запускаем в мир. Наблюдаем. Ждём, когда сам объект исследования обнаружит материал. Это высшая форма признания.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#articles">Исследования</a>
+                <a href="#process">Как это работает</a>
+                <a href="pages/create-article.html">Предложить теорию</a>
+                <a href="donate.html">Поддержать проект</a>
+                <a href="https://t.me/blackarchiveru" target="_blank">Telegram</a>
+            </div>
+
+            <div class="disclaimer">
+                <div class="disclaimer-title">ВАЖНОЕ ЮРИДИЧЕСКОЕ И НЕ ОЧЕНЬ УВЕДОМЛЕНИЕ</div>
+                <div class="disclaimer-text">
+                    <p>Проект «Чёрный Архив» является <strong>сатирическим художественным произведением</strong> и образцом абсурдистской литературы. Все материалы на этом сайте — плод творческой фантазии, стилизованный под псевдодокументалистику и конспирологический анализ.</p>
+                    <p>Любые упоминания реальных лиц, компаний, YouTube-каналов, мультфильмов (включая, но не ограничиваясь «Гриффинами»), психбольниц, ежей Соников, пауков и экономических моделей используются исключительно в <strong>пародийных, сатирических и художественных целях</strong>, предусмотренных и защищаемых культурными и правовыми нормами о свободе творчества.</p>
+                    <p>Авторы проекта не претендуют на истинность изложенных «теорий», не ставят целью опорочить чьё-либо имя или репутацию, а лишь упражняются в жанре чёрного юмора и абсурда. Все совпадения с реальными событиями и персонажами случайны, непреднамеренны и, вероятно, свидетельствуют о том, что наша реальность сама по себе достаточно бредова.</p>
+                    <p>Просматривая материалы Архива, вы соглашаетесь не принимать их всерьёз. Если вы — объект одного из наших «расследований», воспринимайте это как странный, но искренний комплимент вашей медийной значимости.</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2023–2026 Чёрный Архив. Независимый сатирический проект.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                    Последнее обновление: 02.01.2026 | Все теории принадлежат их создателям, а абсурд — общественному достоянию.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления при скролле
+        function checkVisibility() {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
+        checkVisibility();
+
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    window.scrollTo({
+                        top: target.offsetTop - navHeight - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Обновление года в футере
+        document.querySelector('.copyright p').innerHTML = `© 2023–${new Date().getFullYear()} Чёрный Архив. Независимый сатирический проект.`;
+    </script>
+</body>
+</html>
